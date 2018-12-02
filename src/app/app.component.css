@@ -101,6 +101,7 @@ body {
   width: 200px;
   /*float:right;*/
   display: inline-block;
+  background-color: transparent;
 }
 
 .vertical-menu input {

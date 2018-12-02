@@ -1,0 +1,21 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.image{
+  background-size:cover;
+  height: 100%;
+  /*width: 100%;*/
+  background-image:url('https://www.tonywrighton.com/wp-content/uploads/A-Good-Lifetime-Habit-Read-More-Books-to-Expand-Your-Sense-of-Life---.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: cover;
+}
+.mysize{
+  font-size: 20px
+}
+
+.menu{
+  font-size: 500px;
+  text-align: "center";
+}

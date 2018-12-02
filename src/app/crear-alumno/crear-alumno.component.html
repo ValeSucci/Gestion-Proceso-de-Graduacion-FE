@@ -1,0 +1,172 @@
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<form action="/action_page.php">
+  <div class="container">
+    <h1>Alumno</h1>
+    <p>Completa los campos para crear un alumno</p>
+    <hr>
+
+    <label for="nombre"><b>Nombre</b></label>
+    <input type="text" placeholder="Ingresar nombre completo" name="nombre" required>
+
+    <label name="estado"><b>Estado</b></label>
+
+    <label for="codigo"><b>Código</b></label>
+    <input type="number" placeholder="Ingresar código" name="codigo" required>
+
+    <label for="semestre"><b>Semestre</b></label>
+    <select>
+        <option value="0">Seleccione-Semestre:</option>
+        <option value="1">I 2015</option>
+        <option value="2">II 2015</option>
+        <option value="3">I 2016</option>
+        <option value="4">II 2016</option>
+        <option value="5">I 2017</option>
+        <option value="6">II 2018</option>
+        <option value="7">I 2019</option>
+        <option value="8">II 2019</option>
+        <option value="9">I 2020</option>
+        <option value="10">II 2020</option>
+        <option value="11">I 2021</option>
+        <option value="12">II 2021</option>
+    </select>
+  
+    <input id="formdate" type="date" required>
+
+    <label for="plazolbl"><b>Plazo</b></label>
+    <label for="plazo"><b>2019-01-31</b></label>
+    
+    <label for="modalidad"><b>Modalidad</b></label>
+    <select>
+      <option value="">Seleccione-Modalidad</option>
+      <option value="excelencia">Excelencia</option>
+      <option value="artefacto-sistema">Proyecto de Grado - Creación Artefacto/Sistema</option>
+      <option value="inversion-existente">Proyecto de Grado - Mejora de la Inversión Existente</option>
+      <option value="prefactibilidad">Proyecto de Grado - Prefactibilidad</option>
+      <option value="tesis">Tesis</option>
+      <option value="trabajo-dirigido">Trabajo Dirigido</option>
+    </select>
+
+    <label for="prorroga"><b>Prórroga</b></label>
+    <input type="checkbox" id="myCheck" onclick="">
+
+    <label for="tema"><b>Tema</b></label>
+    <input type="text" placeholder="Ingresar tema" name="tema">
+
+    
+    <form class="example" style="margin:auto;max-width:300px">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <label for="coincTema"><b>N</b></label>
+    
+    
+    <label for="empresa"><b>Empresa</b></label>
+    <input type="text" placeholder="Ingresar Empresa" name="empresa">
+    
+    <label for="fecha-suf"><b>Fecha suficiencia</b></label>
+    <input id="fecha-suf" type="date">
+
+
+    <hr>
+
+    <label for="tutor"><b>Tutor</b></label>
+    <select name="tutores">
+      <option value="">Seleccione-Docente</option>
+      <option value="doc1">Docente 1</option>
+      <option value="doc2">Docente 2</option>
+    </select>
+    <label for="coincTutor"><b>N</b></label>
+    
+    <label for="fecha_asig-t"><b>Fecha asignación</b></label>
+    <input id="fecha-asig-t" type="date">
+    
+    <button name="carta-t">Carta</button>
+
+    <label for="fecha-suf-t"><b>Fecha suficiencia</b></label>
+    <input id="fecha-suf-t" type="date">
+    
+    <i>Ya no paga!</i>
+
+    <hr>
+
+
+    <label for="revisor"><b>Tutor</b></label>
+    <select name="revisores">
+      <option value="">Seleccione-Docente</option>
+      <option value="doc1">Docente 1</option>
+      <option value="doc2">Docente 2</option>
+    </select>
+    <label for="coincRevisor"><b>N</b></label>
+    
+    <label for="fecha_asig-r"><b>Fecha asignación</b></label>
+    <input id="fecha-asig-r" type="date">
+    
+    <button name="carta-r">Carta</button>
+
+    <label for="fecha-suf-r"><b>Fecha suficiencia</b></label>
+    <input id="fecha-suf-r" type="date">
+    
+
+    <hr>
+
+    <label for="defensa-interna"><b>Defensa Interna</b></label>
+    <input id="fecha-def-interna" type="date">
+    
+    <mat-radio-group name="resultado-def-interna">
+      <mat-radio-button value="aprobado">Aprobado</mat-radio-button>
+      <mat-radio-button value="reprobado">Reprobado</mat-radio-button>
+      <mat-radio-button value="diferido">Diferido</mat-radio-button>
+    </mat-radio-group>
+
+    <label for="comentario"><b>Comentario</b></label>
+    <input type="text" placeholder="Insertar comentario" name="comentario">
+    
+  
+    <hr>
+
+    <label for="defensa-externa"><b>Defensa Externa</b></label>
+    <input id="fecha-def-externa" type="date">
+   
+    <div name="tribunal">
+        <label for="presidente"><b>Presidente</b></label>
+        <input type="text" placeholder="Introducir Presidente" name="presidente">
+
+        <label for="eval1"><b>Evaluador Interno 1</b></label>
+        <select name="eval1">
+            <option value="">Seleccione-Docente</option>
+            <option value="revisor">Revisor</option>
+            <option value="doc1">Docente 1</option>
+            <option value="doc2">Docente 2</option>
+        </select>
+
+        <label for="eval2"><b>Evaluador Interno 2</b></label>
+        <select name="eval2">
+            <option value="">Seleccione-Docente</option>
+            <option value="doc1">Docente 1</option>
+            <option value="doc2">Docente 2</option>
+        </select>
+        <input type="otro-eval2" placeholder="Introducir Evaluador 2" name="otro-eval2">    
+
+    </div>
+
+    <mat-radio-group name="resultado-def-externa">
+      <mat-radio-button value="aprobado">Aprobado</mat-radio-button>
+      <mat-radio-button value="reprobado">Reprobado</mat-radio-button>
+    </mat-radio-group>
+
+
+    <hr>
+
+    <label for="observaciones"><b>Observaciones</b></label>
+    <input type="text" placeholder="Insertar observaciones" name="observaciones">
+  
+    <hr>
+
+    <button>Ver Perfil Histórico</button>
+   
+    <button type="submit" class="createbtn">Guardar</button>
+  </div>
+  
+</form-->

@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" href="../assets/css/materialize.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/materialize.min.js"></script>-->
+<form style="max-width:500px;margin: auto" #formUser="ngForm" (ngSubmit)="onSubmit(); formUser.reset();">
+  <!--<form #formUser="ngForm" (ngSubmit)="onSubmit(); formUser.reset();">-->
+  <br /><br /><br /><br /><br /><br /><br />
+  <h2>Login</h2>
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <!--<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z0-9]+">
+    <input type="text" name="username" #username="ngModel" [(ngModel)]="un" class="input-field" placeholder="Username">
+    <input type="text" name="username"class="input-field" placeholder="Username">
+  -->
+    <input type="text" name="username" #username="ngModel" [(ngModel)]="un" class="input-field" placeholder="Username"
+      required>
+  </div>
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" type="text" #password="ngModel" [(ngModel)]="pass" placeholder="Password" name="password"
+      required>
+    <!---pattern="^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"-->
+  </div>
+  <!--span *ngIf="password.touched && !password.valid">
+    La contraseña debe tener 8 caracteres mínimo, 1 mayúscula, 1 caracter especial (!@#$&*), 1 número y 1 minúscula.
+  </span-->
+  <br />
+
+  <br />
+  <input type="submit" value="LOGIN" class="btn" [disabled]="!formUser.form.valid" />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</form>

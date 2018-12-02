@@ -1,0 +1,25 @@
+<form >
+  <!--#formDocente="ngForm" (ngSubmit)="onSubmit(); formDocente.reset();"-->
+  <div class="container">
+    <p>Completa los campos para crear un docente</p>
+    <hr>
+    <label for="codigo"><b>Código</b></label><br />
+    <input type="text" placeholder="Ingresar código" name="codigo" required><br />
+    
+    <label for="nombre"><b>Nombre completo</b></label><br />
+    <input type="text" placeholder="Ingresar nombre" name="nombre" required><br />
+    
+    <label for="direccion"><b>Dirección</b></label><br />
+    <input type="text" placeholder="Ingresar dirección" name="direccion"><br />
+    
+    <label for="telefono"><b>Teléfono</b></label><br />
+    <input type="number" placeholder="Ingresar teléfono" name="telefono"><br />
+    
+    <label for="correo"><b>Correo</b></label><br />
+    <input type="text" placeholder="Ingresar correo" name="correo" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"><br />
+    
+    <hr>
+    
+    <input type="submit" class="createbtn" [disabled]="!formDocente.form.valid" value="Crear" />
+  </div>
+</form>

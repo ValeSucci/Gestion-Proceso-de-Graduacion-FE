@@ -1,12 +1,28 @@
-<div>
-  <ul>
-    <li><img src="../assets/res/logo.jpeg" height="65" width="200"></li>
-    <li class="titulo" style="vertical-align: center">Menu Principal</li>
-    <li style="float:right"><a href="#about">MenDespl</a></li>
-    <li style="float: right"><img src="../assets/res/gato-asustado.png" height="65" width="75"></li>
-  </ul>
+<div style="background-color: #CAC9F1">
+  <div class="topnav">
+    <!-- Centered link -->
+    <div class="topnav-centered">
+      <a class="titulo">{{pagetitle}}</a>
+    </div>
+    <!-- Left-aligned links (default) -->
+    <a id="logo-container" routerLink="/">
+      <img src="../assets/res/logo.png" class="logo" height="65" width="200">
+    </a>
+    <!-- Right-aligned links -->
+    <div class="topnav-right">
+      <img *ngIf="_logger.isLoged()" src="../assets/res/gato-asustado.png" class="icono" height="60" width="75">
+      <button *ngIf="_logger.isLoged()" class="button" (click)="showHideMenu()">
+        <img
+          src="../assets/res/menu-icon.png"
+          class="icono" height="65" width="75">
+      </button >
+    </div>
+  </div>
+  <div *ngIf="menu" class="vertical-menu" style="padding-left:92%">
+    <input type="button" value="Editar Perfil" class="button"/>
+    <br/>
+    <input type="button" value="Logout" class="button" (click)="logout(); showHideMenu();" routerLink="/"/>
+  </div>
+
+  <router-outlet></router-outlet>
 </div>
-
-
-
-<router-outlet></router-outlet>

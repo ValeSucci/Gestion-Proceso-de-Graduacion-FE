@@ -1,43 +1,43 @@
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-<form action="/action_page.php">
+<form >
   <div class="container">
     <h1>Alumno</h1>
     <p>Completa los campos para crear un alumno</p>
     <hr>
 
-    <label for="nombre"><b>Nombre</b></label>
-    <input type="text" placeholder="Ingresar nombre completo" name="nombre" required>
+    <label for="nombre"><b>Nombre: </b></label>
+    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" required>
 
-    <label name="estado"><b>Estado</b></label>
+    <label name="estado" class="estado"><b>En Elaboración</b></label><br/>
 
-    <label for="codigo"><b>Código</b></label>
-    <input type="number" placeholder="Ingresar código" name="codigo" required>
+    <label for="codigo"><b>Código: </b></label>
+    <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" required><br/>
 
-    <label for="semestre"><b>Semestre</b></label>
+    <label for="semestre"><b>Alta: </b></label>
     <select>
-        <option value="0">Seleccione-Semestre:</option>
-        <option value="1">I 2015</option>
-        <option value="2">II 2015</option>
-        <option value="3">I 2016</option>
-        <option value="4">II 2016</option>
-        <option value="5">I 2017</option>
-        <option value="6">II 2018</option>
-        <option value="7">I 2019</option>
-        <option value="8">II 2019</option>
-        <option value="9">I 2020</option>
-        <option value="10">II 2020</option>
-        <option value="11">I 2021</option>
-        <option value="12">II 2021</option>
+        <option value="0">Seleccione-Semestre</option>
+        <option value="1">I-2015</option>
+        <option value="2">II-2015</option>
+        <option value="3">I-2016</option>
+        <option value="4">II-2016</option>
+        <option value="5">I-2017</option>
+        <option value="6">II-2018</option>
+        <option value="7">I-2019</option>
+        <option value="8">II-2019</option>
+        <option value="9">I-2020</option>
+        <option value="10">II-2020</option>
+        <option value="11">I-2021</option>
+        <option value="12">II-2021</option>
     </select>
   
-    <input id="formdate" type="date" required>
+    <input id="formdate" type="date" style="margin-left: 5%" required>
 
-    <label for="plazolbl"><b>Plazo</b></label>
-    <label for="plazo"><b>2019-01-31</b></label>
+    <label for="plazo" class="plazo"><b>2019-01-31</b></label>
+    <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo:  </b></label>
+    <br/>
     
-    <label for="modalidad"><b>Modalidad</b></label>
+    <label for="modalidad"><b>Modalidad: </b></label>
     <select>
       <option value="">Seleccione-Modalidad</option>
       <option value="excelencia">Excelencia</option>
@@ -48,18 +48,19 @@
       <option value="trabajo-dirigido">Trabajo Dirigido</option>
     </select>
 
-    <label for="prorroga"><b>Prórroga</b></label>
-    <input type="checkbox" id="myCheck" onclick="">
+    <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
+    <input type="checkbox" style="float:right; margin-right: 5px;" id="myCheck" onclick="">
+    <br/>
 
-    <label for="tema"><b>Tema</b></label>
-    <input type="text" placeholder="Ingresar tema" name="tema">
+    <label for="tema"><b>Tema: </b></label>
+    <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema">
 
-    
-    <form class="example" style="margin:auto;max-width:300px">
+    <label for="coincTema" style="float:right; margin-right: 50px; background-color: darkcyan"><b>N</b></label>    
+    <form class="busqueda" style="float: right; margin-right: 10px">
       <input type="text" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
-    <label for="coincTema"><b>N</b></label>
+    <br/>
     
     
     <label for="empresa"><b>Empresa</b></label>
@@ -87,7 +88,8 @@
     <label for="fecha-suf-t"><b>Fecha suficiencia</b></label>
     <input id="fecha-suf-t" type="date">
     
-    <i>Ya no paga!</i>
+
+    <i class="fa fa-credit-card icon"><br/>Ya no paga!</i>
 
     <hr>
 
@@ -114,11 +116,20 @@
     <label for="defensa-interna"><b>Defensa Interna</b></label>
     <input id="fecha-def-interna" type="date">
     
-    <mat-radio-group name="resultado-def-interna">
-      <mat-radio-button value="aprobado">Aprobado</mat-radio-button>
-      <mat-radio-button value="reprobado">Reprobado</mat-radio-button>
-      <mat-radio-button value="diferido">Diferido</mat-radio-button>
-    </mat-radio-group>
+    <label class="container_rb">Aprobado
+      <input type="radio" name="radio">
+      <!--checked="checked"--> 
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Reprobado
+      <input type="radio" name="radio">
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Diferido
+      <input type="radio" name="radio">
+      <span class="checkmark_rb"></span>
+    </label>
+    
 
     <label for="comentario"><b>Comentario</b></label>
     <input type="text" placeholder="Insertar comentario" name="comentario">
@@ -151,10 +162,15 @@
 
     </div>
 
-    <mat-radio-group name="resultado-def-externa">
-      <mat-radio-button value="aprobado">Aprobado</mat-radio-button>
-      <mat-radio-button value="reprobado">Reprobado</mat-radio-button>
-    </mat-radio-group>
+    <label class="container_rb">Aprobado
+      <input type="radio" name="radio2">
+      <!--checked="checked"--> 
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Reprobado
+      <input type="radio" name="radio2">
+      <span class="checkmark_rb"></span>
+    </label>
 
 
     <hr>
@@ -166,7 +182,7 @@
 
     <button>Ver Perfil Histórico</button>
    
-    <button type="submit" class="createbtn">Guardar</button>
+    <input type="submit" class="createbtn" [disabled]="!formDocente.form.valid" value="Crear" />
   </div>
   
-</form-->
+</form>

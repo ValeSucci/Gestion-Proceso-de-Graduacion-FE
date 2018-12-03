@@ -1,0 +1,32 @@
+<form #formActDocente="ngForm" (ngSubmit)="onSubmit(); formActDocente.reset();">
+    <div class="container">
+      <p>Completa los campos para actualizar al docente</p>
+      <hr>
+      <label for="codigo"><b>Código: </b></label>
+      <label style="color: #555; font-style: italic"><b>{{lastCodigo}}</b></label><br />
+      <br/>
+
+      <span>
+      <label for="nombre"><b>Nombre completo: </b></label><br />
+      <input type="text" placeholder={{lastNombre}} name="nombre" #nombre="ngModel" [(ngModel)]="this.docente.nombre">
+      <br />
+  
+      <label for="direccion"><b>Dirección: </b></label><br />
+      <input type="text" placeholder={{lastDireccion}} name="direccion" #direccion="ngModel" [(ngModel)]="this.docente.direccion">
+      <br />
+  
+      <label for="telefono"><b>Teléfono: </b></label><br />
+      <input type="number" value={{lastTelefono}} name="telefono" #telefono="ngModel" [(ngModel)]="this.docente.telefono">
+      <br />
+  
+      <label for="correo"><b>Correo: </b></label><br />
+      <input type="text" placeholder={{lastCorreo}} name="correo" #correo="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+        [(ngModel)]="this.docente.correo">
+      <br />
+  
+      <hr>
+  
+      <input type="submit" class="createbtn" [disabled]="!formActDocente.form.valid" value="Actualizar" />
+    </span>
+    </div>
+  </form>

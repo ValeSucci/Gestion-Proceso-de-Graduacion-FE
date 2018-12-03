@@ -21,6 +21,8 @@
   <div *ngIf="menu" class="vertical-menu" style="padding-left:92%;background-color: white;">
     <input type="button" value="Editar Perfil" class="button"/>
     <br/>
+    <input type="button" value="Ver Docentes" class="button" [routerLink]="[ '/docentes']"/>
+    <br/>
     <input type="button" value="Logout" class="button" (click)="logout(); showHideMenu();" routerLink="/"/>
   </div>
 

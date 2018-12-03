@@ -1,0 +1,22 @@
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+  <p>Docentes: </p>
+  <hr>  
+  <table>
+    <tr>
+      <th style="width:50%;margin-left:20px">Código</th>
+      <th style="width:50%">Nombre</th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let d of docentes">
+      <td style="margin-left:20px">{{d.codigo}}</td>
+      <td>{{d.nombre}}</td>
+      <td><i class="fa fa-eye" [routerLink]="[ '/ver-docente', d.codigo ]" style="margin-left: 200px;margin-right:20px;"></i></td>
+    </tr>
+
+  </table>
+</div>
+<br/><br/><br/>

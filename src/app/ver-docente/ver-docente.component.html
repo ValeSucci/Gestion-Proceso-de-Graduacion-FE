@@ -1,0 +1,30 @@
+<div class="container">
+  <p>Docente: </p>
+  <hr>
+
+  <label for="codigo"><b>Código: </b></label>
+  <label class="valor"><b>{{lastCodigo}}</b></label><br />
+  <br/>
+
+  <label for="nombre"><b>Nombre: </b></label>
+  <label class="valor"><b>{{lastNombre}}</b></label><br />
+  <br/>
+
+  <label for="direccion"><b>Dirección: </b></label>
+  <label class="valor"><b>{{lastDireccion}}</b></label><br />
+  <br/>
+
+  <label for="telefono"><b>Teléfono: </b></label>
+  <label class="valor"><b>{{lastTelefono}}</b></label><br />
+  <br/>
+
+  <label for="correo"><b>Correo: </b></label>
+  <label class="valor"><b>{{lastCorreo}}</b></label><br />
+  <br/>
+
+  <hr>
+
+  <button class="createbtn" [routerLink]="[ '/actualizar-docente',lastCodigo]">Actualizar</button>
+
+</div>
+<br/><br/><br/><br/>

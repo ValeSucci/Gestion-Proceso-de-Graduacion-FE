@@ -11,6 +11,9 @@ import { CrearAlumnoComponent } from './crear-alumno/crear-alumno.component';
 import { LoginComponent } from './login/login.component';
 import { RestapiService } from './services/restapi.service';
 import { LoggerService } from './services/logger.service';
+import { ActualizarDocenteComponent } from './actualizar-docente/actualizar-docente.component';
+import { VerDocenteComponent } from './ver-docente/ver-docente.component';
+import { DocentesComponent } from './docentes/docentes.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { LoggerService } from './services/logger.service';
     CrearDocenteComponent,
     HomeComponent,
     CrearAlumnoComponent,
-    LoginComponent
+    LoginComponent,
+    ActualizarDocenteComponent,
+    VerDocenteComponent,
+    DocentesComponent
   ],
   imports: [
     BrowserModule,

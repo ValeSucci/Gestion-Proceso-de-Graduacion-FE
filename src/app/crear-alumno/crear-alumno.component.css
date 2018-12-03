@@ -23,6 +23,11 @@ input[type=text], input[type=number], input[type=date], input[type=checkbox] {
   background: #f1f1f1;
 }
 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input[type=text]:focus, input[type=number]:focus, input[type=date], input[type=checkbox] {
   background-color: #ddd;
   outline: none;
@@ -75,21 +80,23 @@ a {
 
 
 form.busqueda input[type=text] {
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 0;
+  padding-left: 10px;
   font-size: 15px;
   width: 50%;
   background: #f1f1f1;
-  height: 20px;
+  height: 25px;
 }
 
 form.busqueda button {
-  width: 15%;
-  padding: 10px;
+  width: 20%;
+  padding: 5px;
   background: #2196F3;
   color: white;
-  font-size: 15px;
   cursor: pointer;
-  height: 20px;
+  height: 25px;
 }
 
 form.busqueda button:hover {
@@ -120,7 +127,7 @@ form.busqueda::after {
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 15px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -139,8 +146,8 @@ form.busqueda::after {
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
   border-radius: 50%;
 }
@@ -169,10 +176,10 @@ form.busqueda::after {
 
 /* Style the indicator (dot/circle) */
 .container_rb .checkmark_rb:after {
- top: 9px;
-left: 9px;
-width: 8px;
-height: 8px;
+top: 7px;
+left: 7px;
+width: 6px;
+height: 6px;
 border-radius: 50%;
 background: white;
 }
@@ -218,4 +225,35 @@ select {
   padding-right: 20px;
   color: #555; 
   font-style: italic;
+}
+
+
+.nTemas {
+  float:right; 
+  font-size: 15px;
+  margin-top: 10px;
+  margin-right: 50px;
+  padding-right: 20px;
+  padding-top: 10px;
+  color: #555; 
+  font-style: italic;
+}
+
+.nDoc {
+  font-size: 15px;
+  margin-top: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
+  margin-left: 10px;
+  color: #555; 
+  font-style: italic;
+}
+
+.eval {
+  height: 30px;
+  margin-top:10px;
+  margin-bottom: 0;
+  font-size: 13px;
+  padding:3px;
+  margin-left: 10px;
 }

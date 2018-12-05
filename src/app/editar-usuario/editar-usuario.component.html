@@ -1,0 +1,41 @@
+<form #formEditUsuario="ngForm" (ngSubmit)="onSubmit(); formEditUsuario.reset();">
+  <div class="container">
+    <p>Completa los campos para editar al usuario</p>
+    <hr>
+    <label for="username"><b>Username: </b></label>
+    <label style="color: #555; font-style: italic"><b>{{lastUsername}}</b></label><br />
+    <br />
+
+    <label for="nombre"><b>Nombre completo: </b></label><br />
+    <input type="text" value={{lastNombre}} name="nombre" #nombre="ngModel" [(ngModel)]="this.usuario.nombre">
+    <br />
+
+    <label for="passwd"><b>Contraseña: </b></label><br />
+    <input type="password" value="{{lastPassword}}" name="passwd" #passwd="ngModel" [(ngModel)]="pass1" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$">
+    <!--revisar regex de contraseña con jessica-->
+    <br />
+
+    <label for="passwd2"><b>Repetir Contraseña: </b></label><br />
+    <input type="password" value="{{lastPassword}}" name="passwd2" #passwd2="ngModel" [(ngModel)]="pass2">
+    <br />
+
+    <span *ngIf="passwd.touched && passwd2.touched && !passwd.valid">
+      La contraseña debe tener entre 8 y 16 caracteres (1 mayúscula, 1 minúscula y 1 número).
+      <br/>
+    </span>
+
+
+    <label for="telefono"><b>Teléfono: </b></label><br />
+    <input type="number" value={{lastTelefono}} name="telefono" #telefono="ngModel" [(ngModel)]="this.usuario.telefono">
+    <br />
+
+    <label for="correo"><b>Correo: </b></label><br />
+    <input type="text" value={{lastCorreo}} name="correo" #correo="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+      [(ngModel)]="this.usuario.correo">
+    <br />
+
+    <hr>
+
+    <input type="submit" class="createbtn" [disabled]="!formEditUsuario.form.valid" value="Guardar Cambios" onclick="alert('ms')"/>
+  </div>
+</form>

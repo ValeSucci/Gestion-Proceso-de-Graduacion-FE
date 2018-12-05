@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this._service.getGlobal('/Usuario/login', '', this.un + ' ' + this.pass).subscribe(data => {
       this.mydata = data
       this._logger.setID(this.mydata._id)
+      this._logger.setUsername(this.mydata.username)
       console.log("id: " + this._logger.getID)
       this._logger.logIn()
       this._router.navigate(['home'])

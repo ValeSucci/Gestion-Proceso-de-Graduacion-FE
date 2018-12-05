@@ -6,9 +6,11 @@ import { Injectable } from '@angular/core';
 export class LoggerService {
   private loged: boolean;
   private _id: string;
+  private username: string;
   constructor() { 
     this.loged = false;
     this._id = null;
+    this.username = null;
   }
 
   setID(id){
@@ -31,5 +33,12 @@ export class LoggerService {
     return this.loged;
   }
 
+  setUsername(un){
+    this.username = un;
+  }
+
+  getUsername(){
+    return this.username;
+  }
 
 }

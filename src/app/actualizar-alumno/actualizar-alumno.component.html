@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<form #formAlumno="ngForm" (ngSubmit)="onSubmit(); formAlumno.reset();">
+  <div class="container">
+    <h1>Alumno</h1>
+    <p>Completa los campos para crear un alumno</p>
+    <hr>
+
+    <label><b>Nombre: </b></label>
+    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" #nombre="ngModel" [(ngModel)]="this.alumno.nombre" required>
+
+    <label name="estado" class="estado"><b>En Elaboración</b></label><br />
+
+    <label><b>Código: </b></label>
+    <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" #codigo="ngModel" [(ngModel)]="this.alumno.codigo" required><br />
+
+    <label><b>Alta: </b></label>
+    <!--select name="semestre" #semestre="ngModel" [(ngModel)]="this.alumno.alta_materia.semestre"-->
+    <select name="semestre">
+      <option value="">Seleccione-Semestre</option>
+      <option value="I-2015">I-2015</option>
+      <option value="II-2015">II-2015</option>
+      <option value="I-2016">I-2016</option>
+      <option value="II-2016">II-2016</option>
+      <option value="I-2017">I-2017</option>
+      <option value="II-2017">II-2017</option>
+      <option value="I-2018">I-2018</option>
+      <option value="II-2018">II-2018</option>
+      <option value="I-2019">I-2019</option>
+      <option value="II-2019">II-2019</option>
+      <option value="I-2020">I-2020</option>
+      <option value="II-2020">II-2020</option>
+      <option value="I-2021">I-2021</option>
+      <option value="II-2021">II-2021</option>
+    </select>
+
+    <input id="formdate" type="date" style="margin-left: 5%" required name="fecha_alta">
+
+    <label for="plazo" class="plazo"><b>2019-01-31</b></label>
+    <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo: </b></label>
+    <br />
+
+    <label for="modalidad"><b>Modalidad: </b></label>
+    <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.mod"-->
+    <select name=modalidad #modalidad="ngModel" [(ngModel)]="mod">
+      <option value="">Seleccione-Modalidad</option>
+      <option value="excelencia">Excelencia</option>
+      <option value="artefacto-sistema">Proyecto de Grado - Creación Artefacto/Sistema</option>
+      <option value="inversion-existente">Proyecto de Grado - Mejora de la Inversión Existente</option>
+      <option value="prefactibilidad">Proyecto de Grado - Prefactibilidad</option>
+      <option value="tesis">Tesis</option>
+      <option value="trabajo-dirigido">Trabajo Dirigido</option>
+    </select>
+
+    <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
+    <input type="checkbox" style="float:right; margin-right: 5px;" id="myCheck" onclick="" name="prorroga">
+    <br />
+
+    <label for="tema"><b>Tema: </b></label>
+    <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema">
+
+    <label for="coincTema" class="nTemas"><b>N</b></label>
+    <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <br />
+
+
+    <label *ngIf="mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label>
+    <!--label *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label-->
+    <input *ngIf="mod==='trabajo-dirigido'" type="text" placeholder="Ingresar Empresa" style="width: 50%" name="empresa">
+
+    <input *ngIf="mod==='trabajo-dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf">
+    <label *ngIf="mod==='trabajo-dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
+        suficiencia: </b></label>
+    <br />
+
+    <hr>
+
+    <label for="tutor"><b>Tutor: </b></label>
+    <!--select name="tutores" #tutores="ngModel" [(ngModel)]="idDoc" (click)="calcularAlumnosEnDocente();"-->
+    <select name="tutores">
+      <option value="">Seleccione-Docente</option>
+      <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+    </select>
+    <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
+
+    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
+    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t">
+    <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
+    <br />
+    <br />
+
+    <i class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya no paga!</i>
+    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t">
+    <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <hr>
+
+
+    <label for="revisor"><b>Revisor: </b></label>
+    <!--select name="revisores" #revisores="ngModel" [(ngModel)]="idDocR" (click)="calcularAlumnosEnDocente();"-->
+    <select name="revisores">
+      <option value="">Seleccione-Docente</option>
+      <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+    </select>
+    <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
+
+    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
+
+    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r">
+    <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
+    <br />
+    <br />
+
+    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r">
+    <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <hr>
+
+    <label for="defensa-interna"><b>Defensa Interna: </b></label>
+    <input id="fecha-def-interna" type="date" name="fecha_def_interna">
+
+    <div style="float:right; margin-right: 50px;">
+      <label for="comentario" style="margin-right: 40px;"><b>Comentario: </b></label><br />
+      <input type="text" placeholder="Insertar comentario" style="height: 40px; padding: 10px;" name="comentario_def_interna">
+    </div>
+    <div style="float:right; margin-right: 100px;">
+      <label class="container_rb">Aprobado
+        <input type="radio" name="radio">
+        <!--checked="checked"-->
+        <span class="checkmark_rb"></span>
+      </label>
+      <label class="container_rb">Reprobado
+        <input type="radio" name="radio">
+        <span class="checkmark_rb"></span>
+      </label>
+      <label class="container_rb">Diferido
+        <input type="radio" name="radio">
+        <span class="checkmark_rb"></span>
+      </label>
+    </div>
+    <br /><br />
+
+
+    <hr>
+
+    <label for="defensa-externa"><b>Defensa Externa: </b></label>
+    <input id="fecha-def-externa" type="date" name="fecha_def_externa">
+
+    <div name="tribunal" style="float:right; margin-right: 50px">
+      <label for="tribunal"><b>TRIBUNAL</b></label><br /><br />
+      <label for="presidente" style="height: 20px; margin-bottom: 0; margin-left: 20px;"><b>Presidente: </b></label>
+      <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0"><br />
+      <label for="eval1" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 1: </b></label>
+      <select name="eval1" class="eval">
+        <option value="">Seleccione-Docente</option>
+        <option value="revisor">Revisor</option>
+        <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+      </select><br />
+      <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
+      <select name="eval2" class="eval">
+        <option value="">Seleccione-Docente</option>
+        <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+      </select>
+      <input type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" style="height: 25px; margin-left: 10px; margin-top: 0;">
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br />
+
+    <div style="float:right; margin-right: 280px;">
+      <label class="container_rb">Aprobado
+        <input type="radio" name="radio2">
+        <!--checked="checked"-->
+        <span class="checkmark_rb"></span>
+      </label>
+      <label class="container_rb">Reprobado
+        <input type="radio" name="radio2">
+        <span class="checkmark_rb"></span>
+      </label>
+    </div>
+    <br /><br /><br /><br /><br />
+
+
+    <hr>
+
+    <label for="observaciones"><b>Observaciones: </b></label>
+    <input type="text" placeholder="Insertar observaciones" name="observaciones" style="height:100px; width: 60%;">
+    <br />
+    <hr>
+
+    <button>Ver Perfil Histórico</button>
+
+    <input type="submit" class="createbtn" [disabled]="!formAlumno.form.valid" value="Crear" />
+  </div>
+
+</form>

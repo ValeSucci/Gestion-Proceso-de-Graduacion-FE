@@ -19,7 +19,7 @@
     </div>
   </div>
   <div *ngIf="menu" class="vertical-menu" style="padding-left:92%;background-color: white;">
-    <input type="button" value="Editar Perfil" class="button"/>
+    <input type="button" value="Editar Perfil" class="button" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"/>
     <br/>
     <input type="button" value="Ver Docentes" class="button" [routerLink]="[ '/docentes']"/>
     <br/>

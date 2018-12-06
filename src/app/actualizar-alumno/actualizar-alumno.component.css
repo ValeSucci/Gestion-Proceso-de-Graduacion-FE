@@ -235,6 +235,8 @@ select {
   margin-right: 50px;
   padding-right: 20px;
   padding-top: 10px;
+  margin-left: -50px;
+  padding-left: 0px;
   color: #555; 
   font-style: italic;
 }

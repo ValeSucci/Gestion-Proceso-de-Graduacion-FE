@@ -2,25 +2,25 @@ import { Docente } from './docente';
 import { Carta } from './carta';
 export class AltaMateria {
   constructor(
-    nro_alta: number,
-    semestre: string,
-    fecha: Date,
-    plazo: Date,
-    prorroga: Boolean,
-    estado: {
+    public nro_alta: number,
+    public semestre: string,
+    public fecha: Date,
+    public plazo: Date,
+    public prorroga: Boolean,
+    public estado: {
       est: string,
       color: string
     },
-    modalidad: {
+    public modalidad: {
       mod: string,
       trabDirig: {
           empresa: string,
           fecha_suficiencia: Date
       }
     },
-    tema: string,
-    observaciones: string,
-    tutor: {
+    public tema: string,
+    public observaciones: string,
+    public tutor: {
 //        doc: Docente,
         doc: string,
         fecha_asignacion: Date,
@@ -29,25 +29,25 @@ export class AltaMateria {
         fecha_suficiencia: Date,
         paga: Boolean
     },
-    revisor: {
-//        doc: Docente,
+    public revisor: {
+       //doc: Docente,
         doc: string,
         fecha_asignacion: Date,
         cite_carta: string,
         ubicacion_carta: Carta,
         fecha_suficiencia: Date,
     },
-    defensa_interna: {
+    public defensa_interna: {
         fecha: Date,
         resultado: string,
         observacion: string
     },
-    defensa_externa: {
+    public defensa_externa: {
         fecha: Date,
         presidente: string,
         evaluador1: string,
         evaluador2: string,
-        resultado: Boolean
+        resultado: string
     }
   ){}
 }

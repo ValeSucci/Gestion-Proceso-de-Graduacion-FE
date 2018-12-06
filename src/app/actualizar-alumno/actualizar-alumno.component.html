@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<form #formAlumno="ngForm" (ngSubmit)="onSubmit(); formAlumno.reset();">
+<form #formActAlumno="ngForm" (ngSubmit)="onSubmit(); formActAlumno.reset();">
   <div class="container">
     <h1>Alumno</h1>
     <p>Completa los campos para crear un alumno</p>
     <hr>
 
     <label><b>Nombre: </b></label>
-    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" #nombre="ngModel" [(ngModel)]="this.alumno.nombre" required>
+    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" required>
 
     <label name="estado" class="estado"><b>En Elaboración</b></label><br />
 
     <label><b>Código: </b></label>
-    <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" #codigo="ngModel" [(ngModel)]="this.alumno.codigo" required><br />
+    <label style="color: #555; font-style: italic"><b>{{lastCodigo}}</b></label><br/>
 
     <label><b>Alta: </b></label>
     <!--select name="semestre" #semestre="ngModel" [(ngModel)]="this.alumno.alta_materia.semestre"-->
@@ -201,7 +201,7 @@
 
     <button>Ver Perfil Histórico</button>
 
-    <input type="submit" class="createbtn" [disabled]="!formAlumno.form.valid" value="Crear" />
+    <input type="submit" class="createbtn" [disabled]="!formActAlumno.form.valid" value="Crear" />
   </div>
 
 </form>

@@ -9,14 +9,13 @@
     <label><b>Nombre: </b></label>
     <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" #nombre="ngModel" [(ngModel)]="this.alumno.nombre" required>
 
-    <label name="estado" class="estado"><b>En Elaboración</b></label><br />
+    <br/>
 
     <label><b>Código: </b></label>
     <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" #codigo="ngModel" [(ngModel)]="this.alumno.codigo" required><br />
 
     <label><b>Alta: </b></label>
-    <!--select name="semestre" #semestre="ngModel" [(ngModel)]="this.alumno.alta_materia.semestre"-->
-    <select name="semestre">
+    <select name="semestre" #semestre="ngModel" [(ngModel)]="this.alumno.alta_materia.semestre">
       <option value="">Seleccione-Semestre</option>
       <option value="I-2015">I-2015</option>
       <option value="II-2015">II-2015</option>
@@ -36,14 +35,15 @@
 
     <input id="formdate" type="date" style="margin-left: 5%" required name="fecha_alta">
 
-    <label for="plazo" class="plazo"><b>2019-01-31</b></label>
-    <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo: </b></label>
+    <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
+    <input type="checkbox" style="float:right; margin-right: 5px; margin-top:22px;" id="myCheck" onclick="" name="prorroga" #prorroga="ngModel" [(ngModel)]="this.alumno.alta_materia.prorroga">
+
     <br />
 
     <label for="modalidad"><b>Modalidad: </b></label>
-    <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.mod"-->
-    <select name=modalidad #modalidad="ngModel" [(ngModel)]="mod">
-      <option value="">Seleccione-Modalidad</option>
+    <select name=modalidad #modalidad="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.mod">
+    <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="mod"-->
+      <option disabled value="">Seleccione-Modalidad</option>
       <option value="excelencia">Excelencia</option>
       <option value="artefacto-sistema">Proyecto de Grado - Creación Artefacto/Sistema</option>
       <option value="inversion-existente">Proyecto de Grado - Mejora de la Inversión Existente</option>
@@ -52,12 +52,10 @@
       <option value="trabajo-dirigido">Trabajo Dirigido</option>
     </select>
 
-    <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
-    <input type="checkbox" style="float:right; margin-right: 5px;" id="myCheck" onclick="" name="prorroga">
     <br />
 
     <label for="tema"><b>Tema: </b></label>
-    <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema">
+    <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema" #tema="ngModel" [(ngModel)]="this.alumno.alta_materia.tema">
 
     <label for="coincTema" class="nTemas"><b>N</b></label>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
@@ -67,33 +65,31 @@
     <br />
 
 
-    <label *ngIf="mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label>
-    <!--label *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label-->
-    <input *ngIf="mod==='trabajo-dirigido'" type="text" placeholder="Ingresar Empresa" style="width: 50%" name="empresa">
+    <label *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label>
+    <!--label *ngIf=mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label-->
+    <input *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" type="text" placeholder="Ingresar Empresa" style="width: 50%" name="empresa" #empresa="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.trabDirig.empresa">
 
-    <input *ngIf="mod==='trabajo-dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf">
-    <label *ngIf="mod==='trabajo-dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
+    <input *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf" #fecha_suf="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.trabDirig.fecha_suficiencia">
+    <label *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
         suficiencia: </b></label>
     <br />
 
     <hr>
 
     <label for="tutor"><b>Tutor: </b></label>
-    <!--select name="tutores" #tutores="ngModel" [(ngModel)]="idDoc" (click)="calcularAlumnosEnDocente();"-->
-    <select name="tutores">
-      <option value="">Seleccione-Docente</option>
+    <select name="tutores" #tutores="ngModel" [(ngModel)]="this.alumno.alta_materia.tutor.doc"><!--(click)="calcularAlumnosEnDocente();"-->
+      <option disabled value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
     <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
 
-    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
-    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t">
+    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
+    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t" #fecha_asig_t="ngModel" [(ngModel)]="this.alumno.alta_materia.tutor.fecha_asignacion">
     <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <i class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya no paga!</i>
-    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t">
+    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t" #fecha_suf_t="ngModel" [(ngModel)]="this.alumno.alta_materia.tutor.fecha_suficiencia">
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -105,21 +101,20 @@
 
 
     <label for="revisor"><b>Revisor: </b></label>
-    <!--select name="revisores" #revisores="ngModel" [(ngModel)]="idDocR" (click)="calcularAlumnosEnDocente();"-->
-    <select name="revisores">
-      <option value="">Seleccione-Docente</option>
+    <select name="revisores" #revisores="ngModel" [(ngModel)]="this.alumno.alta_materia.revisor.doc"> <!--(click)="calcularAlumnosEnDocente();"-->
+      <option disabled value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
     <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
 
-    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
+    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
 
-    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r">
+    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r" #fecha_asig_r="ngModel" [(ngModel)]="this.alumno.alta_materia.revisor.fecha_asignacion">
     <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r">
+    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r" #fecha_suf_r="ngModel" [(ngModel)]="this.alumno.alta_materia.revisor.fecha_suficiencia">
     <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -130,24 +125,24 @@
     <hr>
 
     <label for="defensa-interna"><b>Defensa Interna: </b></label>
-    <input id="fecha-def-interna" type="date" name="fecha_def_interna">
+    <input id="fecha-def-interna" type="date" name="fecha_def_interna" #fecha_def_interna="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_interna.fecha">
 
     <div style="float:right; margin-right: 50px;">
       <label for="comentario" style="margin-right: 40px;"><b>Comentario: </b></label><br />
-      <input type="text" placeholder="Insertar comentario" style="height: 40px; padding: 10px;" name="comentario_def_interna">
+      <input type="text" placeholder="Insertar comentario" style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_interna.observacion">
     </div>
     <div style="float:right; margin-right: 100px;">
       <label class="container_rb">Aprobado
-        <input type="radio" name="radio">
+        <input type="radio" value="Aprobado" name="radio" #radio="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_interna.resultado">
         <!--checked="checked"-->
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Reprobado
-        <input type="radio" name="radio">
+        <input type="radio" value="Reprobado" name="radio" #radio="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_interna.resultado">
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Diferido
-        <input type="radio" name="radio">
+        <input type="radio" value="Diferido" name="radio" #radio="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_interna.resultado">
         <span class="checkmark_rb"></span>
       </label>
     </div>
@@ -157,22 +152,22 @@
     <hr>
 
     <label for="defensa-externa"><b>Defensa Externa: </b></label>
-    <input id="fecha-def-externa" type="date" name="fecha_def_externa">
+    <input id="fecha-def-externa" type="date" name="fecha_def_externa" #fecha_def_externa="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.fecha">
 
     <div name="tribunal" style="float:right; margin-right: 50px">
       <label for="tribunal"><b>TRIBUNAL</b></label><br /><br />
       <label for="presidente" style="height: 20px; margin-bottom: 0; margin-left: 20px;"><b>Presidente: </b></label>
-      <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0"><br />
+      <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0" #presidente="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.presidente"><br />
       <label for="eval1" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 1: </b></label>
-      <select name="eval1" class="eval">
+      <select name="eval1" class="eval" #eval1="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.evaluador1">
         <option value="">Seleccione-Docente</option>
         <option value="revisor">Revisor</option>
-        <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+        <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
       </select><br />
       <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
-      <select name="eval2" class="eval">
+      <select name="eval2" class="eval" #eval2="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.evaluador2">
         <option value="">Seleccione-Docente</option>
-        <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+        <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
       </select>
       <input type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" style="height: 25px; margin-left: 10px; margin-top: 0;">
     </div>
@@ -180,12 +175,12 @@
 
     <div style="float:right; margin-right: 280px;">
       <label class="container_rb">Aprobado
-        <input type="radio" name="radio2">
+        <input type="radio" value="Aprobado" name="radio2" #radio2="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.resultado">
         <!--checked="checked"-->
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Reprobado
-        <input type="radio" name="radio2">
+        <input type="radio" value="Reprobado" name="radio2" #radio2="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.resultado">
         <span class="checkmark_rb"></span>
       </label>
     </div>
@@ -195,7 +190,7 @@
     <hr>
 
     <label for="observaciones"><b>Observaciones: </b></label>
-    <input type="text" placeholder="Insertar observaciones" name="observaciones" style="height:100px; width: 60%;">
+    <input type="text" placeholder="Insertar observaciones" name="observaciones" style="height:100px; width: 60%;" #observaciones="ngModel" [(ngModel)]="this.alumno.alta_materia.defensa_externa.observaciones">
     <br />
     <hr>
 

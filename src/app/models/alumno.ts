@@ -2,8 +2,8 @@ import { AltaMateria } from './alta-materia';
 
 export class Alumno {
   constructor(
-    codigo: number,
-    nombre: string,
-    alta_materia: AltaMateria
+    public codigo: number,
+    public nombre: string,
+    public alta_materia: AltaMateria
   ){}
 }

@@ -16,7 +16,7 @@ import { VerDocenteComponent } from './ver-docente/ver-docente.component';
 import { DocentesComponent } from './docentes/docentes.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno.component';
-
+import { BuscarComponent } from './buscar/buscar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,8 @@ import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno
     VerDocenteComponent,
     DocentesComponent,
     EditarUsuarioComponent,
-    ActualizarAlumnoComponent
+    ActualizarAlumnoComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,

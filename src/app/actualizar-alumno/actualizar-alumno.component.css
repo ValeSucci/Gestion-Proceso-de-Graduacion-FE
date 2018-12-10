@@ -42,7 +42,8 @@ hr {
 .estado {
   color: white;
   padding: 15px;
-  background-color: #00e7e7;
+  /*background-color: #00e7e7;*/
+  background-color: #00ff00;
   text-shadow: black;
   float: right;
   outline: 2px;

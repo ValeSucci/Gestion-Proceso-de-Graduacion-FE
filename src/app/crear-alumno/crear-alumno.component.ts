@@ -4,6 +4,7 @@ import { Alumno } from '../models/alumno';
 import { AltaMateria } from '../models/alta-materia';
 import { Carta } from '../models/carta';
 import { Docente } from '../models/docente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-alumno',
@@ -17,8 +18,8 @@ export class CrearAlumnoComponent implements OnInit {
   private alumDoc: number;
 
   private alumno: Alumno;
-
-  constructor(private _service: RestapiService) {
+  private alta_materia: AltaMateria;
+  constructor(private _service: RestapiService, private _router: Router) {
     this.alumDoc = 0;
     this._service.getGlobal('/Docente/getAll', '', '').subscribe(data => {
       this.docentes = data;
@@ -32,8 +33,8 @@ export class CrearAlumnoComponent implements OnInit {
     }, error => {
       console.log(error)
     });
-
-    this.alumno = new Alumno(0, "", new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: ""}));
+    this.alta_materia = new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: ""})
+    this.alumno = new Alumno(0, "", this.alta_materia);
   }
 
   ngOnInit() {
@@ -66,7 +67,9 @@ export class CrearAlumnoComponent implements OnInit {
     }), (err)=>{
       console.log(err)
     }
-    this.alumno = new Alumno(0, "", new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: "" }));
+    this.alta_materia = new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: ""})
+    this.alumno = new Alumno(0, "", this.alta_materia);
+
   }
 
 

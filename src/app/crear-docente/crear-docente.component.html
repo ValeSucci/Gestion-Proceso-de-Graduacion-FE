@@ -1,5 +1,4 @@
 <form #formDocente="ngForm" (ngSubmit)="onSubmit(); formDocente.reset();">
-  <!--#formDocente="ngForm" (ngSubmit)="onSubmit(); formDocente.reset();"-->
   <div class="container">
     <p>Completa los campos para crear un docente</p>
     <hr>
@@ -26,6 +25,6 @@
 
     <hr>
 
-    <input type="submit" class="createbtn" [disabled]="!formDocente.form.valid" value="Crear" />
+    <input type="submit" class="createbtn" [disabled]="!formDocente.form.valid" value="Crear" onclick="alert('Docente creado correctamente!')" routerLink="/docentes"/>
   </div>
 </form>

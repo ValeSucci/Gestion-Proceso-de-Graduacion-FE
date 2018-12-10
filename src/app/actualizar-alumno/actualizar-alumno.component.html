@@ -3,13 +3,13 @@
 <form #formActAlumno="ngForm" (ngSubmit)="onSubmit(); formActAlumno.reset();">
   <div class="container">
     <h1>Alumno</h1>
-    <p>Completa los campos para crear un alumno</p>
+    <p>Completa los campos para actualizar al alumno</p>
     <hr>
 
     <label><b>Nombre: </b></label>
-    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" required>
+    <input type="text" placeholder={{this.my_data_alumno.nombre}} style="width:70%" name="nombre">
 
-    <label name="estado" class="estado"><b>En Elaboración</b></label><br />
+    <label name="estado" class="estado"><b>{{this.my_data_alta.estado.est}}</b></label><br />
 
     <label><b>Código: </b></label>
     <label style="color: #555; font-style: italic"><b>{{lastCodigo}}</b></label><br/>
@@ -17,7 +17,8 @@
     <label><b>Alta: </b></label>
     <!--select name="semestre" #semestre="ngModel" [(ngModel)]="this.alumno.alta_materia.semestre"-->
     <select name="semestre">
-      <option value="">Seleccione-Semestre</option>
+      <option value={{this.my_data_alta.semestre}}>{{this.my_data_alta.semestre}}</option>
+      <option disabled value="">Seleccione-Semestre</option>
       <option value="I-2015">I-2015</option>
       <option value="II-2015">II-2015</option>
       <option value="I-2016">I-2016</option>
@@ -34,16 +35,17 @@
       <option value="II-2021">II-2021</option>
     </select>
 
-    <input id="formdate" type="date" style="margin-left: 5%" required name="fecha_alta">
+    <input id="formdate" type="date" style="margin-left: 5%" name="fecha_alta" value={{this.my_data_alta.fecha}}>
 
-    <label for="plazo" class="plazo"><b>2019-01-31</b></label>
+    <label for="plazo" class="plazo"><b>{{this.my_data_alta.plazo}}</b></label>
     <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo: </b></label>
     <br />
 
     <label for="modalidad"><b>Modalidad: </b></label>
     <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="this.alumno.alta_materia.modalidad.mod"-->
     <select name=modalidad #modalidad="ngModel" [(ngModel)]="mod">
-      <option value="">Seleccione-Modalidad</option>
+      <option value={{this.my_data_alta.modalidad.mod}}>{{this.my_data_alta.modalidad.mod}}</option>
+      <option disabled value="">Seleccione-Modalidad</option>
       <option value="excelencia">Excelencia</option>
       <option value="artefacto-sistema">Proyecto de Grado - Creación Artefacto/Sistema</option>
       <option value="inversion-existente">Proyecto de Grado - Mejora de la Inversión Existente</option>
@@ -53,11 +55,11 @@
     </select>
 
     <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
-    <input type="checkbox" style="float:right; margin-right: 5px;" id="myCheck" onclick="" name="prorroga">
+    <input type="checkbox" style="float:right; margin-right: 5px;" id="myCheck" onclick="" name="prorroga" value={{this.my_data_alta.prorroga}}>
     <br />
 
     <label for="tema"><b>Tema: </b></label>
-    <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema">
+    <input type="text" placeholder={{this.my_data_alta.tema}} style="width: 50%" name="tema">
 
     <label for="coincTema" class="nTemas"><b>N</b></label>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
@@ -69,9 +71,9 @@
 
     <label *ngIf="mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label>
     <!--label *ngIf="this.alumno.alta_materia.modalidad.mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label-->
-    <input *ngIf="mod==='trabajo-dirigido'" type="text" placeholder="Ingresar Empresa" style="width: 50%" name="empresa">
+    <input *ngIf="mod==='trabajo-dirigido'" type="text" placeholder={{this.my_data_alta.modalidad.trabDirig.empresa}} style="width: 50%" name="empresa">
 
-    <input *ngIf="mod==='trabajo-dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf">
+    <input *ngIf="mod==='trabajo-dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf" value={{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}}>
     <label *ngIf="mod==='trabajo-dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
         suficiencia: </b></label>
     <br />
@@ -81,18 +83,18 @@
     <label for="tutor"><b>Tutor: </b></label>
     <!--select name="tutores" #tutores="ngModel" [(ngModel)]="idDoc" (click)="calcularAlumnosEnDocente();"-->
     <select name="tutores">
-      <option value="">Seleccione-Docente</option>
+      <option disabled value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
     <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
 
-    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
+    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
     <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t">
     <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <i class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya no paga!</i>
+    <i *ngIf="!this.my_data_alta.tutor.paga" class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya no paga!</i>
     <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t">
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
@@ -107,12 +109,12 @@
     <label for="revisor"><b>Revisor: </b></label>
     <!--select name="revisores" #revisores="ngModel" [(ngModel)]="idDocR" (click)="calcularAlumnosEnDocente();"-->
     <select name="revisores">
-      <option value="">Seleccione-Docente</option>
+      <option disabled value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
     <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
 
-    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;">Carta</button>
+    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
 
     <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r">
     <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
@@ -165,16 +167,17 @@
       <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0"><br />
       <label for="eval1" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 1: </b></label>
       <select name="eval1" class="eval">
-        <option value="">Seleccione-Docente</option>
+        <option disabled value="">Seleccione-Docente</option>
         <option value="revisor">Revisor</option>
         <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
       </select><br />
       <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
-      <select name="eval2" class="eval">
-        <option value="">Seleccione-Docente</option>
+      <select name="eval2" class="eval" #eval2='ngModel' [(ngModel)]="evaluador2">
+        <option disabled value="">Seleccione-Docente</option>
         <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
       </select>
-      <input type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" style="height: 25px; margin-left: 10px; margin-top: 0;">
+      <input *ngIf="evaluador2 === 'Otro'" type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" style="height: 25px; margin-left: 10px; margin-top: 0;">
     </div>
     <br /><br /><br /><br /><br /><br /><br /><br />
 
@@ -199,9 +202,9 @@
     <br />
     <hr>
 
-    <button>Ver Perfil Histórico</button>
+    <!--button>Ver Perfil Histórico</button-->
 
-    <input type="submit" class="createbtn" [disabled]="!formActAlumno.form.valid" value="Crear" />
+    <input type="submit" class="createbtn" [disabled]="!formActAlumno.form.valid" value="Actualizar" />
   </div>
 
 </form>

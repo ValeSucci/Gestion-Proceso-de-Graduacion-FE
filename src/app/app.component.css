@@ -100,7 +100,7 @@ body {
 .vertical-menu {
   width: 200px;
   /*float:right;*/
-  display: inline-block;
+  display: block;
   background-color: transparent;
 }
 

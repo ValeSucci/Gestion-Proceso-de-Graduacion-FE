@@ -41,14 +41,16 @@ hr {
 
 .estado {
   color: white;
-  padding: 15px;
-  /*background-color: #00e7e7;*/
-  background-color: #00ff00;
+  padding: 10px;
   text-shadow: black;
   float: right;
   outline: 2px;
   outline-color: black;
   margin: 5px 50px 22px 0;
+  border-style: outset;
+  border-width: 5px;
+  border-top-left-radius: 25%;
+  border-bottom-right-radius: 25%;
 }
 
 /* Set a style for the submit button */

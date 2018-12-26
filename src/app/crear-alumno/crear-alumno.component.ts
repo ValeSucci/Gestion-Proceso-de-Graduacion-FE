@@ -17,10 +17,13 @@ export class CrearAlumnoComponent implements OnInit {
   private idDoc: string;
   private alumDoc: number;
 
+  private otroEval2: string;
+
   private alumno: Alumno;
   private alta_materia: AltaMateria;
   constructor(private _service: RestapiService, private _router: Router) {
     this.alumDoc = 0;
+    //this.otroeval2 = "";
     this._service.getGlobal('/Docente/getAll', '', '').subscribe(data => {
       this.docentes = data;
       console.log(JSON.stringify(this.docentes))
@@ -62,6 +65,9 @@ export class CrearAlumnoComponent implements OnInit {
 
   onSubmit(){    
 
+    if(this.alta_materia.defensa_externa.evaluador2 === 'Otro') {
+      this.alta_materia.defensa_externa.evaluador2 = this.otroEval2;
+    }
     this._service.postGlobal(this.alumno,'/Alumno/create','').subscribe(data => {
 
     }), (err)=>{

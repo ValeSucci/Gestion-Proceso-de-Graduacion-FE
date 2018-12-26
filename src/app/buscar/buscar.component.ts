@@ -15,11 +15,12 @@ export class BuscarComponent implements OnInit {
   private busqueda: Busqueda;
   private alumnos: any;
   private docentes: any;
-  private data_alumnos: [Alumno];
-  private data_altas: [AltaMateria];
+  private data_alumnos: Alumno[];
+  private data_altas: AltaMateria[];
   private data_tutores: any;
   private data_revisores: any;
   private my_data: any;
+  private conBusqueda: Boolean;
   constructor(
     private _service: RestapiService,
     private _router: Router
@@ -41,6 +42,20 @@ export class BuscarComponent implements OnInit {
 
     this.data_tutores = [];
     this.data_revisores = [];
+    this.data_alumnos = [];
+    this.data_altas = [];
+
+    //this.conBusqueda = false;
+  }
+
+  cambiarNombresModalidades() {
+    /*
+    for(let i in this.data_altas) {
+      let m = this.data_altas[i].modalidad.mod.toString();
+      if(m === "excelencia") {
+        this.data_altas[]
+      }
+    }*/
   }
 
   ngOnInit() {
@@ -56,7 +71,6 @@ export class BuscarComponent implements OnInit {
       this.data_altas = this.my_data.altas;
       this.data_alumnos = this.my_data.alumnos;
       console.log(this.my_data)
-
       for (let i in this.data_altas) {
         if (this.data_altas[i].tutor.doc === null) {
           this.data_tutores.push({ nombre: "----" });
@@ -80,12 +94,20 @@ export class BuscarComponent implements OnInit {
             }
           }
         }
+
+        //cambiarNombresModalidades();
       }
+
     }), (err) => {
       console.log(err)
+
+
+      this.busqueda = new Busqueda("", "", "", "", "", "", "");
+      this.data_tutores = [];
+      this.data_revisores = [];
+      this.data_alumnos = [];
+      this.data_altas = [];
+
     }
-
-    this.busqueda = new Busqueda("", "", "", "", "", "", "");
-
   }
 }

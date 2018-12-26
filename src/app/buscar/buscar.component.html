@@ -41,12 +41,12 @@
     <select name="estados" #estados="ngModel" [(ngModel)]="this.busqueda.estado" required>
       <option disabled value="">Seleccione-Estado</option>
       <option value="En Elaboración">En Elaboración</option>
-      <option value="Observado">Observado</option>
-      <option value="Graduado">Graduado</option>
-      <option value="En Defensa Externa">En Defensa Externa</option>
-      <option value="Diferida">Diferida</option>
-      <option value="En Defensa Interna">En Defensa Interna</option>
       <option value="Con Revisor">Con Revisor</option>
+      <option value="En Defensa Interna">En Defensa Interna</option>
+      <option value="Diferida">Diferida</option>
+      <option value="En Defensa Externa">En Defensa Externa</option>
+      <option value="Graduado">Graduado</option>
+      <option value="Observado">Observado</option>
       
       <option value="todos"> Todos</option>
     </select>
@@ -77,11 +77,13 @@
     
     <input type="submit" class="createbtn" [disabled]="!formBusqueda.form.valid" value="Buscar"/>
 
-    <span *ngIf="conBusqueda">
+    <br/><br/>
+
+    <span><!--*ngIf="conBusqueda"-->
       
       <div style="overflow-x:auto;">
         <table>
-          <tr>
+          <tr style="background-color: #777">
             <th>Alumno</th>
             <th>Código</th>
             <th>Semestre</th>
@@ -101,7 +103,8 @@
             <td>{{alt.estado.est}}</td>
             <td style="width: 15%">{{this.data_tutores[i].nombre}}</td>
             <td style="width: 15%">{{this.data_revisores[i].nombre}}</td>
-            <td>{{alt.prorroga}}</td>
+            <td *ngIf="alt.prorroga">Si</td>
+            <td *ngIf="!alt.prorroga">No</td>
           </tr>
         </table>
       </div>
@@ -109,7 +112,9 @@
 
     </span>
 
+    <!--label *ngIf="!conBusqueda">No hay resultados para la búsqueda!</label-->
   </div>
+  <br/><br/>
 
 </form>
 <br/>

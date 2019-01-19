@@ -1,30 +1,84 @@
 <div class="container">
-  <p>Docente: </p>
+  <h1>Docente </h1>
   <hr>
 
   <label for="codigo"><b>Código: </b></label>
   <label class="valor"><b>{{lastCodigo}}</b></label><br />
-  <br/>
+  <br />
 
   <label for="nombre"><b>Nombre: </b></label>
   <label class="valor"><b>{{lastNombre}}</b></label><br />
-  <br/>
+  <br />
 
   <label for="direccion"><b>Dirección: </b></label>
   <label class="valor"><b>{{lastDireccion}}</b></label><br />
-  <br/>
+  <br />
 
   <label for="telefono"><b>Teléfono: </b></label>
   <label class="valor"><b>{{lastTelefono}}</b></label><br />
-  <br/>
+  <br />
 
   <label for="correo"><b>Correo: </b></label>
   <label class="valor"><b>{{lastCorreo}}</b></label><br />
-  <br/>
+  <br />
+
+  <hr>
+
+  <div style="overflow-x:auto;">
+    <h2>TUTOR: </h2>
+    <table>
+      <tr style="background-color: #777; color: white">
+        <th>Nombre Alumno</th>
+        <th>Código</th>
+        <th>Semestre</th>
+        <th>Tema</th>
+        <th>Fecha Carta de Asignación</th>
+        <th>Fecha Carta de Suficiencia</th>
+      </tr>
+      <!--tr *ngFor="let alt of data_altas; let i=index"-->
+      <tr>
+        <!--td style="width: 15%">{{this.data_alumnos[i].nombre}}</td>
+        <td>{{this.data_alumnos[i].codigo}}</td>
+        <td>{{alt.semestre}}</td>
+        <td>{{alt.tema}}</td>
+        <td>{{alt.estado.est}}</td>
+        <td>{{alt.estado.est}}</td-->
+        <td style="width: 15%">nombre</td>
+        <td>codigo</td>
+        <td>semestre</td>
+        <td>tema</td>
+        <td>asig</td>
+        <td>suf</td>
+      </tr>
+    </table>
+  </div>
+  <br /><br /><br />
+  <div style="overflow-x:auto;">
+    <h2>REVISOR: </h2>
+    <table>
+      <tr style="background-color: #777">
+        <th>Nombre Alumno</th>
+        <th>Código</th>
+        <th>Semestre</th>
+        <th>Tema</th>
+        <th>Fecha Carta de Asignación</th>
+        <th>Fecha Carta de Suficiencia</th>
+      </tr>
+      <tr>
+        <td style="width: 15%">nombre</td>
+        <td>codigo</td>
+        <td>semestre</td>
+        <td>tema</td>
+        <td>asig</td>
+        <td>suf</td>
+      </tr>
+    </table>
+  </div>
+  <br /><br /><br />
 
   <hr>
 
   <button class="createbtn" [routerLink]="[ '/actualizar-docente',lastCodigo]">Actualizar</button>
 
 </div>
-<br/><br/><br/><br/>
+<br /><br /><br /><br />

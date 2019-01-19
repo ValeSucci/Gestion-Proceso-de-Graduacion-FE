@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Add padding to containers */
+  .container {
+    padding: 50px;
+    background-color: white;
+  
+  }
+  
+  /* Full-width input fields */
+  input[type=text], input[type=number], input[type=date], input[type=checkbox] {
+    padding: 15px;
+    margin: 5px 0 22px 13px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=text]:focus, input[type=number]:focus, input[type=date], input[type=checkbox] {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Overwrite default styles of hr */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  .estado {
+    color: white;
+    padding: 15px;
+    background-color: #00e7e7;
+    text-shadow: black;
+    float: right;
+    outline: 2px;
+    outline-color: black;
+    margin: 5px 50px 22px 0;
+  }
+  
+  /* Set a style for the submit button */
+  .registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+  /* Add a blue text color to links */
+  a {
+    color: dodgerblue;
+  }
+  
+  /* Set a grey background color and center the text of the "sign in" section */
+  .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  
+  
+  form.busqueda input[type=text] {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0;
+    padding-left: 10px;
+    font-size: 15px;
+    width: 50%;
+    background: #f1f1f1;
+    height: 25px;
+  }
+  
+  form.busqueda button {
+    width: 20%;
+    padding: 5px;
+    background: #2196F3;
+    color: white;
+    cursor: pointer;
+    height: 25px;
+  }
+  
+  form.busqueda button:hover {
+    background: #0b7dda;
+  }
+  
+  form.busqueda::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  
+  .icon {
+    padding: 10px;
+    background: #0400ff;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  
+  
+  /* The container radio button */
+  .container_rb {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container_rb input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark_rb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container_rb:hover input ~ .checkmark_rb {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container_rb input:checked ~ .checkmark_rb {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark_rb:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container_rb input:checked ~ .checkmark_rb:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container_rb .checkmark_rb:after {
+  top: 7px;
+  left: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+  }
+  
+  
+  /* Set a style for the submit button */
+  .createbtn {
+    background-color: #0400ff;
+    color: white;
+    padding: 16px 20px;
+    margin-left: 80%;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  
+  .createbtn:hover {
+    opacity: 1;
+  }
+  
+  
+  select {
+    padding: 10px;
+    margin: 5px 0 22px 13px;
+    /*font-family: 'Times New Roman', Times, serif;*/
+  }
+  
+  .plazo {
+    float:right; 
+    font-size: 15px;
+    margin-top: 30px;
+    margin-right: 50px;
+    padding: 10px 10px 10px 5px;
+    color: #555; 
+    font-style: italic;
+  }
+  
+  .prorroga {
+    float:right; 
+    font-size: 15px;
+    margin-top: 20px;
+    margin-right: 50px;
+    padding-right: 20px;
+    color: #555; 
+    font-style: italic;
+  }
+  
+  
+  .nTemas {
+    float:right; 
+    font-size: 15px;
+    margin-top: 10px;
+    margin-right: 50px;
+    padding-right: 20px;
+    padding-top: 10px;
+    margin-left: -50px;
+    padding-left: 0px;
+    color: #555; 
+    font-style: italic;
+  }
+  
+  .nDoc {
+    font-size: 15px;
+    margin-top: 10px;
+    padding-right: 20px;
+    padding-top: 10px;
+    margin-left: 10px;
+    color: #555; 
+    font-style: italic;
+  }
+  
+  .eval {
+    height: 30px;
+    margin-top:10px;
+    margin-bottom: 0;
+    font-size: 13px;
+    padding:3px;
+    margin-left: 10px;
+  }

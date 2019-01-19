@@ -10,6 +10,8 @@ import { DocentesComponent } from './docentes/docentes.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
+import { NuevaAltaAlumnoComponent } from './nueva-alta-alumno/nueva-alta-alumno.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,7 +23,9 @@ const appRoutes: Routes = [
   { path: 'docentes', component: DocentesComponent },
   { path: 'editar-perfil/:username', component: EditarUsuarioComponent},
   { path: 'actualizar-alumno/:codigo', component: ActualizarAlumnoComponent},
-  { path: 'buscar', component: BuscarComponent}
+  { path: 'buscar', component: BuscarComponent},
+  { path: 'ver-alumno/:codigo', component: VerAlumnoComponent},
+  { path: 'nueva-alta-alumno/:codigo', component: NuevaAltaAlumnoComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

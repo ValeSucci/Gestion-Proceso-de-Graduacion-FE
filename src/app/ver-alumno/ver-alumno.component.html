@@ -1,0 +1,244 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--form #formActAlumno="ngForm" (ngSubmit)="onSubmit(); formActAlumno.reset();"-->
+<div class="container">
+  <h1>Alumno</h1>
+  <!--p>Completa los campos para actualizar al alumno</p-->
+  <hr>
+
+  <label><b>Nombre: </b></label>
+  <label class="valor"><b>{{this.my_data_alumno.nombre}}</b></label>
+
+  <label name="estado" class="estado" [ngStyle]="{'background-color': this.my_data_alta.estado.color, 'border-color': this.my_data_alta.estado.color}"><b>{{this.my_data_alta.estado.est}}</b></label><br />
+
+  <label><b>Código: </b></label>
+  <label class="valor"><b>{{lastCodigo}}</b></label><br />
+
+  <label><b>Alta: </b></label>
+  <select name="semestre">
+    <option disabled selected value={{this.my_data_alta.semestre}}>{{this.my_data_alta.semestre}}</option>
+  </select>
+
+  <label class="valor"><b>{{this.fechaFormat | date: 'yyyy-MM-dd'}}</b></label><br />
+
+  <label for="plazo" class="plazo"><b>{{this.plazoFormat | date: 'dd/MM/yyyy'}}</b></label>
+  <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo: </b></label>
+  <br />
+
+  <label for="modalidad"><b>Modalidad: </b></label>
+  <select name=modalidad>
+    <option disabled selected value="{{this.mod}}">{{this.mod}}</option>
+  </select>
+
+  <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
+  <input disabled *ngIf="this.my_data_alta.prorroga" type="checkbox" style="float:right; margin-right: 5px;" checked id="myCheck"
+    onclick="" name="prorroga" value="{{this.my_data_alta.prorroga}}" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
+  <input disabled *ngIf="!this.my_data_alta.prorroga" type="checkbox" style="float:right; margin-right: 5px;" id="myCheck"
+    onclick="" name="prorroga" value="{{this.my_data_alta.prorroga}}" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
+  <br />
+
+  <label for="tema"><b>Tema: </b></label>
+  <input type="text" value={{this.my_data_alta.tema}} style="width: 50%" name="tema" #tema='ngModel' [(ngModel)]="this.alta_materia.tema">
+  <label class="valor"><b>{{this.my_data_alta.tema}}</b></label>
+
+
+  <label for="coincTema" class="nTemas"><b>N</b></label>
+  <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+  <br />
+
+  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="empresa"><b>Empresa: </b></label>
+  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" class="valor"><b>{{this.alta_materia.modalidad.trabDirig.empresa}}</b></label><br />
+
+  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" class="valor"><b>{{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}}</b></label><br />
+  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
+      suficiencia: </b></label>
+  <br />
+
+  <hr>
+
+  <label for="tutor"><b>Tutor: </b></label>
+  <select *ngIf="this.idTutor !== null" name="tutores" disabled>
+    <option selected value="this.idTutor">{{this.my_data_tutor.nombre}}</option>
+  </select>
+  <select *ngIf="this.idTutor === null" name="tutores" disabled>
+    <option disabled value="">Seleccione-Docente</option>
+  </select>
+
+  <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
+
+  <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
+  <input *ngIf="this.my_data_alta.tutor.fecha_asignacion !== null" id="fecha-asig-t" type="date" value="{{this.fechaAsigTutor | date: 'yyyy-MM-dd'}}"
+    style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t" disabled>
+  <input *ngIf="this.my_data_alta.tutor.fecha_asignacion === null" id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;"
+    name="fecha_asig_t" disabled>
+  <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
+  <br />
+  <br />
+
+  <i *ngIf="!this.my_data_alta.tutor.paga" class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya
+    no paga!</i>
+
+  <input *ngIf="!this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
+    type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t" disabled
+    value="{{this.fechaSufTutor | date: 'yyyy-MM-dd'}}">
+  <input *ngIf="!this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia === null" id="fecha-suf-t"
+    type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t" disabled>
+
+  <input *ngIf="this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
+    type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t" disabled
+    value="{{this.fechaSufTutor | date: 'yyyy-MM-dd'}}">
+  <input *ngIf="this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia === null" id="fecha-suf-t"
+    type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t" disabled>
+
+  <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <hr>
+
+
+  <label for="revisor"><b>Revisor: </b></label>
+  <select *ngIf="this.idRevisor !== null" name="revisores" disabled>
+    <option selected disabled value="this.idRevisor">{{this.my_data_revisor.nombre}}</option>
+  </select>
+  <select *ngIf="this.idRevisor === null" name="revisores" disabled>
+    <option selected disabled value="">Seleccione-Docente</option>
+  </select>
+  <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
+
+  <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
+
+  <input *ngIf="this.my_data_alta.revisor.fecha_asignacion !== null" id="fecha-asig-r" type="date" value="{{this.fechaAsigRevisor | date: 'yyyy-MM-dd'}}"
+    style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r" disabled>
+  <input *ngIf="this.my_data_alta.revisor.fecha_asignacion === null" id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;"
+    name="fecha_asig_r" disabled>
+  <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
+  <br />
+  <br />
+
+
+  <input *ngIf="this.my_data_alta.revisor.fecha_suficiencia !== null" id="fecha-suf-r" type="date" value="{{this.fechaSufRevisor | date: 'yyyy-MM-dd'}}"
+    style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r" disabled>
+  <input *ngIf="this.my_data_alta.revisor.fecha_suficiencia === null" id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;"
+    name="fecha_suf_r" disabled>
+
+  <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <hr>
+
+  <label for="defensa-interna"><b>Defensa Interna: </b></label>
+  <input *ngIf="this.my_data_alta.defensa_interna.fecha !== null" id="fecha-def-interna" type="date" value="{{this.fechaDefInterna | date: 'yyyy-MM-dd'}}"
+    name="fecha_def_interna" disabled>
+  <input *ngIf="this.my_data_alta.defensa_interna.fecha === null" id="fecha-def-interna" type="date" name="fecha_def_interna"
+    disabled>
+
+  <div style="float:right; margin-right: 50px;">
+    <label for="comentario" style="margin-right: 40px;"><b>Comentario: </b></label><br />
+    <label *ngIf="this.my_data_alta.defensa_interna.observacion !== ''" style="height: 40px; padding: 10px;" class="valor"><b>{{this.my_data_alta.defensa_interna.observacion}}</b></label><br />
+    <label *ngIf="this.my_data_alta.defensa_interna.observacion === ''" style="height: 40px; padding: 10px;" class="valor"><b>Insertar Comentario</b></label><br />
+  </div>
+  <div style="float:right; margin-right: 100px;">
+    <label class="container_rb">Aprobado
+      <input type="radio" [checked]="this.resDefInterna === 'Aprobado' ? true : null" disabled>
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Reprobado
+      <input type="radio" [checked]="this.resDefInterna === 'Reprobado' ? true : null" disabled>
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Diferido
+      <input type="radio" [checked]="this.resDefInterna === 'Diferido' ? true : null" disabled>
+      <span class="checkmark_rb"></span>
+    </label>
+  </div>
+  <br /><br />
+
+
+  <hr>
+
+  <label for="defensa-externa"><b>Defensa Externa: </b></label>
+  <input *ngIf="this.my_data_alta.defensa_externa.fecha !== null" id="fecha-def-externa" type="date" value="{{this.fechaDefExterna | date: 'yyyy-MM-dd'}}"
+    name="fecha_def_externa" disabled>
+  <input *ngIf="this.my_data_alta.defensa_externa.fecha === null" id="fecha-def-externa" type="date" name="fecha_def_externa"
+    disabled>
+
+  <div name="tribunal" style="float:right; margin-right: 50px">
+    <label for="tribunal"><b>TRIBUNAL</b></label><br /><br />
+
+    <label for="presidente" style="height: 20px; margin-bottom: 0; margin-left: 20px;"><b>Presidente: </b></label>
+    <label *ngIf="this.my_data_alta.defensa_externa.presidente !== ''" style="height: 20px; margin-bottom: 0" class="valor"><b>{{this.my_data_alta.defensa_externa.presidente}}</b></label><br />
+    <label *ngIf="this.my_data_alta.defensa_externa.presidente === ''" style="height: 20px; margin-bottom: 0" class="valor"><b>Introducir Presidente</b></label><br />
+    <br />
+
+    <label for="eval1" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 1: </b></label>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha === null && this.idRevisor === null"
+      name="eval1" class="eval" disabled>
+      <option selected disabled value="">Seleccione-Docente</option>
+    </select>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha !== null && this.idRevisor !== null"
+      name="eval1" class="eval" disabled>
+      <option selected disabled value="this.my_data_revisor.nombre">{{this.my_data_revisor.nombre}}</option>
+    </select>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 !== ''" name="eval1" class="eval" disabled>
+      <option selected disabled value="this.my_data_alta.defensa_externa.evaluador1">{{this.my_data_alta.defensa_externa.evaluador1}}</option>
+    </select>
+    <br />
+
+    <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador2 === ''" name="eval2" class="eval" disabled>
+      <option selected disabled value="">Seleccione-Docente</option>
+    </select>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador2 !== '' && !this.eval2esOtro" name="eval2" class="eval"
+      disabled>
+      <option selected disabled value="this.my_data_alta.defensa_externa.evaluador2">{{this.my_data_alta.defensa_externa.evaluador2}}</option>
+    </select>
+    <select *ngIf="this.my_data_alta.defensa_externa.evaluador2 !== '' && this.eval2esOtro" name="eval2" class="eval"
+      disabled>
+      <option selected disabled value="Otro">Otro</option>
+    </select>
+
+    <label *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro' && (!this.eval2esOtro || this.my_data_alta.defensa_externa.evaluador2 === '')" style="height: 25px; margin-left: 10px; margin-top: 0;" class="valor"><b>Introducir Evaluador 2</b></label><br />
+    <label *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro' && this.eval2esOtro && this.my_data_alta.defensa_externa.evaluador2 !== ''" style="height: 25px; margin-left: 10px; margin-top: 0;" class="valor"><b>{{this.my_data_alta.defensa_externa.evaluador2}}</b></label><br />
+
+  </div>
+  <br /><br /><br /><br /><br /><br /><br /><br />
+
+  <div style="float:right; margin-right: 280px;">
+    <label class="container_rb">Aprobado
+      <input type="radio" [checked]="this.resDefExterna === 'Aprobado' ? true : null" disabled>
+      <span class="checkmark_rb"></span>
+    </label>
+    <label class="container_rb">Reprobado
+      <input type="radio" [checked]="this.resDefExterna === 'Reprobado' ? true : null" disabled>
+      <span class="checkmark_rb"></span>
+    </label>
+  </div>
+  <br /><br /><br /><br /><br />
+
+
+  <hr>
+
+  <label for="observaciones"><b>Observaciones: </b></label>
+  <label *ngIf="this.my_data_alta.observaciones !== ''" style="height:100px; width: 60%;" class="valor"><b>{{this.my_data_alta.observaciones}}</b></label><br />
+  <label *ngIf="this.my_data_alta.observaciones === ''" style="height:100px; width: 60%;" class="valor"><b>Insertar Observaciones</b></label><br />
+
+  <br />
+  <hr>
+
+  <!--button>Ver Perfil Histórico</button-->
+
+  <button class="createbtn" [routerLink]="[ '/actualizar-alumno',lastCodigo]">Actualizar</button>
+</div>
+
+<!--/form-->

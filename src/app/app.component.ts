@@ -8,6 +8,7 @@ import { LoggerService } from './services/logger.service';
 })
 export class AppComponent {
   private menu: boolean
+  private notifications: boolean
   title = 'GestionProcesoGraduacionFE';
   pagetitle = 'Sistema de Gestión de Proceso de Graduación';
   constructor(private _logger: LoggerService) {
@@ -17,10 +18,17 @@ export class AppComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.menu = false;
+    this.notifications = false;
   }
 
   showHideMenu() {
     this.menu = !this.menu;
+  }
+
+  showHideNotifications(){
+    this.notifications = !this.notifications;
+    console.log(this.notifications)
+    
   }
 
   logout(){

@@ -17,6 +17,8 @@ import { DocentesComponent } from './docentes/docentes.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { NuevaAltaAlumnoComponent } from './nueva-alta-alumno/nueva-alta-alumno.component';
+import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { BuscarComponent } from './buscar/buscar.component';
     DocentesComponent,
     EditarUsuarioComponent,
     ActualizarAlumnoComponent,
-    BuscarComponent
+    BuscarComponent,
+    NuevaAltaAlumnoComponent,
+    VerAlumnoComponent
   ],
   imports: [
     BrowserModule,

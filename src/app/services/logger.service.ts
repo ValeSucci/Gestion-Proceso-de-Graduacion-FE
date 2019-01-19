@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoggerService {
-  private loged: boolean;
+  private logged: boolean;
   private _id: string;
   private username: string;
   constructor() { 
-    this.loged = false;
+    this.logged = true;
     this._id = null;
     this.username = null;
   }
@@ -22,15 +22,15 @@ export class LoggerService {
   }
 
   logIn() {
-    this.loged = true;
+    this.logged = true;
   }
 
   logOut() {
-    this.loged = false;
+    this.logged = false;
   }
 
   isLoged(){
-    return this.loged;
+    return this.logged;
   }
 
   setUsername(un){

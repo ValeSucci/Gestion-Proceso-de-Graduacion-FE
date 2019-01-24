@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Add padding to containers */
+  .container {
+    padding: 5%;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  input[type=text], input[type=number], input[type=password], input[type=date] {
+    width: 90%;
+    padding: 18px 25px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+
+  .checkmark {
+    height: 25px;
+    width: 25px;
+    background-color: lightsteelblue;
+    margin-left: 15%;
+    float: left;
+  }
+
+  
+  
+  
+  
+
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=text]:focus, input[type=number]:focus, input[type=password]:focus, input[type=checkbox]:focus, input[type=date]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Overwrite default styles of hr */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+    margin-right: 10%;
+  }
+  
+  /* Set a style for the submit button */
+  .createbtn {
+    background-color: #0400ff;
+    color: white;
+    padding: 16px 20px;
+    margin-left: 80%;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  
+  .createbtn:hover {
+    opacity: 1;
+  }
+  
+  /* Add a blue text color to links */
+  a {
+    color: dodgerblue;
+  }
+  

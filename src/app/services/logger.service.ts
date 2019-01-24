@@ -4,13 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoggerService {
-  private logged: boolean;
-  private _id: string;
-  private username: string;
+  public logged: boolean;
+  public _id: string;
+  public username: string;
   constructor() { 
     this.logged = true;
-    this._id = null;
-    this.username = null;
+    this._id = "5c438254d9e714f25a25ea9c";
+    this.username = "ValeSucci";
+    //this.logged = false;
+    //this._id = null;
+    //this.username = null;
   }
 
   setID(id){

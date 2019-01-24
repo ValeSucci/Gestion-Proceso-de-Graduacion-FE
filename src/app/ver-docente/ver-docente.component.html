@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="container">
   <h1>Docente </h1>
   <hr>
@@ -24,7 +26,7 @@
 
   <hr>
 
-  <div style="overflow-x:auto;">
+  <div *ngIf="this.data_altas_tutor !== null && this.data_altas_tutor.length > 0" style="overflow-x:auto;">
     <h2>TUTOR: </h2>
     <table>
       <tr style="background-color: #777; color: white">
@@ -34,43 +36,40 @@
         <th>Tema</th>
         <th>Fecha Carta de Asignación</th>
         <th>Fecha Carta de Suficiencia</th>
+        <th>Estado</th>  
       </tr>
-      <!--tr *ngFor="let alt of data_altas; let i=index"-->
-      <tr>
-        <!--td style="width: 15%">{{this.data_alumnos[i].nombre}}</td>
-        <td>{{this.data_alumnos[i].codigo}}</td>
+      <tr *ngFor="let alt of data_altas_tutor; let i=index">
+        <td style="width: 15%">{{this.data_alumnos_tutor[i].nombre}}</td>
+        <td>{{this.data_alumnos_tutor[i].codigo}}</td>
         <td>{{alt.semestre}}</td>
         <td>{{alt.tema}}</td>
+        <td>{{alt.tutor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+        <td>{{alt.tutor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
         <td>{{alt.estado.est}}</td>
-        <td>{{alt.estado.est}}</td-->
-        <td style="width: 15%">nombre</td>
-        <td>codigo</td>
-        <td>semestre</td>
-        <td>tema</td>
-        <td>asig</td>
-        <td>suf</td>
       </tr>
     </table>
   </div>
   <br /><br /><br />
-  <div style="overflow-x:auto;">
+  <div *ngIf="this.data_altas_revisor !== null && this.data_altas_revisor.length > 0" style="overflow-x:auto;">
     <h2>REVISOR: </h2>
     <table>
-      <tr style="background-color: #777">
+      <tr style="background-color: #777; color: white">
         <th>Nombre Alumno</th>
         <th>Código</th>
         <th>Semestre</th>
         <th>Tema</th>
         <th>Fecha Carta de Asignación</th>
         <th>Fecha Carta de Suficiencia</th>
+        <th>Estado</th>  
       </tr>
-      <tr>
-        <td style="width: 15%">nombre</td>
-        <td>codigo</td>
-        <td>semestre</td>
-        <td>tema</td>
-        <td>asig</td>
-        <td>suf</td>
+      <tr *ngFor="let alt of data_altas_revisor; let i=index">
+        <td style="width: 15%">{{this.data_alumnos_revisor[i].nombre}}</td>
+        <td>{{this.data_alumnos_revisor[i].codigo}}</td>
+        <td>{{alt.semestre}}</td>
+        <td>{{alt.tema}}</td>
+        <td>{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+        <td>{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+        <td>{{alt.estado.est}}</td>
       </tr>
     </table>
   </div>
@@ -79,6 +78,7 @@
   <hr>
 
   <button class="createbtn" [routerLink]="[ '/actualizar-docente',lastCodigo]">Actualizar</button>
+  <button (click)="exportAsXLSX()" style="margin: 5%; padding: 10px"><i class="fa fa-file-excel-o" style="font-size:50px;color:blue"></i></button>      
 
 </div>
 <br /><br /><br /><br />

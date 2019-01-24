@@ -1,0 +1,25 @@
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+  <p>Usuarios: </p>
+  <hr>  
+  <table>
+    <tr>
+      <th style="width:25%">Username</th>
+      <th>Nombre</th>
+      <th style="width: 20%">Alta/Baja</th>
+      <th style="width: 5%">Editar</th>
+    </tr>
+
+    <tr *ngFor="let u of users; index as i">
+      <td style="width: 25%">{{u.username}}</td>
+      <td>{{u.nombre}}</td>
+      <td *ngIf="u.habilitado" style="width: 20%"><button class="createbtn" (click)="altaOBaja(u.username,i)">Deshabilitar</button></td>
+      <td *ngIf="!u.habilitado" style="width: 20%"><button class="createbtn" (click)="altaOBaja(u.username,i)">Habilitar</button></td>
+      <td style="width: 5%"><i class="fa fa-edit" [routerLink]="[ '/editar-usuario-admi', u.username ]"></i></td>
+    </tr>
+
+  </table>
+</div>
+<br/><br/><br/>

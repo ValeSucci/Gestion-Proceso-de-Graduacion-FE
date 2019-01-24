@@ -9,14 +9,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./actualizar-docente.component.css']
 })
 export class ActualizarDocenteComponent implements OnInit {
-  private docente: Docente;
-  private lastCodigo: number;
-  private lastNombre: string;
-  private lastDireccion: string;
-  private lastTelefono: number;
-  private lastCorreo: string;
-  private my_data: any;
-  constructor(private _service: RestapiService, private _route: ActivatedRoute) {
+  public docente: Docente;
+  public lastCodigo: number;
+  public lastNombre: string;
+  public lastDireccion: string;
+  public lastTelefono: number;
+  public lastCorreo: string;
+  public my_data: any;
+  constructor(public _service: RestapiService, public _route: ActivatedRoute) {
     this.docente = new Docente(0,"","",0,"");
     this.lastCodigo = parseInt(_route.snapshot.paramMap.get('codigo'));
     this.getData();

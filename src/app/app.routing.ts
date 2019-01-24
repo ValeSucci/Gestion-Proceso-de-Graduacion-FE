@@ -12,6 +12,11 @@ import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno
 import { BuscarComponent } from './buscar/buscar.component';
 import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
 import { NuevaAltaAlumnoComponent } from './nueva-alta-alumno/nueva-alta-alumno.component';
+import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
+import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
+import { EditarUsuarioAdmiComponent } from './editar-usuario-admi/editar-usuario-admi.component';
+import { AlumnosComponent } from './alumnos/alumnos.component';
+import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil-historico-alumno.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,11 +26,16 @@ const appRoutes: Routes = [
   { path: 'actualizar-docente/:codigo', component: ActualizarDocenteComponent },
   { path: 'ver-docente/:codigo', component: VerDocenteComponent },
   { path: 'docentes', component: DocentesComponent },
-  { path: 'editar-perfil/:username', component: EditarUsuarioComponent},
-  { path: 'actualizar-alumno/:codigo', component: ActualizarAlumnoComponent},
-  { path: 'buscar', component: BuscarComponent},
-  { path: 'ver-alumno/:codigo', component: VerAlumnoComponent},
-  { path: 'nueva-alta-alumno/:codigo', component: NuevaAltaAlumnoComponent}
+  { path: 'editar-perfil/:username', component: EditarUsuarioComponent },
+  { path: 'actualizar-alumno/:codigo', component: ActualizarAlumnoComponent },
+  { path: 'buscar', component: BuscarComponent },
+  { path: 'ver-alumno/:codigo', component: VerAlumnoComponent },
+  { path: 'nueva-alta-alumno/:codigo', component: NuevaAltaAlumnoComponent },
+  { path: 'ver-usuarios', component: VerUsuariosComponent },
+  { path: 'crear-usuario', component: CrearUsuarioComponent },
+  { path: 'editar-usuario-admi/:username', component: EditarUsuarioAdmiComponent },
+  { path: 'alumnos', component: AlumnosComponent },
+  { path: 'perfil-historico-alumno/:codigo', component: PerfilHistoricoAlumnoComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

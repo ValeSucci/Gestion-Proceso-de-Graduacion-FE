@@ -1,11 +1,11 @@
-<div style="background-color: #CAC9F1;">
+<div>
   <div class="topnav">
     <!-- Centered link -->
     <div class="topnav-centered">
       <a class="titulo">{{pagetitle}}</a>
     </div>
     <!-- Left-aligned links (default) -->
-    <a id="logo-container" routerLink="/">
+    <a id="logo-container" routerLink="/home">
       <img src="../assets/res/logo.png" class="logo" height="65" width="200">
     </a>
     <!-- Right-aligned links -->
@@ -47,24 +47,13 @@
     <div id="notificationFooter"><a href="#">See All</a></div>
   </div>
 
-  <!--/div-->
 
-  <div *ngIf="menu" class="vertical-menu" style="padding-left:92%;background-color: white;">
-    <input type="button" value="Editar Perfil" class="button" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"
-      (click)="showHideMenu();" />
-    <br />
-    <input type="button" value="Ver Docentes" class="button" [routerLink]="[ '/docentes']" (click)="showHideMenu();" />
-    <br />
-    <input type="button" value="Actualizar Alumno" class="button" [routerLink]="[ '/actualizar-alumno', 2]" (click)="showHideMenu();" />
-    <br />
-    <input type="button" value="Logout" class="button" (click)="logout(); showHideMenu();" routerLink="/" />
+  <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/editar-perfil', _logger.getUsername()]" (click)="showHideMenu();">Editar Perfil</p>
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/docentes']" (click)="showHideMenu();">Ver Docentes</p>
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/actualizar-alumno', 2]" (click)="showHideMenu();">Actualizar Alumno</p>
+    <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Logout</p>
   </div>
-  <!--div *ngIf="menu" class="vertical-menu" style="padding-left:92%;background-color: white;">
-      <a type="button" [routerLink]="[ '/editar-perfil', _logger.getUsername()]">Editar Perfil</a>
-      <a type="button" [routerLink]="[ '/docentes']">Ver Docentes</a>
-      <a type="button" [routerLink]="[ '/actualizar-alumno', 32240]">Actualizar Alumno</a>
-      <a type="button" (click)="logout(); showHideMenu();" routerLink="/">Logout</a>
-  </div-->
 
   <router-outlet></router-outlet>
 </div>

@@ -5,10 +5,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestapiService {
-  private url: string
-  private valor: string
-  constructor(private _http: HttpClient) {
-    this.url = 'http://localhost:9000'
+  public url: string
+  public valor: string
+  constructor(public _http: HttpClient) {
+    this.url = 'http://skynet.lp.upb.edu:7870'
   }
 
   public getGlobal<Object>(urlMethod: string, token: string, param: string) {

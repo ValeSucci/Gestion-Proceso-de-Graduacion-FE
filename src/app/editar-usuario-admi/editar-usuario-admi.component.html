@@ -1,0 +1,49 @@
+<form #formEditUsuarioAdmi="ngForm" (ngSubmit)="onSubmit(); formEditUsuarioAdmi.reset();">
+  <div class="container">
+    <p>Completa los campos para editar al usuario</p>
+    <hr>
+    <label for="username"><b>Username: </b></label>
+    <label style="color: #555; font-style: italic"><b>{{lastUsername}}</b></label><br />
+    <br />
+
+    <label for="nombre"><b>Nombre completo: </b></label><br />
+    <input type="text" value={{lastNombre}} name="nombre" #nombre="ngModel" [(ngModel)]="this.usuario.nombre">
+    <br />
+
+    <label for="passwd"><b>Contraseña: </b></label><br />
+    <input type="password" value="{{lastPassword}}" name="passwd" #passwd="ngModel" [(ngModel)]="pass1" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$">
+    <!--revisar regex de contraseña con jessica-->
+    <br />
+
+    <label for="passwd2"><b>Repetir Contraseña: </b></label><br />
+    <input type="password" value="{{lastPassword}}" name="passwd2" #passwd2="ngModel" [(ngModel)]="pass2">
+    <br />
+
+    <span *ngIf="passwd.touched && passwd2.touched && !passwd.valid">
+      La contraseña debe tener entre 8 y 16 caracteres (1 mayúscula, 1 minúscula y 1 número).
+      <br />
+    </span>
+
+    <span *ngIf="(passwd.touched || passwd2.touched) && pass1 !== pass2">
+      Las contraseñas deben ser iguales.
+      <br /><br />
+    </span>
+
+    <br/><br/>
+    <label for="alta" style="margin: 10% 20% 10% 1%; font-size: 30px; color: #555; font-style: italic"><b>Habilitado</b></label>
+
+    <input *ngIf="this.usuario.habilitado" type="checkbox" checked class="checkmark" name="estado" #estado='ngModel' [(ngModel)]="this.usuario.habilitado" (click)="altaOBaja(false)">
+    <input *ngIf="!this.usuario.habilitado" type="checkbox" class="checkmark" name="estado" #estado='ngModel' [(ngModel)]="this.usuario.habilitado" (click)="altaOBaja(true)">
+
+    <label for="fecha"><b>Fecha de finalización: </b></label>
+    <label *ngIf="this.usuario.fecha_fin !== null" style="color: #555; font-style: italic"><b>{{this.usuario.fecha_fin | date: 'dd/MM/yyyy'}}</b></label>
+    <label *ngIf="this.usuario.fecha_fin === null" style="color: #555; font-style: italic"><b>-----------</b></label>
+    <br />
+    <br />
+
+    <hr>
+
+    <input type="submit" class="createbtn" [disabled]="!formEditUsuarioAdmi.form.valid || pass1 !== pass2" value="Guardar Cambios"
+      onclick="alert('Usuario editado correctamente!')" />
+  </div>
+</form>

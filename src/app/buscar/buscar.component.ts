@@ -5,6 +5,7 @@ import { Busqueda } from '../models/busqueda';
 import { Alumno } from '../models/alumno';
 import { Docente } from '../models/docente';
 import { AltaMateria } from '../models/alta-materia';
+import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-buscar',
@@ -12,18 +13,19 @@ import { AltaMateria } from '../models/alta-materia';
   styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
-  private busqueda: Busqueda;
-  private alumnos: any;
-  private docentes: any;
-  private data_alumnos: Alumno[];
-  private data_altas: AltaMateria[];
-  private data_tutores: any;
-  private data_revisores: any;
-  private my_data: any;
-  private conBusqueda: Boolean;
+  public busqueda: Busqueda;
+  public alumnos: any;
+  public docentes: any;
+  public data_alumnos: Alumno[];
+  public data_altas: AltaMateria[];
+  public data_tutores: any;
+  public data_revisores: any;
+  public my_data: any;
+  public conBusqueda: Boolean;
   constructor(
-    private _service: RestapiService,
-    private _router: Router
+    public _service: RestapiService,
+    public _router: Router,
+    public excelService: ExcelService
   ) {
     this._service.getGlobal('/Docente/getAll', '', '').subscribe(data => {
       this.docentes = data;
@@ -109,5 +111,41 @@ export class BuscarComponent implements OnInit {
       this.data_altas = [];
 
     }
+  }
+
+
+  data: any = [{
+    eid: 'e101',
+    ename: 'ravi',
+    esal: 1000
+  }, {
+    eid: 'e102',
+    ename: 'ram',
+    esal: 2000
+  }, {
+    eid: 'e103',
+    ename: 'rajesh',
+    esal: 3000
+  }];
+
+
+  
+  exportAsXLSX(): void {
+    let data_excel = [];
+    for(let i in this.data_altas) {
+      let elem={
+        Alumno:this.data_alumnos[i].nombre,
+        Código: this.data_alumnos[i].codigo,
+        Semestre:this.data_altas[i].semestre,
+        Modalidad: this.data_altas[i].modalidad.mod,
+        Tema: this.data_altas[i].tema,
+        Estado: this.data_altas[i].estado.est,
+        Tutor: this.data_tutores[i].nombre,
+        Revisor:this.data_revisores[i].nombre
+      }
+      data_excel.push(elem)
+      console.log(elem)
+    }
+    this.excelService.exportAsExcelFile(data_excel, 'consulta');
   }
 }

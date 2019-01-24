@@ -7,11 +7,11 @@ import { LoggerService } from './services/logger.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private menu: boolean
-  private notifications: boolean
+  public menu: boolean
+  public notifications: boolean
   title = 'GestionProcesoGraduacionFE';
   pagetitle = 'Sistema de Gestión de Proceso de Graduación';
-  constructor(private _logger: LoggerService) {
+  constructor(public _logger: LoggerService) {
 
   }
   ngOnInit(): void {
@@ -23,12 +23,17 @@ export class AppComponent {
 
   showHideMenu() {
     this.menu = !this.menu;
+    if(this.notifications) {
+      this.notifications = false;
+    }
   }
 
   showHideNotifications(){
     this.notifications = !this.notifications;
     console.log(this.notifications)
-    
+    if(this.menu) {
+      this.menu = false;
+    }    
   }
 
   logout(){

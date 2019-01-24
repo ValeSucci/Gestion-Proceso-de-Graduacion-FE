@@ -19,6 +19,12 @@ import { ActualizarAlumnoComponent } from './actualizar-alumno/actualizar-alumno
 import { BuscarComponent } from './buscar/buscar.component';
 import { NuevaAltaAlumnoComponent } from './nueva-alta-alumno/nueva-alta-alumno.component';
 import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
+import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
+import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
+import { EditarUsuarioAdmiComponent } from './editar-usuario-admi/editar-usuario-admi.component';
+import { ExcelService } from './services/excel.service';
+import { AlumnosComponent } from './alumnos/alumnos.component';
+import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil-historico-alumno.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +39,12 @@ import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
     ActualizarAlumnoComponent,
     BuscarComponent,
     NuevaAltaAlumnoComponent,
-    VerAlumnoComponent
+    VerAlumnoComponent,
+    VerUsuariosComponent,
+    CrearUsuarioComponent,
+    EditarUsuarioAdmiComponent,
+    AlumnosComponent,
+    PerfilHistoricoAlumnoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +55,8 @@ import { VerAlumnoComponent } from './ver-alumno/ver-alumno.component';
   providers: [
     appRoutingProviders,
     RestapiService,
-    LoggerService
+    LoggerService,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })

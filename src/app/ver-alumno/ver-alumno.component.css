@@ -155,10 +155,10 @@ body {
     border-radius: 50%;
   }
   
-  /* On mouse-over, add a grey background color */
+  /* On mouse-over, add a grey background color
   .container_rb:hover input ~ .checkmark_rb {
     background-color: #ccc;
-  }
+  }*/
   
   /* When the radio button is checked, add a blue background */
   .container_rb input:checked ~ .checkmark_rb {
@@ -193,14 +193,13 @@ body {
     background-color: #0400ff;
     color: white;
     padding: 16px 20px;
-    margin-left: 80%;
     border: none;
     cursor: pointer;
     opacity: 0.9;
   }
   
   .createbtn:hover {
-    opacity: 1;
+    opacity: 2;
   }
   
   

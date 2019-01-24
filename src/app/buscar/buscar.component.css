@@ -90,4 +90,8 @@ th, td {
   border: 1px solid #ddd;
 }
 
+.l:hover {
+  background-color: #ccc;
+}
+
 tr:nth-child(even){background-color: #f2f2f2}

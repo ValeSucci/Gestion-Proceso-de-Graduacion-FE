@@ -9,11 +9,11 @@ import { Docente } from '../models/docente';
   styleUrls: ['./crear-docente.component.css']
 })
 export class CrearDocenteComponent implements OnInit {
-  private docente: Docente;
+  public docente: Docente;
   pagetitle = 'Docentes';
   constructor(
-    private _service: RestapiService,
-    private _router: Router
+    public _service: RestapiService,
+    public _router: Router
   ) { 
     this.docente = new Docente(0,"","",0,"")
   }
@@ -23,7 +23,7 @@ export class CrearDocenteComponent implements OnInit {
 
   onSubmit(){
     this._service.postGlobal(this.docente,'/Docente/create','').subscribe(data => {
-
+      this._router.navigate(['docentes'])
     }), (err)=>{
       console.log(err)
     }

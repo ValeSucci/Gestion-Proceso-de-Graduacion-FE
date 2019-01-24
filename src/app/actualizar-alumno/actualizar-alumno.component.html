@@ -7,16 +7,16 @@
     <hr>
 
     <label><b>Nombre: </b></label>
-    <input type="text" value={{this.my_data_alumno.nombre}} style="width:70%" name="nombre" #nombre='ngModel' [(ngModel)]="this.alumno.nombre">
+    <input type="text" value={{this.alumno.nombre}} style="width:70%" name="nombre" #nombre='ngModel' [(ngModel)]="this.alumno.nombre">
 
-    <label name="estado" class="estado" [ngStyle]="{'background-color': this.my_data_alta.estado.color, 'border-color': this.my_data_alta.estado.color}"><b>{{this.my_data_alta.estado.est}}</b></label><br />
+    <label name="estado" class="estado" [ngStyle]="{'background-color': this.alta_materia.estado.color, 'border-color': this.alta_materia.estado.color}"><b>{{this.alta_materia.estado.est}}</b></label><br />
 
     <label><b>Código: </b></label>
-    <label style="color: #555; font-style: italic"><b>{{lastCodigo}}</b></label><br />
+    <label style="color: #555; font-style: italic; padding: 5% 2%"><b>{{lastCodigo}}</b></label><br /><br />
 
     <label><b>Alta: </b></label>
-    <select name="semestre"  #semestre='ngModel' [(ngModel)]="this.alta_materia.semestre">
-      <option value={{this.my_data_alta.semestre}}>{{this.my_data_alta.semestre}}</option>
+    <select name="semestre" #semestre='ngModel' [(ngModel)]="this.alta_materia.semestre">
+      <option value={{this.alta_materia.semestre}}>{{this.alta_materia.semestre}}</option>
       <option disabled value="">Seleccione-Semestre</option>
       <option value="I-2015">I-2015</option>
       <option value="II-2015">II-2015</option>
@@ -52,7 +52,8 @@
       <option value="II-2030">II-2030</option>
     </select>
 
-    <input id="formdate" type="date" style="margin-left: 5%" name="fecha_alta" value="{{this.fechaFormat | date: 'yyyy-MM-dd'}}"  #fecha_alta='ngModel' [(ngModel)]="this.alta_materia.fecha">
+    <input id="formdate" type="date" style="margin-left: 5%" name="fecha_alta" value="{{this.alta_materia.fecha}}"
+      #fecha_alta='ngModel' [(ngModel)]="this.alta_materia.fecha">
 
     <label for="plazo" class="plazo"><b>{{this.plazoFormat | date: 'dd/MM/yyyy'}}</b></label>
     <label for="plazolbl" style="float: right; margin-top: 30px; padding: 10px;"><b>Plazo: </b></label>
@@ -75,19 +76,19 @@
     </select>
 
     <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
-    <input *ngIf="this.my_data_alta.prorroga" type="checkbox" style="float:right; margin-right: 5px;" checked id="myCheck"
-      onclick="" name="prorroga" value="{{this.my_data_alta.prorroga}}" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
-    <input *ngIf="!this.my_data_alta.prorroga" type="checkbox" style="float:right; margin-right: 5px;" id="myCheck"
-      onclick="" name="prorroga" value="{{this.my_data_alta.prorroga}}" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
+    <input *ngIf="this.alta_materia.prorroga" type="checkbox" style="float:right; margin-right: 5px;" checked id="myCheck"
+      onclick="" name="prorroga" value="false" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
+    <input *ngIf="!this.alta_materia.prorroga" type="checkbox" style="float:right; margin-right: 5px;" id="myCheck"
+      onclick="" name="prorroga" value="true" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
     <br />
 
     <label for="tema"><b>Tema: </b></label>
-    <input type="text" value={{this.my_data_alta.tema}} style="width: 50%" name="tema" #tema='ngModel' [(ngModel)]="this.alta_materia.tema">
+    <input type="text" value={{this.alta_materia.tema}} style="width: 50%" name="tema" #tema='ngModel' [(ngModel)]="this.alta_materia.tema">
 
-    <label for="coincTema" class="nTemas"><b>N</b></label>
+    <label for="coincTema" class="nTemas"><b>{{this.nTema}}</b></label>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <input type="text" placeholder="Search.." name="search" #search='ngModel' [(ngModel)]="temaToSearch">
+      <button type="submit" (click)="searchTema(temaToSearch)"><i class="fa fa-search"></i></button>
     </form>
     <br />
 
@@ -96,8 +97,9 @@
     <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" type="text" placeholder={{this.my_data_alta.modalidad.trabDirig.empresa}}
       style="width: 50%" name="empresa" #empresa='ngModel' [(ngModel)]="this.alta_materia.modalidad.trabDirig.empresa">
 
-    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf"
-      value={{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}} #fecha_suf='ngModel' [(ngModel)]="this.alta_materia.modalidad.trabDirig.fecha_suficiencia">
+    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px"
+      name="fecha_suf" value={{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}} #fecha_suf='ngModel'
+      [(ngModel)]="this.alta_materia.modalidad.trabDirig.fecha_suficiencia">
     <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
         suficiencia: </b></label>
     <br />
@@ -105,40 +107,43 @@
     <hr>
 
     <label for="tutor"><b>Tutor: </b></label>
-    <!--select name="tutores" #tutores="ngModel" [(ngModel)]="idDoc" (click)="calcularAlumnosEnDocente();"-->
-    <select *ngIf="this.idTutor !== null" name="tutores" #tutores='ngModel' [(ngModel)]="this.alta_materia.tutor.doc">
-      <option selected value="this.idTutor">{{this.my_data_tutor.nombre}}</option>
+    <select *ngIf="this.idTutor !== null" name="tutores" #tutores='ngModel' [(ngModel)]="this.alta_materia.tutor.doc" (change)="calcularAlumnosEnDocente(alta_materia.tutor.doc, 'T')">
+      <option selected value="{{this.idTutor}}">{{this.my_data_tutor.nombre}}</option>
       <option disabled value="">-----------------------------------------------</option>
       <option *ngFor="let d of docentes" [attr.hidden]="this.idTutor === d._id ? true : null" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <select *ngIf="this.idTutor === null" name="tutores" #tutores='ngModel' [(ngModel)]="this.alta_materia.tutor.doc">
+    <select *ngIf="this.idTutor === null" name="tutores" #tutores='ngModel' [(ngModel)]="this.alta_materia.tutor.doc" (change)="calcularAlumnosEnDocente(alta_materia.tutor.doc, 'T')">
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
 
-    <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
+    <label for="coincTutor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoT ]" style="cursor: pointer"><b>{{alumDoc}}</b></label>
 
-    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
-    <input *ngIf="this.my_data_alta.tutor.fecha_asignacion !== null" id="fecha-asig-t" type="date" value="{{this.fechaAsigTutor | date: 'yyyy-MM-dd'}}"
-      style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t"  #fecha_asig_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
-    <input *ngIf="this.my_data_alta.tutor.fecha_asignacion === null" id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;"
+    <!--button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button-->
+    <input *ngIf="this.my_data_alta.tutor.fecha_asignacion !== null" id="fecha-asig-t" type="date" value="{{this.alta_materia.tutor.fecha_asignacion}}"
+      style="float:right; margin-top: 10px; padding: 10px; margin-right: 168px" name="fecha_asig_t" #fecha_asig_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
+    <input *ngIf="this.my_data_alta.tutor.fecha_asignacion === null" id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 168px"
       name="fecha_asig_t" #fecha_asig_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
     <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <i *ngIf="!this.my_data_alta.tutor.paga" class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya
+    <i *ngIf="!this.alta_materia.tutor.paga" class="fa fa-credit-card icon" style="float: right; margin-right: 50px;"><br />Ya
       no paga!</i>
 
-    <input *ngIf="!this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
-      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t" #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia" value="{{this.fechaSufTutor | date: 'yyyy-MM-dd'}}">
-    <input *ngIf="!this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia === null" id="fecha-suf-t"
-      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t" #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
+    <input *ngIf="!this.alta_materia.tutor.paga && this.alta_materia.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
+      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t"
+      #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia" value="{{this.alta_materia.tutor.fecha_suficiencia}}">
+    <input *ngIf="!this.alta_materia.tutor.paga && this.alta_materia.tutor.fecha_suficiencia === null" id="fecha-suf-t"
+      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 20px;" name="fecha_suf_t"
+      #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
 
-    <input *ngIf="this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
-      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t" #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia" value="{{this.fechaSufTutor | date: 'yyyy-MM-dd'}}">
-    <input *ngIf="this.my_data_alta.tutor.paga && this.my_data_alta.tutor.fecha_suficiencia === null" id="fecha-suf-t"
-      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t" #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
+    <input *ngIf="this.alta_materia.tutor.paga && this.alta_materia.tutor.fecha_suficiencia !== null" id="fecha-suf-t"
+      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t"
+      #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia" value="{{this.alta_materia.tutor.fecha_suficiencia}}">
+    <input *ngIf="this.alta_materia.tutor.paga && this.alta_materia.tutor.fecha_suficiencia === null" id="fecha-suf-t"
+      type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t"
+      #fecha_suf_t='ngModel' [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
 
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
@@ -151,31 +156,31 @@
 
 
     <label for="revisor"><b>Revisor: </b></label>
-    <!--select name="revisores" #revisores="ngModel" [(ngModel)]="idDocR" (click)="calcularAlumnosEnDocente();"-->
-    <select *ngIf="this.idRevisor !== null" name="revisores" #revisores='ngModel' [(ngModel)]="this.alta_materia.revisor.doc">
-      <option selected value="this.idRevisor">{{this.my_data_revisor.nombre}}</option>
+    <select *ngIf="this.idRevisor !== null" name="revisores" #revisores='ngModel' [(ngModel)]="this.alta_materia.revisor.doc" (change)="calcularAlumnosEnDocente(alta_materia.revisor.doc, 'R')">
+      <option selected value="{{this.idRevisor}}">{{this.my_data_revisor.nombre}}</option>
       <option disabled value="">-----------------------------------------------</option>
       <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <select *ngIf="this.idRevisor === null" name="revisores" #revisores='ngModel' [(ngModel)]="this.alta_materia.revisor.doc">
+    <select *ngIf="this.idRevisor === null" name="revisores" #revisores='ngModel' [(ngModel)]="this.alta_materia.revisor.doc" (change)="calcularAlumnosEnDocente(alta_materia.revisor.doc, 'R')">
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
+    <label for="coincRevisor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoR ]" style="cursor: pointer"><b>{{alumDocR}}</b></label>
 
-    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
+    <!--button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button-->
 
-    <input *ngIf="this.my_data_alta.revisor.fecha_asignacion !== null" id="fecha-asig-r" type="date" value="{{this.fechaAsigRevisor | date: 'yyyy-MM-dd'}}"
-      style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r" #fecha_asig_r='ngModel' [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
-    <input *ngIf="this.my_data_alta.revisor.fecha_asignacion === null" id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;"
+    <input *ngIf="this.my_data_alta.revisor.fecha_asignacion !== null" id="fecha-asig-r" type="date" value="{{this.alta_materia.revisor.fecha_asignacion}}"
+      style="float:right; margin-top: 10px; padding: 10px; margin-right: 168px" name="fecha_asig_r" #fecha_asig_r='ngModel' [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
+    <input *ngIf="this.my_data_alta.revisor.fecha_asignacion === null" id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 168px"
       name="fecha_asig_r" #fecha_asig_r='ngModel' [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
     <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
 
-    <input *ngIf="this.my_data_alta.revisor.fecha_suficiencia !== null" id="fecha-suf-r" type="date" value="{{this.fechaSufRevisor | date: 'yyyy-MM-dd'}}"
-      style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r" #fecha_suf_r='ngModel' [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
+    <input *ngIf="this.my_data_alta.revisor.fecha_suficiencia !== null" id="fecha-suf-r" type="date" value="{{this.alta_materia.revisor.fecha_suficiencia}}"
+      style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r" #fecha_suf_r='ngModel'
+      [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
     <input *ngIf="this.my_data_alta.revisor.fecha_suficiencia === null" id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;"
       name="fecha_suf_r" #fecha_suf_r='ngModel' [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
 
@@ -189,28 +194,34 @@
     <hr>
 
     <label for="defensa-interna"><b>Defensa Interna: </b></label>
-    <input *ngIf="this.my_data_alta.defensa_interna.fecha !== null" id="fecha-def-interna" type="date" value="{{this.fechaDefInterna | date: 'yyyy-MM-dd'}}"
+    <input *ngIf="this.my_data_alta.defensa_interna.fecha !== null" id="fecha-def-interna" type="date" value="{{this.alta_materia.defensa_interna.fecha}}"
       name="fecha_def_interna" #fecha_def_interna='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.fecha">
-    <input *ngIf="this.my_data_alta.defensa_interna.fecha === null" id="fecha-def-interna" type="date" name="fecha_def_interna" #fecha_def_interna='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.fecha">
+    <input *ngIf="this.my_data_alta.defensa_interna.fecha === null" id="fecha-def-interna" type="date" name="fecha_def_interna"
+      #fecha_def_interna='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.fecha">
 
     <div style="float:right; margin-right: 50px;">
       <label for="comentario" style="margin-right: 40px;"><b>Comentario: </b></label><br />
-      <input *ngIf="this.my_data_alta.defensa_interna.observacion !== ''" type="text" value="{{this.my_data_alta.defensa_interna.observacion}}"
-        style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.comentario">
-      <input *ngIf="this.my_data_alta.defensa_interna.observacion === ''" type="text" placeholder="Insertar comentario"
-        style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.comentario">
+      <input *ngIf="this.alta_materia.defensa_interna.observacion !== ''" type="text" value="{{this.alta_materia.defensa_interna.observacion}}"
+        style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna='ngModel'
+        [(ngModel)]="this.alta_materia.defensa_interna.observacion">
+      <input *ngIf="this.alta_materia.defensa_interna.observacion === ''" type="text" placeholder="Insertar comentario"
+        style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna='ngModel'
+        [(ngModel)]="this.alta_materia.defensa_interna.comentario">
     </div>
     <div style="float:right; margin-right: 100px;">
       <label class="container_rb">Aprobado
-        <input type="radio" [checked]="this.resDefInterna === 'Aprobado' ? true : null" name="radio" #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
+        <input type="radio" [checked]="this.resDefInterna === 'Aprobado' ? checked : null" value="Aprobado" name="radio"
+          #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Reprobado
-        <input type="radio" [checked]="this.resDefInterna === 'Reprobado' ? true : null" name="radio" #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
+        <input type="radio" [checked]="this.resDefInterna === 'Reprobado' ? checked : null" value="Reprobado" name="radio"
+          #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Diferido
-        <input type="radio" [checked]="this.resDefInterna === 'Diferido' ? true : null" name="radio" #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
+        <input type="radio" [checked]="this.resDefInterna === 'Diferido' ? checked : null" value="Diferido" name="radio"
+          #radio='ngModel' [(ngModel)]="this.alta_materia.defensa_interna.resultado">
         <span class="checkmark_rb"></span>
       </label>
     </div>
@@ -220,16 +231,18 @@
     <hr>
 
     <label for="defensa-externa"><b>Defensa Externa: </b></label>
-    <input *ngIf="this.my_data_alta.defensa_externa.fecha !== null" id="fecha-def-externa" type="date" value="{{this.fechaDefExterna | date: 'yyyy-MM-dd'}}"
+    <input *ngIf="this.my_data_alta.defensa_externa.fecha !== null" id="fecha-def-externa" type="date" value="{{this.alta_materia.defensa_externa.fecha}}"
       name="fecha_def_externa" #fecha_def_externa='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.fecha">
-    <input *ngIf="this.my_data_alta.defensa_externa.fecha === null" id="fecha-def-externa" type="date" name="fecha_def_externa" #fecha_def_externa='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.fecha">
+    <input *ngIf="this.my_data_alta.defensa_externa.fecha === null" id="fecha-def-externa" type="date" name="fecha_def_externa"
+      #fecha_def_externa='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.fecha">
 
     <div name="tribunal" style="float:right; margin-right: 50px">
       <label for="tribunal"><b>TRIBUNAL</b></label><br /><br />
 
       <label for="presidente" style="height: 20px; margin-bottom: 0; margin-left: 20px;"><b>Presidente: </b></label>
       <input *ngIf="this.my_data_alta.defensa_externa.presidente !== ''" type="text" placeholder="Introducir Presidente"
-        value="{{this.my_data_alta.defensa_externa.presidente}}" name="presidente" #presidente='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.presidente" style="height: 20px; margin-bottom: 0">
+        value="{{this.my_data_alta.defensa_externa.presidente}}" name="presidente" #presidente='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.presidente"
+        style="height: 20px; margin-bottom: 0">
       <input *ngIf="this.my_data_alta.defensa_externa.presidente === ''" type="text" placeholder="Introducir Presidente"
         name="presidente" #presidente='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.presidente" style="height: 20px; margin-bottom: 0">
       <br />
@@ -239,26 +252,46 @@
         name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
         <option value="">Seleccione-Docente</option>
         <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
       </select>
       <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha === null && this.idRevisor !== null"
         name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
         <option value="">Seleccione-Docente</option>
-        <option value="this.my_data_revisor.nombre">{{this.my_data_revisor.nombre}}</option>
+        <option value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
         <option disabled value="">-----------------------------------------------</option>
         <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
       </select>
       <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha !== null && this.idRevisor !== null"
         name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
-        <option selected value="this.my_data_revisor.nombre">{{this.my_data_revisor.nombre}}</option>
+        <option selected value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
         <option disabled value="">-----------------------------------------------</option>
         <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
       </select>
-      <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 !== ''" name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
-        <option selected value="this.my_data_alta.defensa_externa.evaluador1">{{this.my_data_alta.defensa_externa.evaluador1}}</option>
+      <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 !== '' && !this.eval1esOtro" name="eval1" class="eval" #eval1='ngModel'
+        [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
+        <option selected value="this.alta_materia.defensa_externa.evaluador1">{{this.alta_materia.defensa_externa.evaluador1}}</option>
         <option disabled value="">-----------------------------------------------</option>
         <option *ngFor="let d of docentes" [attr.hidden]="this.my_data_alta.defensa_externa.evaluador1 === d.nombre ? true : null"
           value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
       </select>
+      <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 !== '' && this.eval1esOtro" name="eval1" class="eval"
+        #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
+        <option selected value="Otro">Otro</option>
+        <option disabled value="">-----------------------------------------------</option>
+        <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
+      </select>
+
+      <input *ngIf="(this.alta_materia.defensa_externa.evaluador1 === 'Otro') && (!this.eval1esOtro || this.alta_materia.defensa_externa.evaluador1 === '')"
+        type="text" placeholder="Introducir Evaluador 1" name="otro_eval1" #otro_eval1='ngModel' [(ngModel)]="this.otroEval1"
+        style="height: 25px; margin-left: 10px; margin-top: 0;">
+      <input *ngIf="(this.alta_materia.defensa_externa.evaluador1 === 'Otro') && this.eval1esOtro && this.alta_materia.defensa_externa.evaluador1 !== ''"
+        type="text" placeholder="Introducir Evaluador 1" name="otro_eval1" #otro_eval1='ngModel' [(ngModel)]="this.otroEval1"
+        style="height: 25px; margin-left: 10px; margin-top: 0;">
+
+
       <br />
 
       <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
@@ -270,7 +303,7 @@
       </select>
       <select *ngIf="this.my_data_alta.defensa_externa.evaluador2 !== '' && !this.eval2esOtro" name="eval2" class="eval"
         #eval2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador2">
-        <option selected value="this.my_data_alta.defensa_externa.evaluador2">{{this.my_data_alta.defensa_externa.evaluador2}}</option>
+        <option selected value="this.my_data_alta.defensa_externa.evaluador2">{{this.alta_materia.defensa_externa.evaluador2}}</option>
         <option disabled value="">-----------------------------------------------</option>
         <option *ngFor="let d of docentes" [attr.hidden]="this.my_data_alta.defensa_externa.evaluador2 === d.nombre ? true : null"
           value="{{d.nombre}}">{{d.nombre}}</option>
@@ -283,10 +316,11 @@
         <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
       </select>
 
-      <input *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro' && (!this.eval2esOtro || this.my_data_alta.defensa_externa.evaluador2 === '')"
-        type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2" style="height: 25px; margin-left: 10px; margin-top: 0;">
-      <input *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro' && this.eval2esOtro && this.my_data_alta.defensa_externa.evaluador2 !== ''"
-        type="text" placeholder="Introducir Evaluador 2" value="{{this.my_data_alta.defensa_externa.evaluador2}}" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2"
+      <input *ngIf="(this.alta_materia.defensa_externa.evaluador2 === 'Otro') && (!this.eval2esOtro || this.alta_materia.defensa_externa.evaluador2 === '')"
+        type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2"
+        style="height: 25px; margin-left: 10px; margin-top: 0;">
+      <input *ngIf="(this.alta_materia.defensa_externa.evaluador2 === 'Otro') && this.eval2esOtro && this.alta_materia.defensa_externa.evaluador2 !== ''"
+        type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2"
         style="height: 25px; margin-left: 10px; margin-top: 0;">
 
     </div>
@@ -294,11 +328,13 @@
 
     <div style="float:right; margin-right: 280px;">
       <label class="container_rb">Aprobado
-        <input type="radio" [checked]="this.resDefExterna === 'Aprobado' ? true : null" name="radio2" #radio2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.resultado">
+        <input type="radio" [checked]="this.resDefExterna === 'Aprobado' ? true : null" value="Aprobado" name="radio2"
+          #radio2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.resultado">
         <span class="checkmark_rb"></span>
       </label>
       <label class="container_rb">Reprobado
-        <input type="radio" [checked]="this.resDefExterna === 'Reprobado' ? true : null" name="radio2" #radio2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.resultado">
+        <input type="radio" [checked]="this.resDefExterna === 'Reprobado' ? true : null" value="Reprobado" name="radio2"
+          #radio2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.resultado">
         <span class="checkmark_rb"></span>
       </label>
     </div>
@@ -308,10 +344,10 @@
     <hr>
 
     <label for="observaciones"><b>Observaciones: </b></label>
-    <input *ngIf="this.my_data_alta.observaciones !== ''" type="text" placeholder="Insertar observaciones" name="observaciones" #observaciones='ngModel' [(ngModel)]="this.alta_materia.observaciones"
-      style="height:100px; width: 60%;" value="{{this.my_data_alta.observaciones}}">
-    <input *ngIf="this.my_data_alta.observaciones === ''" type="text" placeholder="Insertar observaciones" name="observaciones" #observaciones='ngModel' [(ngModel)]="this.alta_materia.observaciones"
-      style="height:100px; width: 60%;">
+    <input *ngIf="this.my_data_alta.observaciones !== ''" type="text" placeholder="Insertar observaciones" name="observaciones"
+      #observaciones='ngModel' [(ngModel)]="this.alta_materia.observaciones" style="height:100px; width: 60%;" value="{{this.my_data_alta.observaciones}}">
+    <input *ngIf="this.my_data_alta.observaciones === ''" type="text" placeholder="Insertar observaciones" name="observaciones"
+      #observaciones='ngModel' [(ngModel)]="this.alta_materia.observaciones" style="height:100px; width: 60%;">
     <br />
     <hr>
 

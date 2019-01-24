@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<form #formBusqueda="ngForm" (ngSubmit)="onSubmit();formBusqueda.reset();">
+<form #formBusqueda="ngForm" (ngSubmit)="onSubmit();">
   <div class="container">
     <h1>Búsqueda</h1>
     <p>Completa los campos para realizar una búsqueda</p>
@@ -83,7 +83,7 @@
       
       <div style="overflow-x:auto;">
         <table>
-          <tr style="background-color: #777">
+          <tr style="background-color: #777; color: white">
             <th>Alumno</th>
             <th>Código</th>
             <th>Semestre</th>
@@ -95,20 +95,21 @@
             <th>Prórroga</th>
           </tr>
           <tr *ngFor="let alt of data_altas; let i=index">
-            <td style="width: 15%">{{this.data_alumnos[i].nombre}}</td>
+            <td style="width: 15%; cursor: pointer" class="l" [routerLink]="[ '/actualizar-alumno', this.data_alumnos[i].codigo]">{{this.data_alumnos[i].nombre}}</td>
             <td>{{this.data_alumnos[i].codigo}}</td>
             <td>{{alt.semestre}}</td>
             <td>{{alt.modalidad.mod}}</td>
             <td>{{alt.tema}}</td>
             <td>{{alt.estado.est}}</td>
-            <td style="width: 15%">{{this.data_tutores[i].nombre}}</td>
-            <td style="width: 15%">{{this.data_revisores[i].nombre}}</td>
+            <td style="width: 15%; cursor: pointer" class="l" [routerLink]="[ '/ver-docente', this.data_tutores[i].codigo ]">{{this.data_tutores[i].nombre}}</td>
+            <td style="width: 15%; cursor: pointer" class="l" [routerLink]="[ '/ver-docente', this.data_tutores[i].codigo ]">{{this.data_revisores[i].nombre}}</td>
             <td *ngIf="alt.prorroga">Si</td>
             <td *ngIf="!alt.prorroga">No</td>
           </tr>
         </table>
       </div>
-      
+      <br/><br/>
+      <button (click)="exportAsXLSX()" style="margin-left: 85%"><i class="fa fa-file-excel-o" style="font-size:48px;color:blue"></i></button>      
 
     </span>
 

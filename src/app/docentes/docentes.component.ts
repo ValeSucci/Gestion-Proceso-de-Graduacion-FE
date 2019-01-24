@@ -7,8 +7,8 @@ import { RestapiService } from '../services/restapi.service';
   styleUrls: ['./docentes.component.css']
 })
 export class DocentesComponent implements OnInit {
-  private docentes: any;
-  constructor(private _service: RestapiService) {
+  public docentes: any;
+  constructor(public _service: RestapiService) {
     this.getData();
   }
 

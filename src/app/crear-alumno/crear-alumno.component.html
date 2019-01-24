@@ -7,12 +7,14 @@
     <hr>
 
     <label><b>Nombre: </b></label>
-    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" #nombre="ngModel" [(ngModel)]="this.alumno.nombre" required>
+    <input type="text" placeholder="Ingresar nombre completo" style="width:70%" name="nombre" #nombre="ngModel"
+      [(ngModel)]="this.alumno.nombre" required>
 
-    <br/>
+    <br />
 
     <label><b>Código: </b></label>
-    <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" #codigo="ngModel" [(ngModel)]="this.alumno.codigo" required><br />
+    <input type="number" placeholder="Ingresar código" style="width: 11%" name="codigo" #codigo="ngModel" [(ngModel)]="this.alumno.codigo"
+      required><br />
 
     <label><b>Alta: </b></label>
     <select name="semestre" #semestre="ngModel" [(ngModel)]="this.alta_materia.semestre" required>
@@ -40,31 +42,34 @@
       <option value="I-2025">I-2025</option>
       <option value="II-2025">II-2025</option>
       <option value="I-2026">I-2026</option>
-      <option value="II-2026">II-2026</option>  
+      <option value="II-2026">II-2026</option>
       <option value="I-2027">I-2027</option>
-      <option value="II-2027">II-2027</option>  
+      <option value="II-2027">II-2027</option>
       <option value="I-2028">I-2028</option>
-      <option value="II-2028">II-2028</option>  
+      <option value="II-2028">II-2028</option>
       <option value="I-2029">I-2029</option>
-      <option value="II-2029">II-2029</option>  
+      <option value="II-2029">II-2029</option>
       <option value="I-2030">I-2030</option>
       <option value="II-2030">II-2030</option>
     </select>
 
-    <input id="formdate" type="date" style="margin-left: 5%" required name="fecha_alta" #fecha_alta="ngModel" [(ngModel)]="this.alta_materia.fecha">
+    <input id="formdate" type="date" style="margin-left: 5%" required name="fecha_alta" #fecha_alta="ngModel"
+      [(ngModel)]="this.alta_materia.fecha">
 
     <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
-    <input type="checkbox" style="float:right; margin-right: 5px; margin-top:22px;" id="myCheck" onclick="" name="prorroga" #prorroga="ngModel" [(ngModel)]="this.alta_materia.prorroga">
+    <input type="checkbox" style="float:right; margin-right: 5px; margin-top:22px;" id="myCheck" onclick="" name="prorroga"
+      #prorroga="ngModel" [(ngModel)]="this.alta_materia.prorroga">
 
     <br />
 
     <label for="modalidad"><b>Modalidad: </b></label>
     <select name=modalidad #modalidad="ngModel" [(ngModel)]="this.alta_materia.modalidad.mod">
-    <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="mod"-->
+      <!--select name=modalidad #modalidad="ngModel" [(ngModel)]="mod"-->
       <option value="">Seleccione-Modalidad</option>
       <option value="Excelencia">Excelencia</option>
       <option value="Proyecto de Grado - Creación Artefacto/Sistema">Proyecto de Grado - Creación Artefacto/Sistema</option>
-      <option value="Proyecto de Grado - Mejora de la Inversión Existente">Proyecto de Grado - Mejora de la Inversión Existente</option>
+      <option value="Proyecto de Grado - Mejora de la Inversión Existente">Proyecto de Grado - Mejora de la Inversión
+        Existente</option>
       <option value="Proyecto de Grado - Prefactibilidad">Proyecto de Grado - Prefactibilidad</option>
       <option value="Tesis">Tesis</option>
       <option value="Trabajo Dirigido">Trabajo Dirigido</option>
@@ -75,19 +80,21 @@
     <label for="tema"><b>Tema: </b></label>
     <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema" #tema="ngModel" [(ngModel)]="this.alta_materia.tema">
 
-    <label for="coincTema" class="nTemas"><b>N</b></label>
+    <label for="coincTema" class="nTemas"><b>{{this.nTema}}</b></label>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <input type="text" placeholder="Search.." name="search" #search='ngModel' [(ngModel)]="temaToSearch">
+      <button type="submit" (click)="searchTema(temaToSearch)"><i class="fa fa-search"></i></button>
     </form>
     <br />
 
 
     <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="empresa"><b>Empresa: </b></label>
     <!--label *ngIf=mod==='trabajo-dirigido'" for="empresa"><b>Empresa: </b></label-->
-    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" type="text" placeholder="Ingresar Empresa" style="width: 50%" name="empresa" #empresa="ngModel" [(ngModel)]="this.alta_materia.modalidad.trabDirig.empresa">
+    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" type="text" placeholder="Ingresar Empresa"
+      style="width: 50%" name="empresa" #empresa="ngModel" [(ngModel)]="this.alta_materia.modalidad.trabDirig.empresa">
 
-    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px" name="fecha_suf" #fecha_suf="ngModel" [(ngModel)]="this.alta_materia.modalidad.trabDirig.fecha_suficiencia">
+    <input *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" id="fecha-suf" type="date" style="float:right;margin-right:50px"
+      name="fecha_suf" #fecha_suf="ngModel" [(ngModel)]="this.alta_materia.modalidad.trabDirig.fecha_suficiencia">
     <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
         suficiencia: </b></label>
     <br />
@@ -95,19 +102,21 @@
     <hr>
 
     <label for="tutor"><b>Tutor: </b></label>
-    <select name="tutores" #tutores="ngModel" [(ngModel)]="this.alta_materia.tutor.doc"><!--(click)="calcularAlumnosEnDocente();"-->
+    <select name="tutores" #tutores="ngModel" [(ngModel)]="this.alta_materia.tutor.doc" (change)="calcularAlumnosEnDocente(alta_materia.tutor.doc, 'T')">
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <label for="coincTutor" class="nDoc"><b>{{alumDoc}}</b></label>
+    <label for="coincTutor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoT ]" style="cursor: pointer"><b>{{this.alumDoc}}</b></label>
 
-    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
-    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_t" #fecha_asig_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
+    <!--button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" (click)="openWord('T')" disabled>Carta</button-->
+    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 60px" name="fecha_asig_t"
+      #fecha_asig_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
     <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_t" #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
+    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;"
+      name="fecha_suf_t" #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -118,20 +127,22 @@
     <hr>
 
     <label for="revisor"><b>Revisor: </b></label>
-    <select name="revisores" #revisores="ngModel" [(ngModel)]="this.alta_materia.revisor.doc"> <!--(click)="calcularAlumnosEnDocente();"-->
+    <select name="revisores" #revisores="ngModel" [(ngModel)]="this.alta_materia.revisor.doc" (change)="calcularAlumnosEnDocente(alta_materia.revisor.doc,'R')">
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <label for="coincRevisor" class="nDoc"><b>{{alumDoc}}</b></label>
+    <label for="coincRevisor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoR ]" style="cursor: pointer"><b>{{alumDocR}}</b></label>
 
-    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button>
+    <!--button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button-->
 
-    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px;" name="fecha_asig_r" #fecha_asig_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
+    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 60px" name="fecha_asig_r"
+      #fecha_asig_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
     <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;" name="fecha_suf_r" #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
+    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;"
+      name="fecha_suf_r" #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
     <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -146,7 +157,8 @@
 
     <div style="float:right; margin-right: 50px;">
       <label for="comentario" style="margin-right: 40px;"><b>Comentario: </b></label><br />
-      <input type="text" placeholder="Insertar comentario" style="height: 40px; padding: 10px;" name="comentario_def_interna" #comentario_def_interna="ngModel" [(ngModel)]="this.alta_materia.defensa_interna.observacion">
+      <input type="text" placeholder="Insertar comentario" style="height: 40px; padding: 10px;" name="comentario_def_interna"
+        #comentario_def_interna="ngModel" [(ngModel)]="this.alta_materia.defensa_interna.observacion">
     </div>
     <div style="float:right; margin-right: 100px;">
       <label class="container_rb">Aprobado
@@ -174,20 +186,58 @@
     <div name="tribunal" style="float:right; margin-right: 50px">
       <label for="tribunal"><b>TRIBUNAL</b></label><br /><br />
       <label for="presidente" style="height: 20px; margin-bottom: 0; margin-left: 20px;"><b>Presidente: </b></label>
-      <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0" #presidente="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.presidente"><br />
+      <input type="text" placeholder="Introducir Presidente" name="presidente" style="height: 20px; margin-bottom: 0"
+        #presidente="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.presidente"><br />
       <label for="eval1" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 1: </b></label>
-      <select name="eval1" class="eval" #eval1="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
-        <option value="">Seleccione-Docente</option>
-        <option value="revisor">Revisor</option>
-        <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
-      </select><br />
-      <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
-      <select name="eval2" class="eval" #eval2="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.evaluador2">
+      <select name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
         <option value="">Seleccione-Docente</option>
         <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
         <option value="Otro">Otro</option>
       </select>
-      <input *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro'" type="text" placeholder="Introducir Evaluador 2" name="otroeval2" style="height: 25px; margin-left: 10px; margin-top: 0;" #otroeval2="ngModel" [(ngModel)]="this.otroEval2">
+
+      <!--select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha === null && this.idRevisor !== null"
+        name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
+        <option value="">Seleccione-Docente</option>
+        <option value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
+        <option disabled value="">-----------------------------------------------</option>
+        <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <select *ngIf="this.my_data_alta.defensa_externa.evaluador1 === '' && this.my_data_alta.defensa_externa.fecha !== null && this.idRevisor !== null"
+        name="eval1" class="eval" #eval1='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador1">
+        <option selected value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
+        <option disabled value="">-----------------------------------------------</option>
+        <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
+      </select-->
+      <input *ngIf="this.alta_materia.defensa_externa.evaluador1 === 'Otro'" type="text" placeholder="Introducir Evaluador 1"
+        name="otroeval1" style="height: 25px; margin-left: 10px; margin-top: 0;" #otroeval1="ngModel" [(ngModel)]="this.otroEval1">
+      <br />
+
+      <label for="eval2" style="height: 20px; margin-left: 20px;"><b>Evaluador Interno 2: </b></label>
+      <select name="eval2" class="eval" #eval2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador2">
+        <option value="">Seleccione-Docente</option>
+        <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
+      </select>
+
+      <!--select *ngIf="this.my_data_alta.defensa_externa.evaluador2 === '' && this.my_data_alta.defensa_externa.fecha === null && this.idRevisor !== null"
+        name="eval2" class="eval" #eval2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador2">
+        <option value="">Seleccione-Docente</option>
+        <option value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
+        <option disabled value="">-----------------------------------------------</option>
+        <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <select *ngIf="this.my_data_alta.defensa_externa.evaluador2 === '' && this.my_data_alta.defensa_externa.fecha !== null && this.idRevisor !== null"
+        name="eval2" class="eval" #eval2='ngModel' [(ngModel)]="this.alta_materia.defensa_externa.evaluador2">
+        <option selected value="this.alta_materia.revisor.nombre">{{this.alta_materia.revisor.nombre}}</option>
+        <option disabled value="">-----------------------------------------------</option>
+        <option *ngFor="let d of docentes" [attr.hidden]="this.idRevisor === d._id ? true : null" value="{{d.nombre}}">{{d.nombre}}</option>
+        <option value="Otro">Otro</option>
+      </select-->
+      <input *ngIf="this.alta_materia.defensa_externa.evaluador2 === 'Otro'" type="text" placeholder="Introducir Evaluador 2"
+        name="otroeval2" style="height: 25px; margin-left: 10px; margin-top: 0;" #otroeval2="ngModel" [(ngModel)]="this.otroEval2">
     </div>
     <br /><br /><br /><br /><br /><br /><br /><br />
 
@@ -208,13 +258,14 @@
     <hr>
 
     <label for="observaciones"><b>Observaciones: </b></label>
-    <input type="text" placeholder="Insertar observaciones" name="observaciones" style="height:100px; width: 60%;" #observaciones="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.observaciones">
+    <input type="text" placeholder="Insertar observaciones" name="observaciones" style="height:100px; width: 60%;"
+      #observaciones="ngModel" [(ngModel)]="this.alta_materia.defensa_externa.observaciones">
     <br />
     <hr>
 
     <!--button>Ver Perfil Histórico</button-->
 
-    <input type="submit" class="createbtn" [disabled]="!formAlumno.form.valid" value="Crear" onclick="alert('Alumno creado correctamente!')"/>
+    <input type="submit" class="createbtn" [disabled]="!formAlumno.form.valid" value="Crear" onclick="alert('Alumno creado correctamente!')" />
   </div>
 
 </form>

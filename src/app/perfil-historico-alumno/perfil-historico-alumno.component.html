@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container">
+  <h1>Perfil Histórico Alumno</h1>
+  <hr>
+
+  <label><b>Nombre: </b></label>
+  <label class="valor"><b>{{this.alumno.nombre}}</b></label>
+
+  <div style="float: right;margin-right: 40%">
+    <label><b>Código: </b></label>
+    <label class="valor"><b>{{lastCodigo}}</b></label>
+  </div>
+  <br /><br />
+  <hr>
+
+  <span *ngFor="let alt of this.altas; index as i">
+
+    <label><b>Semestre: </b></label>
+    <label class="valor"><b>{{alt.semestre}}</b></label>
+
+    <label class="valor" style="margin-left:5%"><b>{{alt.fecha}}</b></label><br /><br />
+
+    <label for="modalidad"><b>Modalidad: </b></label>
+    <label class="valor"><b>{{alt.modalidad.mod}}</b></label><br /><br />
+
+    <label for="tema"><b>Tema: </b></label>
+    <label class="valor"><b>{{alt.tema}}</b></label><br /><br />
+
+
+    <label for="tutor"><b>Tutor: </b></label>
+    <label class="valor"><b>{{this.tutores[i].nombre}}</b></label>
+
+    <div style="float: right; margin-right: 5%">
+      <label for="fecha_asig-t"><b>Fecha asignación: </b></label>
+      <label class="valor"><b>{{alt.tutor.fecha_asignacion}}</b></label>
+
+      <label for="fecha_asig-t" style="margin-left: 50px;"><b>Fecha de suficiencia: </b></label>
+      <label class="valor"><b>{{alt.tutor.fecha_suficiencia}}</b></label><br /><br />
+    </div>
+
+    <br />
+    <br />
+
+    <label for="tutor"><b>Revisor: </b></label>
+    <label class="valor"><b>{{this.revisores[i].nombre}}</b></label>
+
+    <div style="float: right; margin-right: 5%">
+
+      <label for="fecha_asig-t"><b>Fecha asignación: </b></label>
+      <label class="valor"><b>{{alt.revisor.fecha_asignacion}}</b></label>
+
+      <label for="fecha_asig-t" style="margin-left: 50px;"><b>Fecha de suficiencia: </b></label>
+      <label class="valor"><b>{{alt.revisor.fecha_suficiencia}}</b></label><br /><br />
+
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <hr>
+
+  </span>
+
+  <button class="createbtn" style="margin-left: 85%" [routerLink]="[ '/ver-alumno',lastCodigo]">Ver Alumno</button>
+
+</div>

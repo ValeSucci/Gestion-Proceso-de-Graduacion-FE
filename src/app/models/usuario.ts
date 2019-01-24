@@ -1,4 +1,4 @@
-import { Actividad } from './actividad';
+
 export class Usuario {
   constructor(
     public nombre: string,
@@ -9,7 +9,6 @@ export class Usuario {
     public habilitado: Boolean,
     public esSuper: Boolean, 
     public fecha_inicio: Date,
-    public fecha_fin: Date,
-    public actividades: Actividad
+    public fecha_fin: Date
   ){}
 }

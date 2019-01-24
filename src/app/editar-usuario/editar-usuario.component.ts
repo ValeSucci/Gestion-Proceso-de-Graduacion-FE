@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { RestapiService } from '../services/restapi.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actividad } from '../models/actividad';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -10,21 +9,21 @@ import { Actividad } from '../models/actividad';
   styleUrls: ['./editar-usuario.component.css']
 })
 export class EditarUsuarioComponent implements OnInit {
-  private usuario: Usuario
-  private lastUsername: string;
-  private lastPassword: string;
-  private lastNombre: string;
-  private pass1: string;
-  private pass2: string;
-  private lastTelefono: number;
-  private lastCorreo: string;
-  private my_data: any;
+  public usuario: Usuario
+  public lastUsername: string;
+  public lastPassword: string;
+  public lastNombre: string;
+  public pass1: string;
+  public pass2: string;
+  public lastTelefono: number;
+  public lastCorreo: string;
+  public my_data: any;
   constructor(
-    private _service: RestapiService,
-    private _route: ActivatedRoute,
-    private _router: Router
+    public _service: RestapiService,
+    public _route: ActivatedRoute,
+    public _router: Router
   ) {
-    this.usuario = new Usuario("", "", "", 0, "", false, false, null, null, new Actividad("", null));
+    this.usuario = new Usuario("", "", "", 0, "", false, false, null, null);
     this.lastUsername = _route.snapshot.paramMap.get('username');
     this.getData();
   }
@@ -57,7 +56,7 @@ export class EditarUsuarioComponent implements OnInit {
     }), (err) => {
       console.log(err)
     }
-    this.usuario = new Usuario("", "", "", 0, "", false, false, null, null, new Actividad("", null));
+    this.usuario = new Usuario("", "", "", 0, "", false, false, null, null);
   }
 
 

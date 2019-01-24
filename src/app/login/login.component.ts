@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private mydata: any
-  private un: string
-  private pass: string
+  public mydata: any
+  public un: string
+  public pass: string
   constructor(
-    private _service: RestapiService,
-    private _logger: LoggerService,
-    private _router: Router
+    public _service: RestapiService,
+    public _logger: LoggerService,
+    public _router: Router
   ) { }
 
   ngOnInit() {

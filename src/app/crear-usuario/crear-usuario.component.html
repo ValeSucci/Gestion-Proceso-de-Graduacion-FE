@@ -1,0 +1,49 @@
+<form #formUsuario="ngForm" (ngSubmit)="onSubmit(); formUsuario.reset();">
+  <div class="container">
+    <p>Completa los campos para crear un usuario</p>
+    <hr>
+    <label for="username"><b>Username: </b></label><br />
+    <input type="text" placeholder="Ingresar nombre de usuario" name="username" #username="ngModel" required
+      [(ngModel)]="this.usuario.username">
+    <br />
+
+    <label for="nombre"><b>Nombre completo: </b></label><br />
+    <input type="text" placeholder="Ingresar nombre" name="nombre" #nombre="ngModel" required [(ngModel)]="this.usuario.nombre">
+    <br />
+
+    <label for="passwd"><b>Contraseña: </b></label><br />
+    <input type="password" placeholder="********" name="passwd" #passwd="ngModel" [(ngModel)]="pass1" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$">
+    <br />
+
+    <label for="passwd2"><b>Repetir Contraseña: </b></label><br />
+    <input type="password" placeholder="********" name="passwd2" #passwd2="ngModel" [(ngModel)]="pass2">
+    <br />
+
+    <span *ngIf="passwd.touched && passwd2.touched && !passwd.valid">
+      La contraseña debe tener entre 8 y 16 caracteres (1 mayúscula, 1 minúscula y 1 número).
+      <br /><br />
+    </span>
+    <span *ngIf="(passwd.touched || passwd2.touched) && pass1 !== pass2">
+      Las contraseñas deben ser iguales.
+      <br /><br />
+    </span>
+
+
+    <label for="telefono"><b>Teléfono: </b></label><br />
+    <input type="number" placeholder="Introducir teléfono" name="telefono" #telefono="ngModel" [(ngModel)]="this.usuario.telefono">
+    <br />
+
+    <label for="correo"><b>Correo: </b></label><br />
+    <input type="text" placeholder="Introducir correo" name="correo" #correo="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+      [(ngModel)]="this.usuario.correo">
+    <br />
+    <span *ngIf="correo.touched && !correo.valid">
+      Formato de Correo incorrecto (Ej: aaa@bbb.ccc).
+      <br /><br />
+    </span>
+
+    <hr>
+
+    <input type="submit" class="createbtn" [disabled]="!formUsuario.form.valid || pass1 !== pass2" value="Crear" onclick="alert('Usuario creado correctamente!')" />
+  </div>
+</form>

@@ -123,8 +123,7 @@ export class CrearAlumnoComponent implements OnInit {
       this.alta_materia.defensa_externa.evaluador1 = this.otroEval1;
     }
     this._service.postGlobal(this.alumno, '/Alumno/create', '').subscribe(data => {
-      //this._router.navigate(['/ver-alumno', this.alumno.codigo]);
-
+      this._router.navigate(['ver-alumno', this.alumno.codigo])
     }), (err) => {
       console.log(err)
     }

@@ -146,7 +146,7 @@ export class NuevaAltaAlumnoComponent implements OnInit {
     }
     console.log(this.alumno)
     this._service.putGlobal(this.alumno, '/Alumno/nuevaAlta/'+this.lastCodigo, '').subscribe(data => {
-      this._router.navigate(['/ver-alumno',this.alumno.codigo]);
+      this._router.navigate(['ver-alumno', this.alumno.codigo])
     }), (err) => {
       console.log(err)
     }

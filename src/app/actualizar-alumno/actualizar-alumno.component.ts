@@ -269,7 +269,7 @@ export class ActualizarAlumnoComponent implements OnInit {
 
     this._service.putGlobal({ alumno: this.alumno, alta: this.alta_materia }, '/Alumno/update/' + this.idAlta, '').subscribe(data => {
       //console.log(this.alumno)
-      this._router.navigate(['/ver-alumno', this.alumno.codigo]);
+      this._router.navigate(['ver-alumno', this.alumno.codigo])
     }), (err) => {
       console.log(err)
     }

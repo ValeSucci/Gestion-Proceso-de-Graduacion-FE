@@ -8,10 +8,12 @@ body {
   }
   
   /* Add padding to containers */
-  .container {
-    padding: 50px;
-    background-color: white;
-  }
+.container {
+  margin: 5% 10%;
+  padding: 50px;
+  background-color: white;
+
+}
   
   /* Full-width input fields */
   input[type=text], input[type=number], input[type=date], input[type=checkbox] {

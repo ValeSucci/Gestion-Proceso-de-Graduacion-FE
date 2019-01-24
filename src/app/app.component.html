@@ -6,9 +6,16 @@
         <a class="titulo">{{pagetitle}}</a>
       </div>
       <!-- Left-aligned links (default) -->
-      <a id="logo-container" routerLink="/home">
-        <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
-      </a>
+      <div *ngIf="!this._logger.getRole();">
+        <a id="logo-container" routerLink="/home">
+          <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
+        </a>
+      </div>
+      <div *ngIf="this._logger.getRole();">
+          <a id="logo-container" routerLink="/admin">
+            <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
+          </a>
+        </div>
       <!-- Right-aligned links -->
       <div class="topnav-right">
         <span id="notification_count">{{nNotif}}</span>

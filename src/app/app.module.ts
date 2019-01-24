@@ -26,6 +26,9 @@ import { ExcelService } from './services/excel.service';
 import { AlumnosComponent } from './alumnos/alumnos.component';
 import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil-historico-alumno.component';
 import { NotificacionesService } from './services/notificaciones.service';
+import { GuardGuard } from './guards/guard.guard';
+import { InitComponent } from './init/init.component';
+import { RoleGuard } from './guards/role.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,8 @@ import { NotificacionesService } from './services/notificaciones.service';
     CrearUsuarioComponent,
     EditarUsuarioAdmiComponent,
     AlumnosComponent,
-    PerfilHistoricoAlumnoComponent
+    PerfilHistoricoAlumnoComponent,
+    InitComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,9 @@ import { NotificacionesService } from './services/notificaciones.service';
     RestapiService,
     LoggerService,
     ExcelService,
-    NotificacionesService
+    NotificacionesService,
+    GuardGuard,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -7,20 +7,22 @@ export class LoggerService {
   public logged: boolean;
   public _id: string;
   public username: string;
-  constructor() { 
+  public _role: boolean;
+  constructor() {
     this.logged = true;
     this._id = "5c438254d9e714f25a25ea9c";
     this.username = "ValeSucci";
+    this._role = false;
     //this.logged = false;
     //this._id = null;
     //this.username = null;
   }
 
-  setID(id){
+  setID(id) {
     this._id = id;
   }
 
-  getID(){
+  getID() {
     return this._id;
   }
 
@@ -30,17 +32,26 @@ export class LoggerService {
 
   logOut() {
     this.logged = false;
+    this._role = false;
   }
 
-  isLoged(){
+  isLoged() {
     return this.logged;
   }
 
-  setUsername(un){
+  setRole(role) {
+    this._role = role;
+  }
+
+  getRole() {
+    return this._role;
+  }
+
+  setUsername(un) {
     this.username = un;
   }
 
-  getUsername(){
+  getUsername() {
     return this.username;
   }
 

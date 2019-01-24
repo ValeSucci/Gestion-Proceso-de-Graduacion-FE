@@ -25,6 +25,7 @@ import { EditarUsuarioAdmiComponent } from './editar-usuario-admi/editar-usuario
 import { ExcelService } from './services/excel.service';
 import { AlumnosComponent } from './alumnos/alumnos.component';
 import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil-historico-alumno.component';
+import { NotificacionesService } from './services/notificaciones.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil
     appRoutingProviders,
     RestapiService,
     LoggerService,
-    ExcelService
+    ExcelService,
+    NotificacionesService
   ],
   bootstrap: [AppComponent]
 })

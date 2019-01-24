@@ -10,7 +10,7 @@
     </a>
     <!-- Right-aligned links -->
     <div class="topnav-right">
-      <span id="notification_count">3</span>
+      <span id="notification_count">{{nNotif}}</span>
       <img *ngIf="_logger.isLoged()" src="../assets/res/gato-asustado.png" class="icono" height="60" width="75" (click)="showHideNotifications()">
       <button *ngIf="_logger.isLoged()" class="button" (click)="showHideMenu()">
         <img src="../assets/res/menu-icon.png" class="icono" height="65" width="75">
@@ -26,34 +26,36 @@
   <div *ngIf="notifications" id="notificationContainer">
     <div id="notificationTitle">NOTIFICACIONES</div>
     <div id="notificationsBody" class="notifications">
-      <div style="border-bottom: 1px solid #dddddd; padding: 5px">
-        <p style="font-weight: bold">Nombre 1</p>
-        <p style="font-weight: bold; font-style: italic">Asunto 1</p>
-        <label class="fechaNot">Fecha 1</label>
-        <br />
-      </div>
-
-      <div style="border-bottom: 1px solid #dddddd; padding: 5px">
-        <!--label class="nombreNot">Nombre 1</label>
-            <label class="asuntoNot">Asunto 1</label-->
-        <p style="font-weight: bold">Nombre 2</p>
-        <p style="font-weight: bold; font-style: italic">Asunto 2</p>
-        <label class="fechaNot">Fecha 2</label>
-        <br />
-
+      <div *ngFor="let not of this.notificaciones" style="border-bottom: 1px solid #bbb; padding: 5px">
+        <div *ngIf="not.visto" (click)="verNotificacion(not, not.codigo)">
+          <p style="font-weight: bold">({{not.codigo}}) {{not.nombre}}</p>
+          <p style="font-weight: bold; font-style: italic">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
+          <label class="fechaNot">{{not.fecha_publicacion | date: 'dd/MM/yyyy'}}</label>
+          <br />
+        </div>
+        <div *ngIf="!not.visto" style="background-color: #eee" (click)="verNotificacion(not, not.codigo)">
+            <p style="font-weight: bold">({{not.codigo}}) {{not.nombre}}</p>
+            <p style="font-weight: bold; font-style: italic">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
+            <label class="fechaNot">{{not.fecha_publicacion | date: 'dd/MM/yyyy'}}</label>
+            <br />
+        </div>
       </div>
 
     </div>
-    <div id="notificationFooter"><a href="#">See All</a></div>
+    <div id="notificationFooter"></div>
   </div>
 
 
   <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
-    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/editar-perfil', _logger.getUsername()]" (click)="showHideMenu();">Editar Perfil</p>
-    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/docentes']" (click)="showHideMenu();">Ver Docentes</p>
-    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/actualizar-alumno', 2]" (click)="showHideMenu();">Actualizar Alumno</p>
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"
+      (click)="showHideMenu();">Editar Perfil</p>
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/docentes']" (click)="showHideMenu();">Ver
+      Docentes</p>
+    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/actualizar-alumno', 2]"
+      (click)="showHideMenu();">Actualizar Alumno</p>
     <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Logout</p>
   </div>
 
+  
   <router-outlet></router-outlet>
 </div>

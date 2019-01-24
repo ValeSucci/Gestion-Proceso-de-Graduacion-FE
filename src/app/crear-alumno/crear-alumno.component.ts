@@ -6,6 +6,7 @@ import { Carta } from '../models/carta';
 import { Docente } from '../models/docente';
 import { Router } from '@angular/router';
 import { Busqueda } from '../models/busqueda';
+import { Notificacion } from '../models/notificacion';
 
 @Component({
   selector: 'app-crear-alumno',
@@ -83,7 +84,7 @@ export class CrearAlumnoComponent implements OnInit {
         console.log(this.alumDoc)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
-            this.codigoT = this.docentes[j].codigo;            
+            this.codigoT = this.docentes[j].codigo;
             j = this.docentes.length + 1
           }
         }
@@ -92,7 +93,7 @@ export class CrearAlumnoComponent implements OnInit {
         console.log(this.alumDocR)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
-            this.codigoR = this.docentes[j].codigo;            
+            this.codigoR = this.docentes[j].codigo;
             j = this.docentes.length + 1
           }
         }
@@ -102,9 +103,9 @@ export class CrearAlumnoComponent implements OnInit {
     }
   }
 
-  searchTema(t: string){
+  searchTema(t: string) {
     let d = null;
-    this._service.postGlobal({tema: t}, '/Alumno/buscarPorTema', '').subscribe(data => {
+    this._service.postGlobal({ tema: t }, '/Alumno/buscarPorTema', '').subscribe(data => {
       d = data;
       this.nTema = d.altas.length;
       console.log(this.nTema)
@@ -122,7 +123,8 @@ export class CrearAlumnoComponent implements OnInit {
       this.alta_materia.defensa_externa.evaluador1 = this.otroEval1;
     }
     this._service.postGlobal(this.alumno, '/Alumno/create', '').subscribe(data => {
-      this._router.navigate(['/ver-alumno',this.alumno.codigo]);
+      //this._router.navigate(['/ver-alumno', this.alumno.codigo]);
+
     }), (err) => {
       console.log(err)
     }
@@ -133,13 +135,13 @@ export class CrearAlumnoComponent implements OnInit {
 
 
   openWord(cargo: string) {
-    this._service.postGlobal(this.alta_materia, '/Alumno/openWord/'+cargo, '').subscribe(data => {
-      
+    this._service.postGlobal(this.alta_materia, '/Alumno/openWord/' + cargo, '').subscribe(data => {
+
     }), (err) => {
       console.log(err)
     }
   }
-  
+
   /*
 
 var JSZip = require('jszip');

@@ -263,3 +263,85 @@ select {
   padding:3px;
   margin-left: 10px;
 }
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 75%;
+  height: 100%;
+  overflow: scroll;
+  overflow-y: scroll;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  z-index: 4;
+  overflow-y: auto;
+}
+
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+
+.close {
+  color: white;
+  float: right;
+  margin-right: 50px;
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 4;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  z-index: 4;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  z-index: 4;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+  z-index: 4;
+}

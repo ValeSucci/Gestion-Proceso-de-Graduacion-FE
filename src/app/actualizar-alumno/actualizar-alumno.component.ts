@@ -21,6 +21,14 @@ export class ActualizarAlumnoComponent implements OnInit {
   public codigoT: number;
   public codigoR: number;
 
+  public data_busq_alumT: any = [];
+  public data_busq_altT: any = [];
+  public data_busq_alumR: any = [];
+  public data_busq_altR: any = [];
+  public cargosT: any = [];
+  public cargosR: any = [];
+
+
 
   public otroEval2: string;
   public otroEval1: string;
@@ -180,6 +188,19 @@ export class ActualizarAlumnoComponent implements OnInit {
     this._service.postGlobal(busquedaT, '/Alumno/buscar', '').subscribe(data => {
       d1 = data;
       cont += d1.alumnos.length;
+      if (cargo === 'T') {
+        this.data_busq_altT = d1.altas;
+        this.data_busq_alumT = d1.alumnos;
+        for (let i in d1.altas) {
+          this.cargosT.push("Tutor");
+        }
+      } else if (cargo === 'R') {
+        this.data_busq_altR = d1.altas;
+        this.data_busq_alumR = d1.alumnos;
+        for (let i in d1.altas) {
+          this.cargosR.push("Tutor");
+        }
+      }
       console.log("T: " + cont)
     }), (err) => {
       console.log(err)
@@ -190,6 +211,11 @@ export class ActualizarAlumnoComponent implements OnInit {
       cont += d2.alumnos.length;
       console.log("R: " + cont)
       if (cargo === 'T') {
+        for (let i in d2.altas) {
+          this.data_busq_altT.push(d2.altas[i]);
+          this.data_busq_alumT.push(d2.alumnos[i]);  
+          this.cargosT.push("Revisor");
+        }
         this.alumDoc = cont;
         console.log(this.alumDoc)
         for (let j in this.docentes) {
@@ -199,6 +225,11 @@ export class ActualizarAlumnoComponent implements OnInit {
           }
         }
       } else if (cargo === 'R') {
+        for (let i in d2.altas) {
+          this.data_busq_altR.push(d2.altas[i]);
+          this.data_busq_alumR.push(d2.alumnos[i]);  
+          this.cargosR.push("Revisor");
+        }
         this.alumDocR = cont;
         console.log(this.alumDocR)
         for (let j in this.docentes) {
@@ -238,7 +269,7 @@ export class ActualizarAlumnoComponent implements OnInit {
 
     this._service.putGlobal({ alumno: this.alumno, alta: this.alta_materia }, '/Alumno/update/' + this.idAlta, '').subscribe(data => {
       //console.log(this.alumno)
-      this._router.navigate(['/ver-alumno',this.alumno.codigo]);
+      this._router.navigate(['/ver-alumno', this.alumno.codigo]);
     }), (err) => {
       console.log(err)
     }

@@ -218,6 +218,8 @@ export class ActualizarAlumnoComponent implements OnInit {
     this._service.postGlobal({ tema: t }, '/Alumno/buscarPorTema', '').subscribe(data => {
       d = data;
       this.nTema = d.altas.length;
+      this.altas_by_tema = d.altas;
+      this.alumnos_by_tema = d.alumnos;
       console.log(this.nTema)
     }), (err) => {
       console.log(err)

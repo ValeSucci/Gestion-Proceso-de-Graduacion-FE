@@ -9,9 +9,14 @@ body {
 
 /* Add padding to containers */
 .container {
+  margin: 5% 10%;
   padding: 50px;
   background-color: white;
+  width: 80%;
+}
 
+#notificationContainer {
+  background-color: white;
 }
 
 /* Full-width input fields */

@@ -8,6 +8,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
 }
 
 .main {
@@ -216,6 +217,7 @@ margin-left: 188px;
   min-height: 100px;
   overflow: auto;
   max-height: 400px;
+  background-color: #ffffff;
 }
 
 #notificationFooter {

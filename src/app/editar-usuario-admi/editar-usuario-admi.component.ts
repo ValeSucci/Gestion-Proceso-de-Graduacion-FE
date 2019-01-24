@@ -63,7 +63,7 @@ export class EditarUsuarioAdmiComponent implements OnInit {
     //console.log(this.usuario)
     this._service.putGlobal(this.usuario, '/Usuario/updateAdmi/' + this.lastUsername, '').subscribe(data => {
       //console.log(data)
-      this._router.navigate(['/home'])
+      this._router.navigate(['/ver-usuarios'])
     }), (err) => {
       console.log(err)
     }

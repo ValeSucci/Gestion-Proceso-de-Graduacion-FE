@@ -80,12 +80,58 @@
     <label for="tema"><b>Tema: </b></label>
     <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema" #tema="ngModel" [(ngModel)]="this.alta_materia.tema">
 
-    <label for="coincTema" class="nTemas"><b>{{this.nTema}}</b></label>
+    <button for="coincTema" class="setbtn" style="float:right;margin-right: 70px;" onclick="document.getElementById('id01').style.display='block'"><b>{{this.nTema}}</b></button>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
       <input type="text" placeholder="Search.." name="search" #search='ngModel' [(ngModel)]="temaToSearch">
       <button type="submit" (click)="searchTema(temaToSearch)"><i class="fa fa-search"></i></button>
     </form>
     <br />
+
+    <!-- The Modal -->
+    <div id="id01" class="modal" style="z-index: 10;">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+      <!-- Modal Content -->
+      <form class="modal-content animate">
+        <div style="padding:5%">
+          <h3>TEMAS:</h3>
+          <table>
+            <tr style="background-color: #777; color: white">
+              <th>Nombre Alumno</th>
+              <th>Semestre</th>
+              <th>Modalidad</th>
+              <th>Tema</th>
+              <th>Estado</th>
+              <th>Fecha Carta de Asignación</th>
+              <th>Fecha Carta de Suficiencia</th>
+            </tr>
+            <tr *ngFor="let alt of altas_by_tema; let i=index">
+              <td style="width: 15%">{{this.alumnos_by_tema[i].nombre}}</td>
+              <td>{{alt.semestre}}</td>
+              <td>{{alt.modalidad.mod}}</td>
+              <td>{{alt.tema}}</td>
+              <td>{{alt.estado.est}}</td>
+              <td>{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+              <td>{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById('id01');
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          console.log('mensaje')
+        }
+      }
+    </script>
+
+
 
 
     <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="empresa"><b>Empresa: </b></label>
@@ -106,7 +152,59 @@
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <label for="coincTutor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoT ]" style="cursor: pointer"><b>{{this.alumDoc}}</b></label>
+    <label for="coincTutor" class="setbtn" style="margin-left: 10px;" onclick="document.getElementById('id02').style.display='block'"
+      style="cursor: pointer"><b>{{alumDoc}}</b></label>
+
+
+    <!-- The Modal -->
+    <div id="id02" class="modal" style="z-index: 10;">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+      <!-- Modal Content -->
+      <form class="modal-content animate">
+        <div style="padding:5%">
+          <h3>{{this.my_data_tutor.nombre}}</h3>
+          <table>
+            <tr style="background-color: #777; color: white">
+              <th>T/R</th>
+              <th>Nombre Alumno</th>
+              <th>Código</th>
+              <th>Semestre</th>
+              <th>Tema</th>
+              <th>Fecha Carta de Asignación</th>
+              <th>Fecha Carta de Suficiencia</th>
+              <th>Estado</th>
+            </tr>
+            <tr *ngFor="let alt of this.data_busq_altT; let i=index">
+              <td>{{this.cargosT[i]}}</td>
+              <td style="width: 15%">{{this.data_busq_alumT[i].nombre}}</td>
+              <td>{{this.data_busq_alumT[i].codigo}}</td>
+              <td>{{alt.semestre}}</td>
+              <td>{{alt.tema}}</td>
+              <td *ngIf="this.cargosT[i]==='Tutor'">{{alt.tutor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosT[i]==='Revisor'">{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosT[i]==='Tutor'">{{alt.tutor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosT[i]==='Revisor'">{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+              <td>{{alt.estado.est}}</td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById('id02');
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          console.log('mensaje')
+        }
+      }
+    </script>
+
+
 
     <!--button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" (click)="openWord('T')" disabled>Carta</button-->
     <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 60px" name="fecha_asig_t"
@@ -115,8 +213,8 @@
     <br />
     <br />
 
-    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;"
-      name="fecha_suf_t" #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
+    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;" name="fecha_suf_t"
+      #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -131,7 +229,58 @@
       <option value="">Seleccione-Docente</option>
       <option *ngFor="let d of docentes" value="{{d._id}}">{{d.nombre}}</option>
     </select>
-    <label for="coincRevisor" class="nDoc" [routerLink]="[ '/ver-docente', this.codigoR ]" style="cursor: pointer"><b>{{alumDocR}}</b></label>
+
+    <label for="coincRevisor" class="setbtn" style="margin-left: 10px;" onclick="document.getElementById('id03').style.display='block'"
+      style="cursor: pointer"><b>{{alumDocR}}</b></label>
+    <!-- The Modal -->
+    <div id="id03" class="modal" style="z-index: 10;">
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+      <!-- Modal Content -->
+      <form class="modal-content animate">
+        <div style="padding:5%">
+          <h3>{{this.my_data_revisor.nombre}}</h3>
+          <table>
+            <tr style="background-color: #777; color: white">
+              <th>T/R</th>
+              <th>Nombre Alumno</th>
+              <th>Código</th>
+              <th>Semestre</th>
+              <th>Tema</th>
+              <th>Fecha Carta de Asignación</th>
+              <th>Fecha Carta de Suficiencia</th>
+              <th>Estado</th>
+            </tr>
+            <tr *ngFor="let alt of this.data_busq_altR; let i=index">
+              <td>{{this.cargosR[i]}}</td>
+              <td style="width: 15%">{{this.data_busq_alumR[i].nombre}}</td>
+              <td>{{this.data_busq_alumR[i].codigo}}</td>
+              <td>{{alt.semestre}}</td>
+              <td>{{alt.tema}}</td>
+              <td *ngIf="this.cargosR[i]==='Tutor'">{{alt.tutor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosR[i]==='Revisor'">{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosR[i]==='Tutor'">{{alt.tutor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="this.cargosR[i]==='Revisor'">{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+              <td>{{alt.estado.est}}</td>
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById('id03');
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          console.log('mensaje')
+        }
+      }
+    </script>
+
+
 
     <!--button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button-->
 
@@ -141,8 +290,8 @@
     <br />
     <br />
 
-    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;"
-      name="fecha_suf_r" #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
+    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;" name="fecha_suf_r"
+      #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
     <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />

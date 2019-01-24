@@ -24,12 +24,16 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this._service.getGlobal('/Usuario/login', '', this.un + ' ' + this.pass).subscribe(data => {
       this.mydata = data
+      //console.log()
+      //console.log(this.mydata)
+      //console.log()
       this._logger.setID(this.mydata._id)
       this._logger.setUsername(this.mydata.username)
-      this._logger.setRole(this.mydata.esSuper)
-      console.log("id: " + this._logger.getID)
+      this._logger.setRole(this.mydata.role)
+      //console.log("id: " + this._logger.getID)
       this._logger.logIn()
-      if(this.mydata.esSuper){
+      console.log(this.mydata.role)
+      if(this.mydata.role){
         this._router.navigate(['admin'])
       }else{
         this._router.navigate(['home'])

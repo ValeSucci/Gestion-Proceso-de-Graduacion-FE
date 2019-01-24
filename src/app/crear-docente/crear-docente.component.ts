@@ -14,20 +14,21 @@ export class CrearDocenteComponent implements OnInit {
   constructor(
     public _service: RestapiService,
     public _router: Router
-  ) { 
-    this.docente = new Docente(0,"","",0,"")
+  ) {
+    this.docente = new Docente(0, "", "", 0, "")
   }
 
   ngOnInit() {
   }
 
-  onSubmit(){
-    this._service.postGlobal(this.docente,'/Docente/create','').subscribe(data => {
-      this._router.navigate(['docentes'])
-    }), (err)=>{
+  onSubmit() {
+    this._service.postGlobal(this.docente, '/Docente/create', '').subscribe(data => {
+      let mdata: any = data;
+      this._router.navigate(['ver-docentes', mdata.codigo])
+    }), (err) => {
       console.log(err)
     }
-    this.docente = new Docente(0,"","",0,"")
+    this.docente = new Docente(0, "", "", 0, "")
   }
 
 }

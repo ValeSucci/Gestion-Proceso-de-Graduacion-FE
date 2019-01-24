@@ -12,7 +12,7 @@ export class LoggerService {
     this.logged = true;
     this._id = "5c438254d9e714f25a25ea9c";
     this.username = "ValeSucci";
-    this._role = false;
+    this._role = true;
     //this.logged = false;
     //this._id = null;
     //this.username = null;

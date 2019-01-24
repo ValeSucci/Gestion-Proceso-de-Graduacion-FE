@@ -6,7 +6,7 @@
     </div>
     <!-- Left-aligned links (default) -->
     <a id="logo-container" routerLink="/home">
-      <img src="../assets/res/logo.png" class="logo" height="65" width="200">
+      <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
     </a>
     <!-- Right-aligned links -->
     <div class="topnav-right">
@@ -49,10 +49,6 @@
   <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
     <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"
       (click)="showHideMenu();">Editar Perfil</p>
-    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/docentes']" (click)="showHideMenu();">Ver
-      Docentes</p>
-    <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/actualizar-alumno', 2]"
-      (click)="showHideMenu();">Actualizar Alumno</p>
     <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Logout</p>
   </div>
 

@@ -20,28 +20,31 @@ import { PerfilHistoricoAlumnoComponent } from './perfil-historico-alumno/perfil
 import { InitComponent } from './init/init.component';
 import { GuardGuard } from './guards/guard.guard';
 import { RoleGuard } from './guards/role.guard';
+import { OtherGuard } from './guards/other.guard';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   {
-    path: '', component: InitComponent, canActivateChild: [GuardGuard], children: [
+    path: '', component: InitComponent, canActivateChild: [GuardGuard, OtherGuard], children: [
       { path: 'home', component: HomeComponent },
-      { path: 'crear-docente', component: CrearDocenteComponent },
-      { path: 'crear-alumno', component: CrearAlumnoComponent },
-      { path: 'actualizar-docente/:codigo', component: ActualizarDocenteComponent },
-      { path: 'ver-docente/:codigo', component: VerDocenteComponent },
-      { path: 'docentes', component: DocentesComponent },
-      { path: 'editar-perfil/:username', component: EditarUsuarioComponent },
-      { path: 'actualizar-alumno/:codigo', component: ActualizarAlumnoComponent },
       { path: 'buscar', component: BuscarComponent },
-      { path: 'ver-alumno/:codigo', component: VerAlumnoComponent },
-      { path: 'nueva-alta-alumno/:codigo', component: NuevaAltaAlumnoComponent },
+      { path: 'editar-perfil/:username', component: EditarUsuarioComponent },
       { path: 'alumnos', component: AlumnosComponent },
+      { path: 'docentes', component: DocentesComponent },
+      { path: 'crear-docente', component: CrearDocenteComponent },
+      { path: 'ver-docente/:codigo', component: VerDocenteComponent },
+      { path: 'actualizar-docente/:codigo', component: ActualizarDocenteComponent },
+      { path: 'crear-alumno', component: CrearAlumnoComponent },
+      { path: 'ver-alumno/:codigo', component: VerAlumnoComponent },
+      { path: 'actualizar-alumno/:codigo', component: ActualizarAlumnoComponent },
+      { path: 'nueva-alta-alumno/:codigo', component: NuevaAltaAlumnoComponent },
       { path: 'perfil-historico-alumno/:codigo', component: PerfilHistoricoAlumnoComponent }
     ]
   },
   {
-    path: '', component: InitComponent, canActivateChild: [RoleGuard], children: [
+    path: '', component: InitComponent, canActivateChild: [GuardGuard, RoleGuard], children: [
+      { path: 'admin', component: AdminComponent },
       { path: 'ver-usuarios', component: VerUsuariosComponent },
       { path: 'crear-usuario', component: CrearUsuarioComponent },
       { path: 'editar-usuario-admi/:username', component: EditarUsuarioAdmiComponent },

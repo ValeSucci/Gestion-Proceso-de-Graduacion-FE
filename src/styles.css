@@ -2,5 +2,6 @@
 
 body {
     margin: 0;
-    background-color: #CAC9F1; 
+    background-image: url('./assets/res/backgroundcat.png');
+    background-size: cover;
   }

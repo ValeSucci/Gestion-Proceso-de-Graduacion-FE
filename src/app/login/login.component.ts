@@ -26,9 +26,14 @@ export class LoginComponent implements OnInit {
       this.mydata = data
       this._logger.setID(this.mydata._id)
       this._logger.setUsername(this.mydata.username)
+      this._logger.setRole(this.mydata.esSuper)
       console.log("id: " + this._logger.getID)
       this._logger.logIn()
-      this._router.navigate(['home'])
+      if(this.mydata.esSuper){
+        this._router.navigate(['admin'])
+      }else{
+        this._router.navigate(['home'])
+      }
     }, error => {
       console.log(error)
     })

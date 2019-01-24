@@ -29,6 +29,8 @@ import { NotificacionesService } from './services/notificaciones.service';
 import { GuardGuard } from './guards/guard.guard';
 import { InitComponent } from './init/init.component';
 import { RoleGuard } from './guards/role.guard';
+import { AdminComponent } from './admin/admin.component';
+import { OtherGuard } from './guards/other.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { RoleGuard } from './guards/role.guard';
     EditarUsuarioAdmiComponent,
     AlumnosComponent,
     PerfilHistoricoAlumnoComponent,
-    InitComponent
+    InitComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { RoleGuard } from './guards/role.guard';
     ExcelService,
     NotificacionesService,
     GuardGuard,
-    RoleGuard
+    RoleGuard,
+    OtherGuard
   ],
   bootstrap: [AppComponent]
 })

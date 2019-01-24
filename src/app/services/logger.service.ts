@@ -9,13 +9,10 @@ export class LoggerService {
   public username: string;
   public _role: boolean;
   constructor() {
-    this.logged = true;
-    this._id = "5c438254d9e714f25a25ea9c";
-    this.username = "ValeSucci";
+    this.logged = false;
+    this._id = null;
+    this.username = null;
     this._role = false;
-    //this.logged = false;
-    //this._id = null;
-    //this.username = null;
   }
 
   setID(id) {

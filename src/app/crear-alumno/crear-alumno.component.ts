@@ -22,6 +22,10 @@ export class CrearAlumnoComponent implements OnInit {
   public codigoT: number;
   public codigoR: number;
 
+  public temaToSearch;
+  public my_data_tutor;
+  public my_data_revisor;
+
   public data_busq_alumT: any = [];
   public data_busq_altT: any = [];
   public data_busq_alumR: any = [];

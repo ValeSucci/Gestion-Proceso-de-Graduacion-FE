@@ -440,10 +440,7 @@
         <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
       </select>
 
-      <input *ngIf="(this.alta_materia.defensa_externa.evaluador1 === 'Otro') && (!this.eval1esOtro || this.alta_materia.defensa_externa.evaluador1 === '')"
-        type="text" placeholder="Introducir Evaluador 1" name="otro_eval1" #otro_eval1='ngModel' [(ngModel)]="this.otroEval1"
-        style="height: 25px; margin-left: 10px; margin-top: 0;">
-      <input *ngIf="(this.alta_materia.defensa_externa.evaluador1 === 'Otro') && this.eval1esOtro && this.alta_materia.defensa_externa.evaluador1 !== ''"
+      <input *ngIf="this.eval1esOtro && this.alta_materia.defensa_externa.evaluador1 !== ''"
         type="text" placeholder="Introducir Evaluador 1" name="otro_eval1" #otro_eval1='ngModel' [(ngModel)]="this.otroEval1"
         style="height: 25px; margin-left: 10px; margin-top: 0;">
 
@@ -472,10 +469,7 @@
         <option *ngFor="let d of docentes" value="{{d.nombre}}">{{d.nombre}}</option>
       </select>
 
-      <input *ngIf="(this.alta_materia.defensa_externa.evaluador2 === 'Otro') && (!this.eval2esOtro || this.alta_materia.defensa_externa.evaluador2 === '')"
-        type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2"
-        style="height: 25px; margin-left: 10px; margin-top: 0;">
-      <input *ngIf="(this.alta_materia.defensa_externa.evaluador2 === 'Otro') && this.eval2esOtro && this.alta_materia.defensa_externa.evaluador2 !== ''"
+      <input *ngIf="this.eval2esOtro && this.alta_materia.defensa_externa.evaluador2 !== ''"
         type="text" placeholder="Introducir Evaluador 2" name="otro_eval2" #otro_eval2='ngModel' [(ngModel)]="this.otroEval2"
         style="height: 25px; margin-left: 10px; margin-top: 0;">
 

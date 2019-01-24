@@ -17,6 +17,7 @@ export class VerAlumnoComponent implements OnInit {
 
   public alumno: Alumno;
   public alta_materia: AltaMateria;
+  public checked;
 
   public alumDoc: number;
   public alumDocR: number;

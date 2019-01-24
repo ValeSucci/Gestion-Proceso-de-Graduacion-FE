@@ -10,9 +10,7 @@ body {
   /* Add padding to containers */
   .container {
     padding: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top:5%;
+    margin: 5% 10%;
     background-color: white;
   }
   

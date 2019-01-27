@@ -77,7 +77,7 @@
     <label for="tema"><b>Tema: </b></label>
     <input type="text" placeholder="Ingresar tema" style="width: 50%" name="tema" #tema="ngModel" [(ngModel)]="this.alta_materia.tema">
 
-    <button for="coincTema" class="setbtn" style="float:right;margin-right: 70px;" onclick="document.getElementById('id01').style.display='block'"><b>{{this.nTema}}</b></button>
+    <label for="coincTema" class="setbtn" style="float:right;margin-right: 70px;" onclick="document.getElementById('id01').style.display='block'"><b>{{this.nTema}}</b></label>
     <form class="busqueda" style="float: right; margin-right: 2px; margin-top: 10px;">
       <input type="text" placeholder="Search.." name="search" #search='ngModel' [(ngModel)]="temaToSearch">
       <button type="submit" (click)="searchTema(temaToSearch)"><i class="fa fa-search"></i></button>
@@ -99,8 +99,8 @@
               <th>Modalidad</th>
               <th>Tema</th>
               <th>Estado</th>
-              <th>Fecha Carta de Asignación</th>
-              <th>Fecha Carta de Suficiencia</th>
+              <th>Tutor</th>
+              <th>Revisor</th>
             </tr>
             <tr *ngFor="let alt of altas_by_tema; let i=index">
               <td style="width: 15%">{{this.alumnos_by_tema[i].nombre}}</td>
@@ -108,8 +108,8 @@
               <td>{{alt.modalidad.mod}}</td>
               <td>{{alt.tema}}</td>
               <td>{{alt.estado.est}}</td>
-              <td>{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
-              <td>{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
+              <td>{{this.tutores_by_tema[i].nombre}}</td>
+              <td>{{this.revisores_by_tema[i].nombre}}</td>
             </tr>
           </table>
         </div>

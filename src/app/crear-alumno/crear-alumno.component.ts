@@ -35,6 +35,8 @@ export class CrearAlumnoComponent implements OnInit {
 
   public altas_by_tema: any;
   public alumnos_by_tema: any;
+  public tutores_by_tema: any;
+  public revisores_by_tema: any;
   public nTema: number;
 
   public otroEval2: string;
@@ -139,16 +141,49 @@ export class CrearAlumnoComponent implements OnInit {
 
   searchTema(t: string) {
     let d = null;
+    this.tutores_by_tema = [];
+    this.revisores_by_tema = [];
     this._service.postGlobal({ tema: t }, '/Alumno/buscarPorTema', '').subscribe(data => {
       d = data;
       this.nTema = d.altas.length;
       this.altas_by_tema = d.altas;
       this.alumnos_by_tema = d.alumnos;
+     
+      for ( let i in this.altas_by_tema) {
+        let t: any;
+        let r: any;
+        if (this.altas_by_tema[i].tutor.doc) {
+          this._service.getGlobal('/Docente/getById/' + this.altas_by_tema[i].tutor.doc, '', '').subscribe(data => {
+            t = data;
+            this.tutores_by_tema.push(t)
+          })
+        }
+        if (this.altas_by_tema[i].revisor.doc) {
+          this._service.getGlobal('/Docente/getById/' + this.altas_by_tema[i].revisor.doc, '', '').subscribe(data => {
+            r = data;
+            this.revisores_by_tema.push(r)
+          })
+        }
+      }
+      setTimeout(()=>{
+        for(let i in this.altas_by_tema) {
+          if(!this.altas_by_tema[i].tutor.doc) {
+            this.tutores_by_tema.splice(i,0,{nombre:"-----"})
+          }
+          if(!this.altas_by_tema[i].revisor.doc) {
+            this.revisores_by_tema.splice(i,0,{nombre:"-----"})
+          }
+        }  
+      }, 300)
+
+      console.log(this.tutores_by_tema)
+      console.log(this.revisores_by_tema)
       console.log(this.nTema)
     }), (err) => {
       console.log(err)
     }
   }
+
 
   onSubmit() {
 
@@ -165,6 +200,9 @@ export class CrearAlumnoComponent implements OnInit {
     }
     this.alta_materia = new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: "" })
     this.alumno = new Alumno(0, "", [this.alta_materia]);
+    this.nTema = 0;
+    this.alumDoc = 0;
+    this.alumDocR = 0;
 
   }
 

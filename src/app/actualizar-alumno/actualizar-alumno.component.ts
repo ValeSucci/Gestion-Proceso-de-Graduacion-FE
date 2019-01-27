@@ -47,6 +47,8 @@ export class ActualizarAlumnoComponent implements OnInit {
 
   public altas_by_tema: any;
   public alumnos_by_tema: any;
+  public tutores_by_tema: any;
+  public revisores_by_tema: any;
   public nTema: number;
 
   public plazoFormat: Date;
@@ -181,8 +183,14 @@ export class ActualizarAlumnoComponent implements OnInit {
     })
   }
 
-  calcularAlumnosEnDocente(id: string, cargo: string) {
 
+  calcularAlumnosEnDocente(id: string, cargo: string) {
+    this.data_busq_altT = [];
+    this.data_busq_altR = [];
+    this.data_busq_alumT = [];
+    this.data_busq_alumR = [];
+    this.cargosT = [];
+    this.cargosR = [];
     let cont = 0;
     let d1: any;
     let d2: any;
@@ -216,7 +224,7 @@ export class ActualizarAlumnoComponent implements OnInit {
       if (cargo === 'T') {
         for (let i in d2.altas) {
           this.data_busq_altT.push(d2.altas[i]);
-          this.data_busq_alumT.push(d2.alumnos[i]);  
+          this.data_busq_alumT.push(d2.alumnos[i]);
           this.cargosT.push("Revisor");
         }
         this.alumDoc = cont;
@@ -230,7 +238,7 @@ export class ActualizarAlumnoComponent implements OnInit {
       } else if (cargo === 'R') {
         for (let i in d2.altas) {
           this.data_busq_altR.push(d2.altas[i]);
-          this.data_busq_alumR.push(d2.alumnos[i]);  
+          this.data_busq_alumR.push(d2.alumnos[i]);
           this.cargosR.push("Revisor");
         }
         this.alumDocR = cont;
@@ -249,11 +257,43 @@ export class ActualizarAlumnoComponent implements OnInit {
 
   searchTema(t: string) {
     let d = null;
+    this.tutores_by_tema = [];
+    this.revisores_by_tema = [];
     this._service.postGlobal({ tema: t }, '/Alumno/buscarPorTema', '').subscribe(data => {
       d = data;
       this.nTema = d.altas.length;
       this.altas_by_tema = d.altas;
       this.alumnos_by_tema = d.alumnos;
+     
+      for ( let i in this.altas_by_tema) {
+        let t: any;
+        let r: any;
+        if (this.altas_by_tema[i].tutor.doc) {
+          this._service.getGlobal('/Docente/getById/' + this.altas_by_tema[i].tutor.doc, '', '').subscribe(data => {
+            t = data;
+            this.tutores_by_tema.push(t)
+          })
+        }
+        if (this.altas_by_tema[i].revisor.doc) {
+          this._service.getGlobal('/Docente/getById/' + this.altas_by_tema[i].revisor.doc, '', '').subscribe(data => {
+            r = data;
+            this.revisores_by_tema.push(r)
+          })
+        }
+      }
+      setTimeout(()=>{
+        for(let i in this.altas_by_tema) {
+          if(!this.altas_by_tema[i].tutor.doc) {
+            this.tutores_by_tema.splice(i,0,{nombre:"-----"})
+          }
+          if(!this.altas_by_tema[i].revisor.doc) {
+            this.revisores_by_tema.splice(i,0,{nombre:"-----"})
+          }
+        }  
+      }, 300)
+
+      console.log(this.tutores_by_tema)
+      console.log(this.revisores_by_tema)
       console.log(this.nTema)
     }), (err) => {
       console.log(err)
@@ -271,14 +311,16 @@ export class ActualizarAlumnoComponent implements OnInit {
     console.log(this.alta_materia)
 
     this._service.putGlobal({ alumno: this.alumno, alta: this.alta_materia }, '/Alumno/update/' + this.idAlta, '').subscribe(data => {
-      //console.log(this.alumno)
-      this._router.navigate(['ver-alumno', this.alumno.codigo])
+      console.log(this.alumno)
+      this._router.navigate(['ver-alumno', this.lastCodigo])
     }), (err) => {
       console.log(err)
     }
     this.alta_materia = new AltaMateria(0, "", null, null, false, { est: "", color: "" }, { mod: "", trabDirig: { empresa: "", fecha_suficiencia: null } }, "", "", { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null, paga: true }, { doc: "", fecha_asignacion: null, cite_carta: "", ubicacion_carta: new Carta("", ""), fecha_suficiencia: null }, { fecha: null, resultado: "", observacion: "" }, { fecha: null, presidente: "", evaluador1: "", evaluador2: "", resultado: "" })
     this.alumno = new Alumno(0, "", []);
-
+    this.nTema = 0;
+    this.alumDoc = 0;
+    this.alumDocR = 0;
   }
 
 

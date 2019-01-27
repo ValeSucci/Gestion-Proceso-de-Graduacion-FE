@@ -74,7 +74,12 @@ export class CrearAlumnoComponent implements OnInit {
   }
 
   calcularAlumnosEnDocente(id: string, cargo: string) {
-
+    this.data_busq_altT = [];
+    this.data_busq_altR = [];
+    this.data_busq_alumT = [];
+    this.data_busq_alumR = [];
+    this.cargosT = [];
+    this.cargosR = [];
     let cont = 0;
     let d1: any;
     let d2: any;
@@ -108,7 +113,7 @@ export class CrearAlumnoComponent implements OnInit {
       if (cargo === 'T') {
         for (let i in d2.altas) {
           this.data_busq_altT.push(d2.altas[i]);
-          this.data_busq_alumT.push(d2.alumnos[i]);  
+          this.data_busq_alumT.push(d2.alumnos[i]);
           this.cargosT.push("Revisor");
         }
         this.alumDoc = cont;
@@ -122,7 +127,7 @@ export class CrearAlumnoComponent implements OnInit {
       } else if (cargo === 'R') {
         for (let i in d2.altas) {
           this.data_busq_altR.push(d2.altas[i]);
-          this.data_busq_alumR.push(d2.alumnos[i]);  
+          this.data_busq_alumR.push(d2.alumnos[i]);
           this.cargosR.push("Revisor");
         }
         this.alumDocR = cont;
@@ -139,6 +144,7 @@ export class CrearAlumnoComponent implements OnInit {
     }
   }
 
+  
   searchTema(t: string) {
     let d = null;
     this.tutores_by_tema = [];

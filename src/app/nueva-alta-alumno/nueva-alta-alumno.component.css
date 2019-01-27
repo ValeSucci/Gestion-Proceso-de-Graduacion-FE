@@ -399,3 +399,12 @@ th, td {
 tr:nth-child(even) {
   background-color: #f2f2f2
 }
+
+.iconX {
+  padding: 0px;
+  background:transparent;
+  color: #ff0000;
+  font-size: 25px;
+  margin: 0px;
+  /*border: 1px solid white;*/
+}

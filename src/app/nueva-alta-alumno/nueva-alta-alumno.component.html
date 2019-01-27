@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<form #formNuevaAltaAlumno="ngForm" (ngSubmit)="onSubmit();formNuevaAltaAlumno.reset();">
+<form #formNuevaAltaAlumno="ngForm" (ngSubmit)="onSubmit();">
+  <!--form #formNuevaAltaAlumno="ngForm" (ngSubmit)="onSubmit();formNuevaAltaAlumno.reset();"-->
   <div class="container">
     <h1>Alumno</h1>
     <p>Completa los campos para crear una nueva alta</p>
@@ -103,11 +104,12 @@
               <th>Revisor</th>
             </tr>
             <tr *ngFor="let alt of altas_by_tema; let i=index">
-              <td style="width: 15%">{{this.alumnos_by_tema[i].nombre}}</td>
+              <td style="width: 15%"><i *ngIf="alt.estado.est === 'Baja'" class="fa fa-times iconX"></i>{{this.alumnos_by_tema[i].nombre}}</td>
               <td>{{alt.semestre}}</td>
               <td>{{alt.modalidad.mod}}</td>
               <td>{{alt.tema}}</td>
-              <td>{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est !== 'Baja'">{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est === 'Baja'" style="color:#ff0000">{{alt.estado.est}}</td>
               <td>{{this.tutores_by_tema[i].nombre}}</td>
               <td>{{this.revisores_by_tema[i].nombre}}</td>
             </tr>
@@ -172,7 +174,7 @@
             </tr>
             <tr *ngFor="let alt of this.data_busq_altT; let i=index">
               <td>{{this.cargosT[i]}}</td>
-              <td style="width: 15%">{{this.data_busq_alumT[i].nombre}}</td>
+              <td style="width: 15%"><i *ngIf="alt.estado.est === 'Baja'" class="fa fa-times iconX"></i>{{this.data_busq_alumT[i].nombre}}</td>
               <td>{{this.data_busq_alumT[i].codigo}}</td>
               <td>{{alt.semestre}}</td>
               <td>{{alt.tema}}</td>
@@ -180,7 +182,8 @@
               <td *ngIf="this.cargosT[i]==='Revisor'">{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
               <td *ngIf="this.cargosT[i]==='Tutor'">{{alt.tutor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
               <td *ngIf="this.cargosT[i]==='Revisor'">{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
-              <td>{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est !== 'Baja'">{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est === 'Baja'" style="color:#ff0000">{{alt.estado.est}}</td>
             </tr>
           </table>
         </div>
@@ -248,7 +251,7 @@
             </tr>
             <tr *ngFor="let alt of this.data_busq_altR; let i=index">
               <td>{{this.cargosR[i]}}</td>
-              <td style="width: 15%">{{this.data_busq_alumR[i].nombre}}</td>
+              <td style="width: 15%"><i *ngIf="alt.estado.est === 'Baja'" class="fa fa-times iconX"></i>{{this.data_busq_alumR[i].nombre}}</td>
               <td>{{this.data_busq_alumR[i].codigo}}</td>
               <td>{{alt.semestre}}</td>
               <td>{{alt.tema}}</td>
@@ -256,7 +259,8 @@
               <td *ngIf="this.cargosR[i]==='Revisor'">{{alt.revisor.fecha_asignacion | date: 'dd/MM/yyyy'}}</td>
               <td *ngIf="this.cargosR[i]==='Tutor'">{{alt.tutor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
               <td *ngIf="this.cargosR[i]==='Revisor'">{{alt.revisor.fecha_suficiencia | date: 'dd/MM/yyyy'}}</td>
-              <td>{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est !== 'Baja'">{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est === 'Baja'" style="color:#ff0000">{{alt.estado.est}}</td>
             </tr>
           </table>
         </div>

@@ -32,6 +32,7 @@ import { RoleGuard } from './guards/role.guard';
 import { AdminComponent } from './admin/admin.component';
 import { OtherGuard } from './guards/other.guard';
 import { EncriptadorService } from './services/encriptador.service';
+import { WordService } from './services/word.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { EncriptadorService } from './services/encriptador.service';
     GuardGuard,
     RoleGuard,
     OtherGuard,
-    EncriptadorService
+    EncriptadorService,
+    WordService
   ],
   bootstrap: [AppComponent]
 })

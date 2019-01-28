@@ -7,6 +7,7 @@ import { Docente } from '../models/docente';
 import { Router } from '@angular/router';
 import { Busqueda } from '../models/busqueda';
 import { Notificacion } from '../models/notificacion';
+import { WordService } from '../services/word.service';
 
 @Component({
   selector: 'app-crear-alumno',
@@ -44,7 +45,7 @@ export class CrearAlumnoComponent implements OnInit {
 
   public alumno: Alumno;
   public alta_materia: AltaMateria;
-  constructor(public _service: RestapiService, public _router: Router) {
+  constructor(public _service: RestapiService, public _router: Router, public _word : WordService) {
     this.alumDoc = 0;
     this.alumDocR = 0;
     this.codigoT = null;
@@ -218,56 +219,14 @@ export class CrearAlumnoComponent implements OnInit {
 
 
   openWord(cargo: string) {
-    this._service.postGlobal(this.alta_materia, '/Alumno/openWord/' + cargo, '').subscribe(data => {
+    /*this._service.postGlobal(this.alta_materia, '/Alumno/openWord/' + cargo, '').subscribe(data => {
 
     }), (err) => {
       console.log(err)
-    }
+    }*/
+    //s
+    //this._word.generate();
   }
-
-  /*
-
-var JSZip = require('jszip');
-var Docxtemplater = require('docxtemplater');
-
-var fs = require('fs');
-var path = require('path');
-
-module.exports = getDoc = function (data, file) {
-    // Cargo el docx como un  binary
-    var content = fs.readFileSync(path.resolve( file), 'binary');
-
-    var zip = new JSZip(content);
-
-    var doc = new Docxtemplater();
-    doc.loadZip(zip);
-
-    // setea los valores de data ej: { first_name: 'John' , last_name: 'Doe'}
-    doc.setData(data);
-
-    try {
-        // renderiza el documento (remplaza las ocurrencias como {first_name} by John, {last_name} by Doe, ...)
-        doc.render();
-    }
-    catch (error) {
-        var e = {
-            message: error.message,
-            name: error.name,
-            stack: error.stack,
-            properties: error.properties,
-        }
-        console.log(JSON.stringify({ error: e }));
-        throw error;
-    }
-
-    var buffer = doc.getZip()
-        .generate({ type: 'nodebuffer' });
-
-    fs.writeFileSync(path.resolve('tmpdocs', data.doc + file), buffer);
-
-    return path.resolve(__dirname.replace('tmpdocs', data.doc + file);
-}
-*/
 
 
 }

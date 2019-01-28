@@ -24,7 +24,7 @@ export class CrearDocenteComponent implements OnInit {
   onSubmit() {
     this._service.postGlobal(this.docente, '/Docente/create', '').subscribe(data => {
       let mdata: any = data;
-      this._router.navigate(['ver-docentes', mdata.codigo])
+      this._router.navigate(['ver-docente', mdata.codigo])
     }), (err) => {
       console.log(err)
     }

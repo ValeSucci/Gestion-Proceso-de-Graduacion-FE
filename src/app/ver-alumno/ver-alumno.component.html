@@ -38,6 +38,7 @@
   <input disabled *ngIf="!this.my_data_alta.prorroga" type="checkbox" style="float:right; margin-right: 5px;" id="myCheck"
     onclick="" name="prorroga" value="{{this.my_data_alta.prorroga}}" #prorroga='ngModel' [(ngModel)]="this.alta_materia.prorroga">
   <br />
+  <br />
 
   <label for="tema"><b>Tema: </b></label>
   <label class="valor"><b>{{this.my_data_alta.tema}}</b></label>
@@ -49,13 +50,18 @@
     <button type="submit"><i class="fa fa-search"></i></button>
   </form-->
   <br />
+  <br />
+  <br />
 
-  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="empresa"><b>Empresa: </b></label>
-  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" class="valor"><b>{{this.alta_materia.modalidad.trabDirig.empresa}}</b></label><br />
-
-  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" class="valor"><b>{{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}}</b></label><br />
-  <label *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'" for="fecha-suf" style="float:right;margin-top: 10px; padding: 10px;"><b>Fecha
-      suficiencia: </b></label>
+  <div *ngIf="this.alta_materia.modalidad.mod==='Trabajo Dirigido'">
+      <label for="empresa"><b>Empresa: </b></label>
+      <label class="valor"><b>{{this.alta_materia.modalidad.trabDirig.empresa}}</b></label>
+      <input type="date" id="formdate" value="{{this.my_data_alta.modalidad.trabDirig.fecha_suficiencia}}" style="float:right;margin-right:50px;margin-top:-20px;" disabled>
+      <label for="fecha-suf" style="float:right;margin-top: -10px; padding: 10px;"><b>Fecha suficiencia: </b></label>    
+  </div>
+  <br />
+  <br />
+  <br />
   <br />
 
   <hr>

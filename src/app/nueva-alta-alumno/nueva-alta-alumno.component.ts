@@ -86,7 +86,7 @@ export class NuevaAltaAlumnoComponent implements OnInit {
     this._service.getGlobal('/Alumno/get/' + this.lastCodigo, '', '').subscribe(data => {
       this.my_data_alumno = data;
       this.alumno = this.my_data_alumno;
-      this.alta_materia.nro_alta = this.alumno.alta_materia.length+1;
+      this.alta_materia.nro_alta = this.alumno.alta_materia.length + 1;
       this.alumno.alta_materia.push(this.alta_materia);
       console.log(data)
     }, error => {
@@ -138,8 +138,10 @@ export class NuevaAltaAlumnoComponent implements OnInit {
           this.data_busq_alumT.push(d2.alumnos[i]);
           this.cargosT.push("Revisor");
         }
-        this.alumDoc = cont;
-        console.log(this.alumDoc)
+        setTimeout(() => {
+          this.alumDoc = cont;
+          console.log(this.alumDoc)
+        }, 200)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
             this.codigoT = this.docentes[j].codigo;
@@ -152,8 +154,10 @@ export class NuevaAltaAlumnoComponent implements OnInit {
           this.data_busq_alumR.push(d2.alumnos[i]);
           this.cargosR.push("Revisor");
         }
-        this.alumDocR = cont;
-        console.log(this.alumDocR)
+        setTimeout(() => {
+          this.alumDocR = cont;
+          console.log(this.alumDocR)
+        }, 200)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
             this.codigoR = this.docentes[j].codigo;
@@ -175,8 +179,8 @@ export class NuevaAltaAlumnoComponent implements OnInit {
       this.nTema = d.altas.length;
       this.altas_by_tema = d.altas;
       this.alumnos_by_tema = d.alumnos;
-     
-      for ( let i in this.altas_by_tema) {
+
+      for (let i in this.altas_by_tema) {
         let t: any;
         let r: any;
         if (this.altas_by_tema[i].tutor.doc) {
@@ -192,15 +196,15 @@ export class NuevaAltaAlumnoComponent implements OnInit {
           })
         }
       }
-      setTimeout(()=>{
-        for(let i in this.altas_by_tema) {
-          if(!this.altas_by_tema[i].tutor.doc) {
-            this.tutores_by_tema.splice(i,0,{nombre:"-----"})
+      setTimeout(() => {
+        for (let i in this.altas_by_tema) {
+          if (!this.altas_by_tema[i].tutor.doc) {
+            this.tutores_by_tema.splice(i, 0, { nombre: "-----" })
           }
-          if(!this.altas_by_tema[i].revisor.doc) {
-            this.revisores_by_tema.splice(i,0,{nombre:"-----"})
+          if (!this.altas_by_tema[i].revisor.doc) {
+            this.revisores_by_tema.splice(i, 0, { nombre: "-----" })
           }
-        }  
+        }
       }, 300)
 
       console.log(this.tutores_by_tema)
@@ -220,7 +224,7 @@ export class NuevaAltaAlumnoComponent implements OnInit {
       this.alta_materia.defensa_externa.evaluador1 = this.otroEval1;
     }
     //console.log(this.alumno)
-    this._service.putGlobal(this.alumno, '/Alumno/nuevaAlta/'+this.lastCodigo, '').subscribe(data => {
+    this._service.putGlobal(this.alumno, '/Alumno/nuevaAlta/' + this.lastCodigo, '').subscribe(data => {
       this._router.navigate(['ver-alumno', this.lastCodigo])
       console.log(this.alumno)
     }), (err) => {

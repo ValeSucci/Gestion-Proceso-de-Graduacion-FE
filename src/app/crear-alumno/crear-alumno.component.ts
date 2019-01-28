@@ -116,8 +116,10 @@ export class CrearAlumnoComponent implements OnInit {
           this.data_busq_alumT.push(d2.alumnos[i]);
           this.cargosT.push("Revisor");
         }
-        this.alumDoc = cont;
-        console.log(this.alumDoc)
+        setTimeout(() => {
+          this.alumDoc = cont;
+          console.log(this.alumDoc)
+        }, 200)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
             this.codigoT = this.docentes[j].codigo;
@@ -130,8 +132,10 @@ export class CrearAlumnoComponent implements OnInit {
           this.data_busq_alumR.push(d2.alumnos[i]);
           this.cargosR.push("Revisor");
         }
-        this.alumDocR = cont;
-        console.log(this.alumDocR)
+        setTimeout(() => {
+          this.alumDocR = cont;
+          console.log(this.alumDocR)
+        }, 200)
         for (let j in this.docentes) {
           if (id.toString() === this.docentes[j]._id.toString()) {
             this.codigoR = this.docentes[j].codigo;
@@ -144,7 +148,7 @@ export class CrearAlumnoComponent implements OnInit {
     }
   }
 
-  
+
   searchTema(t: string) {
     let d = null;
     this.tutores_by_tema = [];
@@ -154,8 +158,8 @@ export class CrearAlumnoComponent implements OnInit {
       this.nTema = d.altas.length;
       this.altas_by_tema = d.altas;
       this.alumnos_by_tema = d.alumnos;
-     
-      for ( let i in this.altas_by_tema) {
+
+      for (let i in this.altas_by_tema) {
         let t: any;
         let r: any;
         if (this.altas_by_tema[i].tutor.doc) {
@@ -171,15 +175,15 @@ export class CrearAlumnoComponent implements OnInit {
           })
         }
       }
-      setTimeout(()=>{
-        for(let i in this.altas_by_tema) {
-          if(!this.altas_by_tema[i].tutor.doc) {
-            this.tutores_by_tema.splice(i,0,{nombre:"-----"})
+      setTimeout(() => {
+        for (let i in this.altas_by_tema) {
+          if (!this.altas_by_tema[i].tutor.doc) {
+            this.tutores_by_tema.splice(i, 0, { nombre: "-----" })
           }
-          if(!this.altas_by_tema[i].revisor.doc) {
-            this.revisores_by_tema.splice(i,0,{nombre:"-----"})
+          if (!this.altas_by_tema[i].revisor.doc) {
+            this.revisores_by_tema.splice(i, 0, { nombre: "-----" })
           }
-        }  
+        }
       }, 300)
 
       console.log(this.tutores_by_tema)

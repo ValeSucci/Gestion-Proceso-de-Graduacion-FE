@@ -206,14 +206,14 @@ margin-left: 188px;
   padding: 12px;
   font-size: 15px;
   background-color: #ffffff;
-  position: fixed;
-  /*z-index: 1000;*/
-  width: 18%;
+  /*position: fixed;
+  /*z-index: 1000;
+  width: 18%;*/
   border-bottom: 1px solid #dddddd;
 }
 
 #notificationsBody {
-  padding: 33px 0px 0px 0px !important;
+  padding: 15px 0px 0px 0px !important;
   min-height: 100px;
   overflow: auto;
   max-height: 400px;
@@ -232,8 +232,8 @@ margin-left: 188px;
 #notification_count {
   padding: 3px 7px 3px 7px;
   background: #cc0000;
-  color: #cc0000;
-  /*color: #ffffff;*/
+  /*color: #cc0000;*/
+  color: #ffffff;
   font-weight: bold;
   margin-left: 65px;
   border-radius: 9px;

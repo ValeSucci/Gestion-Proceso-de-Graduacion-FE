@@ -114,6 +114,7 @@ export class VerAlumnoComponent implements OnInit {
         this.idRevisor = this.my_data_alta.revisor.doc;
         this.idTutor ? this.calcularAlumnosEnDocente(this.idTutor, 'T') : this.alumDoc = 0;
         this.idRevisor ? this.calcularAlumnosEnDocente(this.idRevisor, 'R') : this.alumDocR = 0;
+        this.alta_materia.modalidad.trabDirig.fecha_suficiencia = this.alta_materia.modalidad.trabDirig.fecha_suficiencia? this.my_data_alta.modalidad.trabDirig.fecha_suficiencia.toString().substring(0,10):null;
         this.alta_materia.tutor.fecha_asignacion = this.alta_materia.tutor.fecha_asignacion? this.my_data_alta.tutor.fecha_asignacion.toString().substring(0,10):null;
         this.alta_materia.tutor.fecha_suficiencia = this.alta_materia.tutor.fecha_suficiencia? this.my_data_alta.tutor.fecha_suficiencia.toString().substring(0,10):null;
         this.alta_materia.revisor.fecha_asignacion = this.alta_materia.revisor.fecha_asignacion? this.my_data_alta.revisor.fecha_asignacion.toString().substring(0,10):null;

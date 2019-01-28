@@ -26,7 +26,7 @@ export class NotificacionesService {
       let hoy = new Date();
       for (let i in this.my_data) {
         this.not = this.my_data[i];
-        if (this.not.visto) {
+        if (this.not.visto || this.not.fecha_publicacion) {
           this.notificaciones.push(this.not)
         } else {
           if (this.not.asunto === "Solicitar Prórroga") {
@@ -139,6 +139,8 @@ export class NotificacionesService {
     }
   */
   getNotificaciones() {
+    this.notificaciones.reverse();
+    console.log(this.notificaciones)
     return {notif:this.notificaciones,n: this.numNotif};
   }
 

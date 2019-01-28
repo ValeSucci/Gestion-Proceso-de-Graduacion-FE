@@ -12,15 +12,16 @@
         </a>
       </div>
       <div *ngIf="this._logger.getRole();">
-          <a id="logo-container" routerLink="/admin">
-            <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
-          </a>
-        </div>
+        <a id="logo-container" routerLink="/admin">
+          <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
+        </a>
+      </div>
       <!-- Right-aligned links -->
-      <div class="topnav-right">
-        <span id="notification_count">{{nNotif}}</span>
-        <img *ngIf="_logger.isLoged()" src="../assets/res/gato-asustado.png" class="icono" height="60" width="75" (click)="showHideNotifications()">
-        <button *ngIf="_logger.isLoged()" class="button" (click)="showHideMenu()">
+      <div class="topnav-right" *ngIf="_logger.isLoged()">
+        <span *ngIf="!this._logger.getRole();" id="notification_count">{{nNotif}}</span>
+        <img *ngIf="!this._logger.getRole();" src="../assets/res/gato-asustado.png" class="icono" height="60" width="75"
+          (click)="showHideNotifications()">
+        <button class="button" (click)="showHideMenu()">
           <img src="../assets/res/menu-icon.png" class="icono" height="65" width="75">
         </button>
 
@@ -55,9 +56,9 @@
 
 
     <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
-      <p class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"
-         (click)="showHideMenu();">Editar Perfil</p>
-      <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Logout</p>
+      <p *ngIf="!this._logger.getRole()" class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;"
+        [routerLink]="[ '/editar-perfil', _logger.getUsername()]" (click)="showHideMenu();">Editar Perfil</p>
+      <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Cerrar Sesión</p>
     </div>
   </div>
 

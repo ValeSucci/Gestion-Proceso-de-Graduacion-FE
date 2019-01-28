@@ -28,11 +28,11 @@ export class AppComponent {
 
   constructor(public _logger: LoggerService, public _notificaciones: NotificacionesService, public _service: RestapiService, public _router: Router) {
     this._notificaciones.generarNotificaciones();
-
-    this.notificaciones = this._notificaciones.getNotificaciones().notif;
-    this.nNotif = this._notificaciones.getNotificaciones().n;
-    //this.getNumNotif()
-
+    let aux = this._notificaciones.getNotificaciones().notif;
+    setTimeout(() => {
+      this.notificaciones = aux;
+      this.nNotif = this._notificaciones.getNotificaciones().n;
+    }, 300)
   }
 
   ngOnInit(): void {
@@ -63,14 +63,15 @@ export class AppComponent {
 
 
   verNotificacion(n: any, cod: number) {
-    this._notificaciones.updateVisto(n);
-    if (n.asunto.toString() !== "Solicitar Revisión de Carpeta") {
-      this._router.navigate(['ver-alumno', cod])
+    if(!n.visto) {
+      this.nNotif = this.nNotif - 1;
+      this._notificaciones.updateVisto(n);
     }
+    this.showHideNotifications();
+    //if (n.asunto.toString() !== "Solicitar Revisión de Carpeta") {
+    this._router.navigate(['ver-alumno', cod])
+    //}
   }
 
-  getNumNotif() {
-    this.nNotif = this._notificaciones.getNumNotif();
-  }
 
 }

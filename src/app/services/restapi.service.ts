@@ -8,8 +8,9 @@ export class RestapiService {
   public url: string
   public valor: string
   constructor(public _http: HttpClient) {
-    this.url = 'http://skynet.lp.upb.edu:7870'
+    //this.url = 'http://skynet.lp.upb.edu:7870'
     //this.url = 'http://admi.lp.upb.edu:7870'
+    this.url = 'http://localhost:7870'
   }
 
   public getGlobal<Object>(urlMethod: string, token: string, param: string) {

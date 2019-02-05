@@ -8,7 +8,7 @@
           <img src="../assets/res/gato-asustado.png" class="img">
         </div>
         <div *ngIf="this._logger.getRole();" class="buttonNot">
-            <img src="../assets/res/feo.png" class="img">
+          <img src="../assets/res/feo.png" class="img">
         </div>
         <div class="buttonMenu" (click)="showHideMenu()">
           <img src="../assets/res/menu-icon.png" class="icono">
@@ -56,8 +56,24 @@
 
 
     <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
-      <p *ngIf="!this._logger.getRole()" class="menu" style="border-bottom: 1px solid #dddddd"
-        [routerLink]="[ '/editar-perfil', _logger.getUsername()]" (click)="showHideMenu();">Editar Perfil</p>
+      <p *ngIf="!this._logger.getRole()" class="menu" style="border-bottom: 1px solid #dddddd" [routerLink]="[ '/editar-perfil', _logger.getUsername()]"
+        (click)="showHideMenu();">Editar Perfil</p>
+      <form class="upload-btn-wrapper" name="formUploadntT">
+        <p class="menu">Actualizar Carta Tutor</p>
+        <input type="file" id="mfile1" (change)="onFileChangeUpdateTutor($event);" accept=".docx" />
+      </form>
+      <form class="upload-btn-wrapper" name="formUploadntT">
+        <p class="menu">Actualizar Carta Revisor</p>
+        <input type="file" id="mfile2" (change)="onFileChangeUpdateRevisor($event);" accept=".docx" />
+      </form>
+      <form class="upload-btn-wrapper" name="formUploadnt">
+        <p class="menu">Nueva tutor</p>
+        <input type="file" id="mfile3" (change)="onFileChangeNewT($event);" accept=".docx" />
+      </form>
+      <form class="upload-btn-wrapper" name="formUploadnr">
+        <p class="menu">Nueva revisor</p>
+        <input type="file" id="mfile4" (change)="onFileChangeNewR($event);" accept=".docx" />
+      </form>
       <p class="menu" (click)="logout(); showHideMenu();" routerLink="/">Cerrar Sesión</p>
     </div>
   </div>

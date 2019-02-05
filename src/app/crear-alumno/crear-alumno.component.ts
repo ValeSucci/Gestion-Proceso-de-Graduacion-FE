@@ -45,7 +45,7 @@ export class CrearAlumnoComponent implements OnInit {
 
   public alumno: Alumno;
   public alta_materia: AltaMateria;
-  constructor(public _service: RestapiService, public _router: Router, public _word : WordService) {
+  constructor(public _service: RestapiService, public _router: Router, public _word: WordService) {
     this.alumDoc = 0;
     this.alumDocR = 0;
     this.codigoT = null;
@@ -149,7 +149,6 @@ export class CrearAlumnoComponent implements OnInit {
     }
   }
 
-
   searchTema(t: string) {
     let d = null;
     this.tutores_by_tema = [];
@@ -217,16 +216,12 @@ export class CrearAlumnoComponent implements OnInit {
 
   }
 
-
-  openWord(cargo: string) {
-    /*this._service.postGlobal(this.alta_materia, '/Alumno/openWord/' + cargo, '').subscribe(data => {
-
-    }), (err) => {
-      console.log(err)
-    }*/
-    //s
-    //this._word.generate();
+  openWordTutor() {
+    this._word.downloadTutor({ cite: 0, docente: 'docente', nombre: this.alumno.nombre, tema: this.alta_materia.tema });
   }
 
+  openWordRevisor() {
+    this._word.downloadRevisor({ cite: 0, docente: 'docente', nombre: this.alumno.nombre, tema: this.alta_materia.tema });
+  }
 
 }

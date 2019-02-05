@@ -57,8 +57,8 @@
       [(ngModel)]="this.alta_materia.fecha">
 
     <label for="prorroga" class="prorroga"><b>Prórroga</b></label>
-    <input type="checkbox" style="float:right; margin-right: 5px; " id="myCheck" onclick="" name="prorroga"
-      #prorroga="ngModel" [(ngModel)]="this.alta_materia.prorroga">
+    <input type="checkbox" style="float:right; margin-right: 5px; " id="myCheck" onclick="" name="prorroga" #prorroga="ngModel"
+      [(ngModel)]="this.alta_materia.prorroga">
 
     <br />
 
@@ -106,15 +106,15 @@
               <th>Revisor</th>
             </tr>
             <tr *ngFor="let alt of altas_by_tema; let i=index">
-                <td style="width: 15%"><i *ngIf="alt.estado.est === 'Baja'" class="fa fa-times iconX"></i>{{this.alumnos_by_tema[i].nombre}}</td>
-                <td>{{alt.semestre}}</td>
-                <td>{{alt.modalidad.mod}}</td>
-                <td>{{alt.tema}}</td>
-                <td *ngIf="alt.estado.est !== 'Baja'">{{alt.estado.est}}</td>
-                <td *ngIf="alt.estado.est === 'Baja'" style="color:#ff0000">{{alt.estado.est}}</td>
-                <td>{{this.tutores_by_tema[i].nombre}}</td>
-                <td>{{this.revisores_by_tema[i].nombre}}</td>
-               </tr>
+              <td style="width: 15%"><i *ngIf="alt.estado.est === 'Baja'" class="fa fa-times iconX"></i>{{this.alumnos_by_tema[i].nombre}}</td>
+              <td>{{alt.semestre}}</td>
+              <td>{{alt.modalidad.mod}}</td>
+              <td>{{alt.tema}}</td>
+              <td *ngIf="alt.estado.est !== 'Baja'">{{alt.estado.est}}</td>
+              <td *ngIf="alt.estado.est === 'Baja'" style="color:#ff0000">{{alt.estado.est}}</td>
+              <td>{{this.tutores_by_tema[i].nombre}}</td>
+              <td>{{this.revisores_by_tema[i].nombre}}</td>
+            </tr>
           </table>
         </div>
       </form>
@@ -208,16 +208,16 @@
 
 
 
-    <!--button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" (click)="openWord('T')" disabled>Carta</button-->
+    <button name="carta-t" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" (click)="openWordTutor()">Carta</button>
 
-    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 60px" name="fecha_asig_t"
+    <input id="fecha-asig-t" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 0px" name="fecha_asig_t"
       #fecha_asig_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_asignacion">
     <label for="fecha_asig-t" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;" name="fecha_suf_t"
-      #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
+    <input id="fecha-suf-t" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;"
+      name="fecha_suf_t" #fecha_suf_t="ngModel" [(ngModel)]="this.alta_materia.tutor.fecha_suficiencia">
     <label for="fecha-suf-t" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />
@@ -284,18 +284,16 @@
       }
     </script>
 
+    <button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" (click)="openWordRevisor()">Carta</button>
 
-
-    <!--button name="carta-r" style="float: right; margin-right: 80px;margin-left: 40px; margin-top: 20px;" disabled>Carta</button-->
-
-    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 60px" name="fecha_asig_r"
+    <input id="fecha-asig-r" type="date" style="float:right; margin-top: 10px; padding: 10px; margin-right: 0" name="fecha_asig_r"
       #fecha_asig_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_asignacion">
     <label for="fecha_asig-r" style="float:right; margin-top: 10px; padding: 10px;"><b>Fecha asignación: </b></label>
     <br />
     <br />
 
-    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 60px;" name="fecha_suf_r"
-      #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
+    <input id="fecha-suf-r" type="date" style="float: right; margin-top: 10px; padding: 10px; margin-right: 168px;"
+      name="fecha_suf_r" #fecha_suf_r="ngModel" [(ngModel)]="this.alta_materia.revisor.fecha_suficiencia">
     <label for="fecha-suf-r" style="float: right; margin-top: 10px; padding: 10px;"><b>Fecha suficiencia: </b></label>
 
     <br />

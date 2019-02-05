@@ -1,56 +1,127 @@
 import { Injectable } from '@angular/core';
 import * as JSZip from 'jszip';
 import * as Docxtemplater from 'docxtemplater';
-//import * as fs from 'fs';
-import * as path from 'path';
+import { saveAs } from 'file-saver';
+import { RestapiService } from './restapi.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class WordService {
 
-  constructor() { }
+  constructor(
+    public _service: RestapiService,
+    public _builder: FormBuilder,
+  ) { }
 
-/*  generate() {
-    //Load the docx file as a binary
-    var content = fs.readFileSync(path.resolve(__dirname, 'tag-example.docx'), 'binary');
-      //.readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
-
-    var zip = new JSZip(content);
-
-    var doc = new Docxtemplater();
-    doc.loadZip(zip);
-
-    //set the templateVariables
-    doc.setData({
-      first_name: 'John',
-      last_name: 'Doe',
-      phone: '0652455478',
-      description: 'New Website'
-    });
-
-    try {
-      // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-      doc.render()
-    }
-    catch (error) {
-      var e = {
-        message: error.message,
-        name: error.name,
-        stack: error.stack,
-        properties: error.properties,
+  downloadTutor(alumno) {
+    this._service.getGlobal('/carta/get/' + true, '', null).subscribe(data => {
+      let mdata: any = data;
+      if (!mdata || !mdata.hash || !mdata.tipo) {
+        return alert('Error')
       }
-      console.log(JSON.stringify({ error: e }));
-      // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-      throw error;
-    }
-
-    var buf = doc.getZip()
-      .generate({ type: 'nodebuffer' });
-
-    // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-    fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
-
+      let b = 'data:' + mdata.tipo + ';base64,' + mdata.hash
+      let base64 = b.substring(b.indexOf(';base64,') + ';base64,'.length)
+      let raw = window.atob(base64)
+      let array = new Uint8Array(new ArrayBuffer(raw.length))
+      for (let i = 0; i < raw.length; i++) {
+        array[i] = raw.charCodeAt(i)
+      }
+      let doc = new Docxtemplater()
+      let zip = new JSZip(array)
+      doc.loadZip(zip)
+      //console.log(doc)
+      //*
+      let hoy = new Date();
+      doc.setData({
+        anio: hoy.getFullYear(),
+        cite: alumno.cite,
+        fecha_dia: hoy.getDate(),
+        fecha_mes: this.getMonthSp(hoy.getMonth()),
+        nombre_docente: alumno.docente,
+        nombre_alumno: alumno.nombre
+      })
+      try {
+        doc.render()
+      } catch (error) {
+        return alert(error)
+      }
+      let buf = doc.getZip().generate({
+        type: "blob",
+        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      })
+      //*
+      saveAs(buf, 'carta-tutor-' + alumno.nombre + '.docx')
+      //*/
+    }, err => {
+      console.log(err)
+      alert('Error');
+    });
   }
-  */
+
+  downloadRevisor(alumno) {
+    this._service.getGlobal('/carta/get/' + false, '', null).subscribe(data => {
+      let mdata: any = data;
+      if (!mdata || !mdata.hash || !mdata.tipo) {
+        return alert('Error')
+      }
+      let b = 'data:' + mdata.tipo + ';base64,' + mdata.hash
+      let base64 = b.substring(b.indexOf(';base64,') + ';base64,'.length)
+      let raw = window.atob(base64)
+      let array = new Uint8Array(new ArrayBuffer(raw.length))
+      for (let i = 0; i < raw.length; i++) {
+        array[i] = raw.charCodeAt(i)
+      }
+      let doc = new Docxtemplater()
+      let zip = new JSZip(array)
+      doc.loadZip(zip)
+      let hoy = new Date();
+      doc.setData({
+        anio: hoy.getFullYear(),
+        cite: alumno.cite,
+        fecha_dia: hoy.getDate(),
+        fecha_mes: this.getMonthSp(hoy.getMonth()),
+        nombre_docente: alumno.docente,
+        nombre_alumno: alumno.nombre,
+        tema: '"' + alumno.tema.toUpperCase() + '"'
+      })
+      try {
+        doc.render()
+      } catch (error) {
+        return alert(error)
+      }
+      let buf = doc.getZip().generate({
+        type: "blob",
+        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      })
+      //*
+      saveAs(buf, 'carta-revisor-' + alumno.nombre + '.docx')
+      //*/
+    }, err => {
+      console.log(err)
+      alert('Error');
+    });
+  }
+
+  private getMonthSp(month: number) {
+    let months = [
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octumbre',
+      'Noviembre',
+      'Diciembre'
+    ];
+
+    return months[month];
+  }
+
 }

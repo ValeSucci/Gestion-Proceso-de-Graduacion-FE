@@ -141,6 +141,10 @@ body {
   background-color: #ccc;
 } 
 
+#vertical-menuBody form:hover {
+  background-color: #ccc;
+} 
+
 .menu {
   margin: 0;
   padding: 10px 5px;
@@ -406,6 +410,19 @@ body {
   p {
     margin: 2px;
   }
-
 }
 
+/* para las cartas */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.upload-btn-wrapper input[type=file] {
+  /*font-size: 100px;*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+/* para las cartas */

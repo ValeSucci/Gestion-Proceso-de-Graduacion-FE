@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    margin: 0;
-    background-image: url('./assets/res/backgroundcat.png');
-    background-size: cover;
-    background-attachment: fixed;
-  }
+  margin: 0;
+  /*background: url('./assets/res/backgroundcat.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;*/
+}

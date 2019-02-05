@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<form style="max-width:500px;margin: auto" #formUser="ngForm" (ngSubmit)="onSubmit(); ">
-  <br /><br /><br /><br /><br /><br /><br />
+<form style="max-width:40%;margin: 15% 35%;" #formUser="ngForm" (ngSubmit)="onSubmit(); ">
   <!--h2>Login</h2-->
   <div class="container">
     <div class="input-container">
@@ -23,9 +22,6 @@
     <span *ngIf="password.touched && username.touched && this.userDesFail">
         <b class="fail">Usuario deshabilitado.</b>
     </span>
-    <br />
-    <br />
     <input type="submit" value="Iniciar Sesión" class="btn" [disabled]="!formUser.form.valid" />
   </div>
-  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </form>

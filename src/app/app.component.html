@@ -1,30 +1,30 @@
 <div>
   <div class="header">
     <div class="topnav">
-      <!-- Centered link -->
-      <div class="topnav-centered">
-        <a class="titulo">{{pagetitle}}</a>
-      </div>
-      <!-- Left-aligned links (default) -->
-      <div *ngIf="!this._logger.getRole();">
-        <a id="logo-container" routerLink="/home">
-          <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
-        </a>
-      </div>
-      <div *ngIf="this._logger.getRole();">
-        <a id="logo-container" routerLink="/admin">
-          <img src="../assets/res/logo2.png" class="logo" height="65" width="200">
-        </a>
-      </div>
       <!-- Right-aligned links -->
       <div class="topnav-right" *ngIf="_logger.isLoged()">
-        <span *ngIf="!this._logger.getRole();" id="notification_count">{{nNotif}}</span>
-        <img *ngIf="!this._logger.getRole();" src="../assets/res/gato-asustado.png" class="icono" height="60" width="75"
-          (click)="showHideNotifications()">
-        <button class="button" (click)="showHideMenu()">
-          <img src="../assets/res/menu-icon.png" class="icono" height="65" width="75">
-        </button>
+        <div *ngIf="!this._logger.getRole();" class="buttonNot" (click)="showHideNotifications()">
+          <span class="notification_count">{{nNotif}}</span>
+          <img src="../assets/res/gato-asustado.png" class="img">
+        </div>
+        <div *ngIf="this._logger.getRole();" class="buttonNot">
+            <img src="../assets/res/feo.png" class="img">
+        </div>
+        <div class="buttonMenu" (click)="showHideMenu()">
+          <img src="../assets/res/menu-icon.png" class="icono">
+        </div>
 
+      </div>
+      <!-- Centered link -->
+      <div class="topnav-centered">
+        <div class="titulo">{{pagetitle}}</div>
+      </div>
+      <!-- Left-aligned links (default) -->
+      <div *ngIf="!this._logger.getRole();" routerLink="/home" class="logo-container">
+        <img src="../assets/res/logo2.png" class="logo" height="70%" width="90%">
+      </div>
+      <div *ngIf="this._logger.getRole();" routerLink="/admin" class="logo-container">
+        <img src=" ../assets/res/logo2.png" class="logo" height="70%" width="90%">
       </div>
     </div>
     <!--div  id="notification_li" style="background-color: inherit">
@@ -37,14 +37,14 @@
       <div id="notificationsBody" class="notifications">
         <div *ngFor="let not of this.notificaciones" style="border-bottom: 1px solid #bbb; padding: 5px">
           <div *ngIf="not.visto" (click)="verNotificacion(not, not.codigo)">
-            <p style="font-weight: bold">({{not.codigo}}) {{not.nombre}}</p>
-            <p style="font-weight: bold; font-style: italic">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
+            <p class="nombreNot">[{{not.codigo}}] {{not.nombre}}</p>
+            <p class="asuntoNot">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
             <label class="fechaNot">{{not.fecha_publicacion | date: 'dd/MM/yyyy'}}</label>
             <br />
           </div>
           <div *ngIf="!not.visto" style="background-color: #eee" (click)="verNotificacion(not, not.codigo)">
-            <p style="font-weight: bold">({{not.codigo}}) {{not.nombre}}</p>
-            <p style="font-weight: bold; font-style: italic">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
+            <p class="nombreNot">[{{not.codigo}}] {{not.nombre}}</p>
+            <p class="asuntoNot">{{not.asunto}} ({{not.fecha_asunto | date: 'dd/MM/yyyy'}})</p>
             <label class="fechaNot">{{not.fecha_publicacion | date: 'dd/MM/yyyy'}}</label>
             <br />
           </div>
@@ -56,9 +56,9 @@
 
 
     <div *ngIf="menu" class="vertical-menu" id="vertical-menuBody">
-      <p *ngIf="!this._logger.getRole()" class="menu" style="border-bottom: 1px solid #dddddd; padding: 10px 5px;"
+      <p *ngIf="!this._logger.getRole()" class="menu" style="border-bottom: 1px solid #dddddd"
         [routerLink]="[ '/editar-perfil', _logger.getUsername()]" (click)="showHideMenu();">Editar Perfil</p>
-      <p class="menu" style="padding: 10px 5px;" (click)="logout(); showHideMenu();" routerLink="/">Cerrar Sesión</p>
+      <p class="menu" (click)="logout(); showHideMenu();" routerLink="/">Cerrar Sesión</p>
     </div>
   </div>
 
